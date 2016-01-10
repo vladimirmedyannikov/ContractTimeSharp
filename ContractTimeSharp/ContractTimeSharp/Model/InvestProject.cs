@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContractTimeSharp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,10 @@ namespace ContractTime.Model
 
         public List<StageProject> getProjectList()
         {
-            StageProjectDAO dao = new StageProjectDAO();
-            projectList = dao.getByProject(this.getIdProject());
-            return projectList;
+            /* StageProjectDAO dao = new StageProjectDAO();
+             projectList = dao.getByProject(this.getIdProject());
+             return projectList;*/
+            return null;
         }
     }
 }
