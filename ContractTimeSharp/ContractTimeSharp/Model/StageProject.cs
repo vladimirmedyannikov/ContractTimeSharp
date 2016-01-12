@@ -8,9 +8,9 @@ namespace ContractTimeSharp.Model
 {
     class StageProject
     {
-        private int idStage;
-        private int idProject;
-        private int idParentStage;
+        private int idStage { get; set; }
+        private int idProject { get; set; }
+        private int idParentStage { get; set; }
         private String nameStage { get; set; }
         private User user { get; set; }
         private DateTime dateBeginPlan { get; set; }
@@ -21,6 +21,60 @@ namespace ContractTimeSharp.Model
         private DateTime dateEndUser {get; set;}
         private int statusStage { get; set; }
         private String commentUser {get;set;}
+
+        public int IdStage {
+            get { return idStage; }
+            set { idStage = value; }
+        }
+        public int IdProject {
+            get { return idProject; }
+            set { idProject = value; }
+        }
+        public int IdParentStage {
+            get { return idParentStage; }
+            set { idParentStage = value; }
+        }
+        public String NameStage {
+            get { return nameStage; }
+            set { nameStage = value; }
+        }
+        public User User {
+            get { return user; }
+            set { user = value; }
+        }
+        public DateTime DateBeginPlan {
+            get { return dateBeginPlan; }
+            set { dateBeginPlan = value; }
+        }
+        public DateTime DateEndPlan {
+            get { return dateEndPlan; }
+            set { dateEndPlan = value; }
+        }
+        public DateTime DateBeginProg {
+            get { return dateBeginProg; }
+            set { dateBeginProg = value; }
+        }
+        public DateTime DateEndProg {
+            get { return dateEndProg; }
+            set { dateEndProg = value; }
+        }
+        public DateTime DateBeginUser {
+            get { return dateBeginUser; }
+            set { dateBeginUser = value; }
+        }
+        public DateTime DateEndUser {
+            get { return dateEndUser; }
+            set { dateEndUser = value; }
+        }
+        public int StatusStage {
+            get { return statusStage; }
+            set { statusStage = value; }
+        }
+        public String CommentUser {
+            get { return commentUser; }
+            set { commentUser = value; }
+        }
+
 
         private List<StageProject> subStage = new List<StageProject>();
     }
