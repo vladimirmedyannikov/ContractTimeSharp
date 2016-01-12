@@ -2,17 +2,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ContractTime.Model
 {
     class User
     {
         private int id;
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
         private String fullName { get; set; }
+        public String FullName
+        {
+            get { return firstName + " " + secondName + " " + thirdName; }
+        }
         private String firstName { get; set; }
+        public String FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
         private String secondName { get; set; }
+        public String SecondName
+        {
+            get { return secondName; }
+            set { secondName = value; }
+        }
         private String thirdName { get; set; }
+        public String ThirdName
+        {
+            get { return thirdName; }
+            set { thirdName = value; }
+        }
+        
         private DateTime dateBirthday { get; set; }
         private DateTime dateIn { get; set; }
         private DateTime dateOut { get; set; }
@@ -28,6 +52,11 @@ namespace ContractTime.Model
         public User(int idUser)
         {
             this.id = idUser;
+        }
+
+        public override string ToString()
+        {
+            return this.FullName;
         }
     }
 }

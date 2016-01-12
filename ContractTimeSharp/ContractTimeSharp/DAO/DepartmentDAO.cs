@@ -67,7 +67,7 @@ namespace ContractTimeSharp.DAO
             {
                 connection = daoFactory.getConnection();
                 statment = new FbCommand(sql, connection);
-                statment.Parameters.Add("@id_dept", FbDbType.Integer, id);
+                statment.Parameters.Add("@id_dept",  id);
                 FbDataAdapter da = new FbDataAdapter(statment);
                 DataSet result = new DataSet();
                 da.Fill(result);

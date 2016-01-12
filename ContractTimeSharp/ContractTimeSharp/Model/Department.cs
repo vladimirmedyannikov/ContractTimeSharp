@@ -16,5 +16,10 @@ namespace ContractTime.Model
         {
 
         }
+
+        public override string ToString()
+        {
+            return nameDepartment;
+        }
     }
 }
