@@ -77,5 +77,11 @@ namespace ContractTimeSharp.Model
 
 
         private List<StageProject> subStage = new List<StageProject>();
+
+        public List<StageProject> SubStage
+        {
+            get { return subStage; }
+            set { if (value != null) subStage = value; }
+        }
     }
 }
