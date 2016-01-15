@@ -29,7 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridInvestProject = new System.Windows.Forms.DataGridView();
+            this.menuInvestProject = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.создатьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.редактироватьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.удалитьПоектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -37,44 +41,70 @@
             this.сервисToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeViewAdv1 = new Aga.Controls.Tree.TreeViewAdv();
             this.treeColumn1 = new Aga.Controls.Tree.TreeColumn();
-            this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
-            this.menuInvestProject = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStageProject = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.создатьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.редактироватьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.удалитьПоектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьЭтапToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.добавитьПодэтапToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.редактироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.menuStageProject.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridInvestProject
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridInvestProject.AllowUserToAddRows = false;
+            this.dataGridInvestProject.AllowUserToDeleteRows = false;
+            this.dataGridInvestProject.AllowUserToOrderColumns = true;
+            this.dataGridInvestProject.AllowUserToResizeRows = false;
+            this.dataGridInvestProject.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ContextMenuStrip = this.menuInvestProject;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 27);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(870, 227);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridInvestProject.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridInvestProject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridInvestProject.ContextMenuStrip = this.menuInvestProject;
+            this.dataGridInvestProject.Location = new System.Drawing.Point(12, 27);
+            this.dataGridInvestProject.MultiSelect = false;
+            this.dataGridInvestProject.Name = "dataGridInvestProject";
+            this.dataGridInvestProject.ReadOnly = true;
+            this.dataGridInvestProject.RowHeadersVisible = false;
+            this.dataGridInvestProject.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridInvestProject.ShowEditingIcon = false;
+            this.dataGridInvestProject.Size = new System.Drawing.Size(870, 227);
+            this.dataGridInvestProject.TabIndex = 0;
+            this.dataGridInvestProject.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // menuInvestProject
+            // 
+            this.menuInvestProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.создатьПроектToolStripMenuItem,
+            this.редактироватьПроектToolStripMenuItem,
+            this.удалитьПоектToolStripMenuItem});
+            this.menuInvestProject.Name = "menuInvestProject";
+            this.menuInvestProject.Size = new System.Drawing.Size(196, 70);
+            // 
+            // создатьПроектToolStripMenuItem
+            // 
+            this.создатьПроектToolStripMenuItem.Name = "создатьПроектToolStripMenuItem";
+            this.создатьПроектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.создатьПроектToolStripMenuItem.Text = "Создать проект";
+            this.создатьПроектToolStripMenuItem.Click += new System.EventHandler(this.insertInvestProjectMenu);
+            // 
+            // редактироватьПроектToolStripMenuItem
+            // 
+            this.редактироватьПроектToolStripMenuItem.Name = "редактироватьПроектToolStripMenuItem";
+            this.редактироватьПроектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.редактироватьПроектToolStripMenuItem.Text = "Редактировать проект";
+            this.редактироватьПроектToolStripMenuItem.Click += new System.EventHandler(this.editInvestProjectMenu);
+            // 
+            // удалитьПоектToolStripMenuItem
+            // 
+            this.удалитьПоектToolStripMenuItem.Name = "удалитьПоектToolStripMenuItem";
+            this.удалитьПоектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.удалитьПоектToolStripMenuItem.Text = "Удалить поект";
+            this.удалитьПоектToolStripMenuItem.Click += new System.EventHandler(this.deleteInvestProjectMenu);
             // 
             // button1
             // 
@@ -147,22 +177,6 @@
             this.treeColumn1.SortOrder = System.Windows.Forms.SortOrder.None;
             this.treeColumn1.TooltipText = null;
             // 
-            // nodeTextBox1
-            // 
-            this.nodeTextBox1.DataPropertyName = "DateEnd";
-            this.nodeTextBox1.IncrementalSearchEnabled = true;
-            this.nodeTextBox1.LeftMargin = 3;
-            this.nodeTextBox1.ParentColumn = null;
-            // 
-            // menuInvestProject
-            // 
-            this.menuInvestProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.создатьПроектToolStripMenuItem,
-            this.редактироватьПроектToolStripMenuItem,
-            this.удалитьПоектToolStripMenuItem});
-            this.menuInvestProject.Name = "menuInvestProject";
-            this.menuInvestProject.Size = new System.Drawing.Size(196, 70);
-            // 
             // menuStageProject
             // 
             this.menuStageProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -172,24 +186,6 @@
             this.удалитьToolStripMenuItem});
             this.menuStageProject.Name = "menuStageProject";
             this.menuStageProject.Size = new System.Drawing.Size(174, 92);
-            // 
-            // создатьПроектToolStripMenuItem
-            // 
-            this.создатьПроектToolStripMenuItem.Name = "создатьПроектToolStripMenuItem";
-            this.создатьПроектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.создатьПроектToolStripMenuItem.Text = "Создать проект";
-            // 
-            // редактироватьПроектToolStripMenuItem
-            // 
-            this.редактироватьПроектToolStripMenuItem.Name = "редактироватьПроектToolStripMenuItem";
-            this.редактироватьПроектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.редактироватьПроектToolStripMenuItem.Text = "Редактировать проект";
-            // 
-            // удалитьПоектToolStripMenuItem
-            // 
-            this.удалитьПоектToolStripMenuItem.Name = "удалитьПоектToolStripMenuItem";
-            this.удалитьПоектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.удалитьПоектToolStripMenuItem.Text = "Удалить поект";
             // 
             // добавитьЭтапToolStripMenuItem
             // 
@@ -215,6 +211,13 @@
             this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             // 
+            // nodeTextBox1
+            // 
+            this.nodeTextBox1.DataPropertyName = "DateEnd";
+            this.nodeTextBox1.IncrementalSearchEnabled = true;
+            this.nodeTextBox1.LeftMargin = 3;
+            this.nodeTextBox1.ParentColumn = null;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -223,15 +226,15 @@
             this.Controls.Add(this.treeViewAdv1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridInvestProject);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).EndInit();
+            this.menuInvestProject.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.menuInvestProject.ResumeLayout(false);
             this.menuStageProject.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -240,7 +243,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridInvestProject;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.MenuStrip menuStrip1;

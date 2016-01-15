@@ -2,6 +2,7 @@
 using Aga.Controls.Tree.NodeControls;
 using ContractTime.Model;
 using ContractTimeSharp.DAO;
+using ContractTimeSharp.Forms;
 using ContractTimeSharp.Model;
 using ContractTimeSharp.NodeTree;
 using System;
@@ -147,11 +148,11 @@ namespace ContractTimeSharp
 
             //dao.insert(investProject);
             bindingSource.DataSource = dao.getAll();
-            dataGridView1.DataSource = bindingSource;
+            dataGridInvestProject.DataSource = bindingSource;
             bindingSource.CurrentItemChanged += BindingSource_CurrentItemChanged;
             bindingSource.CurrentChanged += BindingSource_CurrentChanged;
             bindingSource.PositionChanged += BindingSource_PositionChanged;
-            dataGridView1.DataMemberChanged += DataGridView1_DataMemberChanged;
+            dataGridInvestProject.DataMemberChanged += DataGridView1_DataMemberChanged;
 
         }
 
@@ -173,7 +174,7 @@ namespace ContractTimeSharp
 
         private void BindingSource_CurrentItemChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow.DataBoundItem != null)
+            if (dataGridInvestProject.CurrentRow.DataBoundItem != null)
             {
                 InvestProject ip = (InvestProject)((BindingSource)sender).Current;
                 StageProjectDAO dao = new StageProjectDAO();
@@ -202,9 +203,7 @@ namespace ContractTimeSharp
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(dataGridView1.DataMember);
-            InvestProject ip = (InvestProject)dataGridView1.CurrentRow.DataBoundItem;
-            MessageBox.Show(ip.nameProject);
+
         }
 
         private void olvDataTree_SelectedIndexChanged(object sender, EventArgs e)
@@ -223,6 +222,22 @@ namespace ContractTimeSharp
             TreeModel model = (TreeModel)treeViewAdv1.Model;
             
             MessageBox.Show(((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage.User.SecondName);
+        }
+
+        private void insertInvestProjectMenu(object sender, EventArgs e)
+        {
+            InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
+            new DialogInvestProject().Show();
+        }
+
+        private void editInvestProjectMenu(object sender, EventArgs e)
+        {
+            InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
+        }
+
+        private void deleteInvestProjectMenu(object sender, EventArgs e)
+        {
+            InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
         }
     }
 }
