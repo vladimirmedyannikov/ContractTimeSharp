@@ -7,7 +7,7 @@ namespace ContractTime.Model
 {
     class Department
     {
-        public int idDepartment { get; set; }
+        public int idDepartment { get; set ; }
         public String nameDepartment { get; set; }
         public Firm firmDepartment { get; set; }
         public Department parentDepartment { get; set; }

@@ -16,7 +16,7 @@ namespace ContractTime.Model
         private String fullName { get; set; }
         public String FullName
         {
-            get { return firstName + " " + secondName + " " + thirdName; }
+            get { return secondName + " " + firstName + " " + thirdName; }
         }
         private String firstName { get; set; }
         public String FirstName
@@ -35,6 +35,12 @@ namespace ContractTime.Model
         {
             get { return thirdName; }
             set { thirdName = value; }
+        }
+
+        public Department Department
+        {
+            get { return department; }
+            set { department = value; }
         }
         
         private DateTime dateBirthday { get; set; }

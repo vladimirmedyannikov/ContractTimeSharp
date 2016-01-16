@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using ContractTimeSharp.Utils;
 
 namespace ContractTimeSharp.DAO
 {
@@ -16,6 +17,46 @@ namespace ContractTimeSharp.DAO
         public void delete(Department e)
         {
             throw new NotImplementedException();
+        }
+
+
+        public List<KeyValuePair> getComboBox()
+        {
+
+            FbConnection connection = null;
+            FbCommand statment = null;
+            String sql = "select DEPT_ID, DEPT_NAME || ' ' || Name_firm as dept_name from Depts "+
+                "left join Firm on Depts.firm_id = Firm.id_firm order by DEPT_NAME";
+            List<KeyValuePair> listResult = new List<KeyValuePair>();
+            try
+            {
+                connection = daoFactory.getConnection();
+                statment = new FbCommand(sql, connection);
+                FbDataAdapter da = new FbDataAdapter(statment);
+                DataSet result = new DataSet();
+                da.Fill(result);
+                foreach (DataRow row in result.Tables[0].Rows)
+                {
+                    KeyValuePair keyValuePair = new KeyValuePair(row["dept_id"].ToString(), row["dept_name"].ToString());
+                    listResult.Add(keyValuePair);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("Department getCombo ", e);
+            }
+            finally
+            {
+                try
+                {
+                    if (connection != null) connection.Close();
+                }
+                catch (System.Data.DataException e)
+                {
+
+                }
+            }
+            return listResult;
         }
 
         public List<Department> getAll()

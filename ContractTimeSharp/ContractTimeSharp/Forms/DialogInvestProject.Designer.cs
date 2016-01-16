@@ -33,26 +33,30 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxNameStage = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxNumberProject = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxDepartment = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxUser = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateBeginPlan = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateEndPlan = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.dateBeginProg = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.dateEndProg = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxAbout = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.panelLabel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLabel
@@ -91,23 +95,24 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.59282F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.40717F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxNameStage, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxNumberProject, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.comboBoxDepartment, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox2, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.comboBoxUser, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.dateBeginPlan, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker2, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.dateEndPlan, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker3, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.dateBeginProg, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker4, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.dateEndProg, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.textBox3, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxAbout, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 9);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -137,13 +142,13 @@
             this.label1.Text = "Название проекта";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox1
+            // textBoxNameStage
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(140, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(488, 20);
-            this.textBox1.TabIndex = 1;
+            this.textBoxNameStage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxNameStage.Location = new System.Drawing.Point(140, 13);
+            this.textBoxNameStage.Name = "textBoxNameStage";
+            this.textBoxNameStage.Size = new System.Drawing.Size(488, 20);
+            this.textBoxNameStage.TabIndex = 1;
             // 
             // label2
             // 
@@ -156,13 +161,13 @@
             this.label2.Text = "Номер проекта";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox2
+            // textBoxNumberProject
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(140, 54);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(488, 20);
-            this.textBox2.TabIndex = 3;
+            this.textBoxNumberProject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxNumberProject.Location = new System.Drawing.Point(140, 54);
+            this.textBoxNumberProject.Name = "textBoxNumberProject";
+            this.textBoxNumberProject.Size = new System.Drawing.Size(488, 20);
+            this.textBoxNumberProject.TabIndex = 3;
             // 
             // label3
             // 
@@ -175,14 +180,14 @@
             this.label3.Text = "Подразделение";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox1
+            // comboBoxDepartment
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(140, 95);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(488, 21);
-            this.comboBox1.TabIndex = 5;
+            this.comboBoxDepartment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxDepartment.FormattingEnabled = true;
+            this.comboBoxDepartment.Location = new System.Drawing.Point(140, 95);
+            this.comboBoxDepartment.Name = "comboBoxDepartment";
+            this.comboBoxDepartment.Size = new System.Drawing.Size(488, 21);
+            this.comboBoxDepartment.TabIndex = 5;
             // 
             // label4
             // 
@@ -195,14 +200,14 @@
             this.label4.Text = "Ответственный";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox2
+            // comboBoxUser
             // 
-            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(140, 136);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(488, 21);
-            this.comboBox2.TabIndex = 7;
+            this.comboBoxUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxUser.FormattingEnabled = true;
+            this.comboBoxUser.Location = new System.Drawing.Point(140, 136);
+            this.comboBoxUser.Name = "comboBoxUser";
+            this.comboBoxUser.Size = new System.Drawing.Size(488, 21);
+            this.comboBoxUser.TabIndex = 7;
             // 
             // label5
             // 
@@ -215,12 +220,12 @@
             this.label5.Text = "Начало (план)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dateTimePicker1
+            // dateBeginPlan
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(140, 177);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 9;
+            this.dateBeginPlan.Location = new System.Drawing.Point(140, 177);
+            this.dateBeginPlan.Name = "dateBeginPlan";
+            this.dateBeginPlan.Size = new System.Drawing.Size(200, 20);
+            this.dateBeginPlan.TabIndex = 9;
             // 
             // label6
             // 
@@ -233,12 +238,12 @@
             this.label6.Text = "Завершение (план)";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dateTimePicker2
+            // dateEndPlan
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(140, 218);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 11;
+            this.dateEndPlan.Location = new System.Drawing.Point(140, 218);
+            this.dateEndPlan.Name = "dateEndPlan";
+            this.dateEndPlan.Size = new System.Drawing.Size(200, 20);
+            this.dateEndPlan.TabIndex = 11;
             // 
             // label7
             // 
@@ -251,12 +256,12 @@
             this.label7.Text = "Начало (прогноз)";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dateTimePicker3
+            // dateBeginProg
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(140, 259);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker3.TabIndex = 13;
+            this.dateBeginProg.Location = new System.Drawing.Point(140, 259);
+            this.dateBeginProg.Name = "dateBeginProg";
+            this.dateBeginProg.Size = new System.Drawing.Size(200, 20);
+            this.dateBeginProg.TabIndex = 13;
             // 
             // label8
             // 
@@ -269,12 +274,12 @@
             this.label8.Text = "Завершение (прогноз)";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dateTimePicker4
+            // dateEndProg
             // 
-            this.dateTimePicker4.Location = new System.Drawing.Point(140, 300);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker4.TabIndex = 15;
+            this.dateEndProg.Location = new System.Drawing.Point(140, 300);
+            this.dateEndProg.Name = "dateEndProg";
+            this.dateEndProg.Size = new System.Drawing.Size(200, 20);
+            this.dateEndProg.TabIndex = 15;
             // 
             // label9
             // 
@@ -287,13 +292,41 @@
             this.label9.Text = "Комментарий";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox3
+            // textBoxAbout
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(140, 341);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(488, 20);
-            this.textBox3.TabIndex = 17;
+            this.textBoxAbout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxAbout.Location = new System.Drawing.Point(140, 341);
+            this.textBoxAbout.Name = "textBoxAbout";
+            this.textBoxAbout.Size = new System.Drawing.Size(488, 20);
+            this.textBoxAbout.TabIndex = 17;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnSave);
+            this.panel2.Controls.Add(this.btnCancel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(140, 382);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(488, 40);
+            this.panel2.TabIndex = 18;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(410, 3);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = "Отмена";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(329, 3);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 1;
+            this.btnSave.Text = "Сохранить";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // DialogInvestProject
             // 
@@ -309,6 +342,7 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -320,22 +354,25 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxNameStage;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxNumberProject;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxDepartment;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBoxUser;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateBeginPlan;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateEndPlan;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.DateTimePicker dateBeginProg;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.DateTimePicker dateEndProg;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxAbout;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

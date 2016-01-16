@@ -115,22 +115,6 @@ namespace ContractTimeSharp
         {
             BindingSource bindingSource = new BindingSource();
             
-            bindingSource.Add(new Firm(1,"Firm1"));
-            bindingSource.Add(new Firm(2, "Firm2"));
-            bindingSource.Add(new Firm(3, "Firm3"));
-            bindingSource.Add(new Firm(4, "Firm4"));
-            /*dataGridView1.AutoGenerateColumns = false;
-            
-            DataGridViewColumn column = new DataGridViewTextBoxColumn();
-            column.DataPropertyName = "user";
-            column.Name = "NameFirm";
-            dataGridView1.Columns.Add(column);*/
-
-            /*column = new DataGridViewTextBoxColumn();
-            column.DataPropertyName = "NameFirm";
-            column.Name = "NameFirm";
-            dataGridView1.Columns.Add(column);*/
-
             InvestProjectDAO dao = new InvestProjectDAO();
             InvestProject investProject = new InvestProject();
             investProject.nameProject = "New project";
@@ -146,7 +130,6 @@ namespace ContractTimeSharp
             investProject.aboutProject = "About project";
             bindingSource.Clear();
 
-            //dao.insert(investProject);
             bindingSource.DataSource = dao.getAll();
             dataGridInvestProject.DataSource = bindingSource;
             bindingSource.CurrentItemChanged += BindingSource_CurrentItemChanged;
@@ -227,7 +210,9 @@ namespace ContractTimeSharp
         private void insertInvestProjectMenu(object sender, EventArgs e)
         {
             InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
-            new DialogInvestProject().Show();
+            DialogInvestProject d = new DialogInvestProject();
+            d.Project = ip;
+            d.ShowDialog();
         }
 
         private void editInvestProjectMenu(object sender, EventArgs e)
