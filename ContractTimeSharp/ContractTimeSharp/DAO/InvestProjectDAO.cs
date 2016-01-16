@@ -107,11 +107,11 @@ namespace ContractTimeSharp.DAO
                 int id = Convert.ToInt32(statement.ExecuteScalar());
 
 
-                /*if (id != null)
+                if (id != 0)
                 {
                     investProject.idProject = (int)id;
                 }
-                */
+                
             }
             catch (Exception e)
             {
@@ -126,6 +126,7 @@ namespace ContractTimeSharp.DAO
 
         public void update(InvestProject e)
         {
+            //TODO
             throw new NotImplementedException();
         }
     }

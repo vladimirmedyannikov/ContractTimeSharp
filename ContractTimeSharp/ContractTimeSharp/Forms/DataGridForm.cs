@@ -201,28 +201,43 @@ namespace ContractTimeSharp
 
         private void treeViewAdv1_DoubleClick(object sender, EventArgs e)
         {
-           // Node node = (Node)treeViewAdv1.Model;
             TreeModel model = (TreeModel)treeViewAdv1.Model;
-            
             MessageBox.Show(((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage.User.SecondName);
         }
 
         private void insertInvestProjectMenu(object sender, EventArgs e)
         {
-            InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
             DialogInvestProject d = new DialogInvestProject();
-            d.Project = ip;
             d.ShowDialog();
         }
 
         private void editInvestProjectMenu(object sender, EventArgs e)
         {
-            InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
+            showDialogInvestProject();
         }
 
         private void deleteInvestProjectMenu(object sender, EventArgs e)
         {
             InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
+        }
+
+        public void showDialogInvestProject()
+        {
+            DialogInvestProject d = new DialogInvestProject();
+            try
+            {
+                if (dataGridInvestProject.CurrentRow.DataBoundItem != null && dataGridInvestProject.CurrentRow.DataBoundItem.GetType() == typeof(InvestProject))
+                {
+                    InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
+                    d.setProject(ip);
+                }
+            }
+            catch (Exception error)
+            {
+                //return;
+                //throw new Exception();
+            }
+            d.ShowDialog();
         }
     }
 }
