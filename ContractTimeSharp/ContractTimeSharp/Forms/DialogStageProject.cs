@@ -51,10 +51,10 @@ namespace ContractTimeSharp.Forms
                     comboBoxUser.SelectedItem = new KeyValuePair(stage.User.Id.ToString(), stage.User.FullName);
                     dateBegin.Value = stage.DateBeginPlan;
                     dateEnd.Value = stage.DateEndPlan;
-                    dateBeginUser.Value = stage.DateBeginUser;
-                    dateEndUser.Value = stage.DateEndUser;
-                    dateBeginProg.Value = stage.DateBeginProg;
-                    dateEndProg.Value = stage.DateEndProg;
+                    dateBeginUser.Value = stage.DateBeginUser < dateBeginUser.MinDate ? stage.DateBeginPlan : stage.DateBeginUser;
+                    dateEndUser.Value = stage.DateEndUser < dateEndUser.MinDate ? stage.DateEndPlan : stage.DateEndUser;
+                    dateBeginProg.Value = stage.DateBeginProg< dateBeginProg.MinDate ? stage.DateBeginPlan : stage.DateBeginProg;
+                    dateEndProg.Value = stage.DateEndProg < dateEndProg.MinDate ? stage.DateEndPlan : stage.DateEndProg;
                     textBoxAbout.Text = stage.CommentUser;
                 }
                 else
@@ -124,6 +124,14 @@ namespace ContractTimeSharp.Forms
             }
 
             return valid;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите выйти?", "Выход", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }

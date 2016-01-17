@@ -124,5 +124,13 @@ namespace ContractTimeSharp.Forms
 
             return valid;
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите выйти ?","Выход",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
     }
 }

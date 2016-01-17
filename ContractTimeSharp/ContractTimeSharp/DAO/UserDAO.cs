@@ -159,5 +159,54 @@ namespace ContractTimeSharp.DAO
         {
             throw new NotImplementedException();
         }
+
+        public User auth(string login, string hashPass)
+        {
+            FbConnection connection = null;
+            FbCommand statment = null;
+            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id from user_info u " +
+                " left join depts on depts.dept_id = u.id_dept where login = @login and password = @password";
+            User user = null;
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                statment = new FbCommand(sql, connection);
+                statment.Parameters.Add("@login", login);
+                statment.Parameters.Add("@password", hashPass);
+                FbDataAdapter da = new FbDataAdapter(statment);
+                DataSet result = new DataSet();
+                da.Fill(result);
+                foreach (DataRow row in result.Tables[0].Rows)
+                {
+                    user = new User();
+                    user.Id = Convert.ToInt32(row["id_user"].ToString());
+                    user.FirstName = row["f_name"].ToString();
+                    user.SecondName = row["l_name"].ToString();
+                    user.ThirdName = row["p_name"].ToString();
+
+                    Department department = new Department();
+                    department.idDepartment = Convert.ToInt32(row["dept_id"].ToString());
+                    department.nameDepartment = row["dept_name"].ToString();
+                    user.Department = department;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("User by login " + login, e);
+            }
+            finally
+            {
+                try
+                {
+                    if (connection != null) connection.Close();
+                }
+                catch (System.Data.DataException e)
+                {
+
+                }
+            }
+            return user;
+        }
     }
 }

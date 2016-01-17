@@ -81,6 +81,12 @@
     <Compile Include="DAO\InvestProjectDAO.cs" />
     <Compile Include="DAO\StageProjectDAO.cs" />
     <Compile Include="DAO\UserDAO.cs" />
+    <Compile Include="Forms\AuthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AuthForm.Designer.cs">
+      <DependentUpon>AuthForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DialogInvestProject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,7 @@
     <Compile Include="Forms\DialogStageProject.Designer.cs">
       <DependentUpon>DialogStageProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainApplication.cs" />
     <Compile Include="Model\Department.cs" />
     <Compile Include="Model\Firm.cs" />
     <Compile Include="Forms\DataGridForm.cs">
@@ -109,6 +116,10 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Utils\AdvanceUtil.cs" />
     <Compile Include="Utils\KeyValuePair.cs" />
+    <Compile Include="Utils\ParametersApp.cs" />
+    <EmbeddedResource Include="Forms\AuthForm.resx">
+      <DependentUpon>AuthForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DataGridForm.resx">
       <DependentUpon>DataGridForm.cs</DependentUpon>
     </EmbeddedResource>

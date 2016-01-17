@@ -18,9 +18,9 @@ using System.Windows.Forms;
 
 namespace ContractTimeSharp
 {
-    public partial class Form1 : Form
+    public partial class DialogGridForm : Form
     {
-        public Form1()
+        public DialogGridForm()
         {
             InitializeComponent();
             treeViewAdv1.UseColumns = true;
@@ -31,12 +31,12 @@ namespace ContractTimeSharp
             TreeColumn columnDateBegin = new TreeColumn("Начало (план)", 60);
             TreeColumn columnDateEnd = new TreeColumn("Завершение (план)", 60);
             TreeColumn columnDateBeginUser = new TreeColumn("Начало (пользв.)", 60);
+
             TreeColumn columnDateEndUser = new TreeColumn("Завершение (пользв.)", 60);
             TreeColumn columnStatus = new TreeColumn("Статус", 10);
             TreeColumn columnDateBeginProg = new TreeColumn("Начало (прогноз)", 60);
             TreeColumn columnDateEndProg = new TreeColumn("Завершение (прогноз)", 60);
             TreeColumn columnComment = new TreeColumn("Комментарий", 200);
-
 
             //treeViewAdv1.Columns.Add(columnName);
             treeViewAdv1.Columns.Add(columnNameStage);
@@ -49,7 +49,6 @@ namespace ContractTimeSharp
             treeViewAdv1.Columns.Add(columnDateBeginProg);
             treeViewAdv1.Columns.Add(columnDateEndProg);
             treeViewAdv1.Columns.Add(columnComment);
-            
 
             NodeTextBox nodeTextName = new NodeTextBox();
             nodeTextName.DataPropertyName = "NameStage";
@@ -89,7 +88,7 @@ namespace ContractTimeSharp
 
             NodeTextBox nodeTextStatus = new NodeTextBox();
             nodeTextStatus.DataPropertyName = "Status";
-            nodeTextStatus.ParentColumn = columnStatus ;
+            nodeTextStatus.ParentColumn = columnStatus;
             nodeTextStatus.IncrementalSearchEnabled = true;
             treeViewAdv1.NodeControls.Add(nodeTextStatus);
 
@@ -99,7 +98,7 @@ namespace ContractTimeSharp
             nodeTextDateBeginProg.IncrementalSearchEnabled = true;
             treeViewAdv1.NodeControls.Add(nodeTextDateBeginProg);
 
-            NodeTextBox nodeTextDateEndProg= new NodeTextBox();
+            NodeTextBox nodeTextDateEndProg = new NodeTextBox();
             nodeTextDateEndProg.DataPropertyName = "DateEndProg";
             nodeTextDateEndProg.ParentColumn = columnDateEndProg;
             nodeTextDateEndProg.IncrementalSearchEnabled = true;
@@ -110,39 +109,39 @@ namespace ContractTimeSharp
             nodeTextCommentUser.ParentColumn = columnComment;
             nodeTextCommentUser.IncrementalSearchEnabled = true;
             treeViewAdv1.NodeControls.Add(nodeTextCommentUser);
+
+            initializationInvestProject();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BindingSource bindingSource = new BindingSource();
             
-            InvestProjectDAO dao = new InvestProjectDAO();
-            InvestProject investProject = new InvestProject();
-            investProject.nameProject = "New project";
-            investProject.numberProject = "kikj osj 22 12";
-            User user = new User();
-            user.Id = 1;
-            investProject.user = user;
-            Department department = new Department();
-            department.idDepartment = 3;
-            investProject.department = department;
-            investProject.dateBegin = DateTime.Now;
-            investProject.dateEnd = DateTime.Now.AddDays(5);
-            investProject.aboutProject = "About project";
-            bindingSource.Clear();
 
+        }
+
+        public void initializationInvestProject()
+        {
+            BindingSource bindingSource = new BindingSource();
+
+            InvestProjectDAO dao = new InvestProjectDAO();
+            bindingSource.Clear();
             bindingSource.DataSource = dao.getAll();
             dataGridInvestProject.DataSource = bindingSource;
             bindingSource.CurrentItemChanged += BindingSource_CurrentItemChanged;
-        
+            bindingSource.MoveFirst();
         }
 
 
         private void BindingSource_CurrentItemChanged(object sender, EventArgs e)
         {
+            updateStageProject();
+        }
+
+        public void updateStageProject()
+        {
             if (dataGridInvestProject.CurrentRow.DataBoundItem != null)
             {
-                InvestProject ip = (InvestProject)((BindingSource)sender).Current;
+                InvestProject ip = (InvestProject)((BindingSource)dataGridInvestProject.DataSource).Current;
                 StageProjectDAO dao = new StageProjectDAO();
                 List<StageProject> listProject = dao.getByProject(ip.idProject);
                 List<StageProject> listSubStage = dao.getSubStageProject(ip.idProject);
@@ -151,24 +150,22 @@ namespace ContractTimeSharp
                 treeViewAdv1.BeginUpdate();
                 foreach (StageProject stage in listProject)
                 {
-                    Node node = new StageProjectNode(stage.NameStage,stage.CommentUser,stage.DateBeginPlan.ToString(), stage.DateEndPlan.ToString(), stage.DateBeginProg.ToString(), stage.DateEndProg.ToString(), stage.DateBeginUser.ToString(), stage.DateEndUser.ToString(), stage.User.FullName, stage.StatusStage.ToString(), stage);
-                    foreach (StageProject child in stage.SubStage){
-                        Node childNode = new StageProjectNode(child.NameStage, child.CommentUser, child.DateBeginPlan.ToString(), child.DateEndPlan.ToString(), child.DateBeginProg.ToString(), child.DateEndProg.ToString(), child.DateBeginUser.ToString(), child.DateEndUser.ToString(), child.User.FullName, child.StatusStage.ToString(),child);
+                    Node node = new StageProjectNode(stage.NameStage, stage.CommentUser, stage.DateBeginPlan.ToString(), stage.DateEndPlan.ToString(), stage.DateBeginProg.ToString(), stage.DateEndProg.ToString(), stage.DateBeginUser.ToString(), stage.DateEndUser.ToString(), stage.User.FullName, stage.StatusStage.ToString(), stage);
+                    foreach (StageProject child in stage.SubStage)
+                    {
+                        Node childNode = new StageProjectNode(child.NameStage, child.CommentUser, child.DateBeginPlan.ToString(), child.DateEndPlan.ToString(), child.DateBeginProg.ToString(), child.DateEndProg.ToString(), child.DateBeginUser.ToString(), child.DateEndUser.ToString(), child.User.FullName, child.StatusStage.ToString(), child);
                         node.Nodes.Add(childNode);
                     }
-                    model.Nodes.Add(node);                   
+                    model.Nodes.Add(node);
                 }
                 treeViewAdv1.EndUpdate();
             }
         }
 
-
-
-
         private void treeViewAdv1_DoubleClick(object sender, EventArgs e)
         {
             TreeModel model = (TreeModel)treeViewAdv1.Model;
-            MessageBox.Show(((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage.User.SecondName);
+            //MessageBox.Show(((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage.User.SecondName);
         }
 
         private void insertInvestProjectMenu(object sender, EventArgs e)
@@ -185,49 +182,67 @@ namespace ContractTimeSharp
         private void deleteInvestProjectMenu(object sender, EventArgs e)
         {
             InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
+            if (MessageBox.Show("Вы действительно хотите удалить проект и все связанные с ним данные ?", "Удаление",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                InvestProjectDAO dao = new InvestProjectDAO();
+                dao.delete(ip);
+                initializationInvestProject();
+            }
         }
 
         public void showDialogInvestProject()
         {
-            DialogInvestProject d = new DialogInvestProject();
+            DialogInvestProject dialog = new DialogInvestProject();
             try
             {
                 if (dataGridInvestProject.CurrentRow.DataBoundItem != null && dataGridInvestProject.CurrentRow.DataBoundItem.GetType() == typeof(InvestProject))
                 {
                     InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
-                    d.setProject(ip);
+                    dialog.setProject(ip);
                 }
             }
             catch (Exception error)
             {
-                //return;
+                //TODO;
                 //throw new Exception();
             }
-            d.ShowDialog();
+            dialog.ShowDialog();
         }
 
         private void menuStageProject_Opening(object sender, CancelEventArgs e)
         {
-            
             TreeModel model = (TreeModel)treeViewAdv1.Model;
             int index = -1;
-            if (treeViewAdv1.SelectedNode.Parent != null)
-            {
-                index = treeViewAdv1.SelectedNode.Parent.Index;
-            }
-            if (model != null)
-            {
-                mnuDeleteStage.Enabled = true;
-                mnuEditStage.Enabled = true;
-                mnuAddSubStage.Enabled = false;
-                if (treeViewAdv1.SelectedNode != null)
+            try {
+                if (treeViewAdv1.SelectedNode != null & treeViewAdv1.SelectedNode.Parent.Index >= 0)
                 {
-                    StageProject stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
-                    if (stage.IdParentStage != 0) { mnuAddSubStage.Enabled = false; } else { mnuAddSubStage.Enabled = true; }
+                    index = treeViewAdv1.SelectedNode.Parent.Index;
+                    mnuAddSubStage.Enabled = false;
+                }
+                else
+                {
+                    index = treeViewAdv1.SelectedNode.Index;
+                    mnuAddSubStage.Enabled = true;
+                }
+                if (model != null)
+                {
+                    mnuDeleteStage.Enabled = true;
+                    mnuEditStage.Enabled = true;
+                    if (treeViewAdv1.SelectedNode != null)
+                    {
+                        StageProject stage = ((StageProjectNode)model.Nodes[index]).stage;
+                    }
+                }
+                else
+                {
+                    mnuDeleteStage.Enabled = false;
+                    mnuAddSubStage.Enabled = false;
+                    mnuEditStage.Enabled = false;
                 }
             }
-            else
+            catch(Exception error)
             {
+                //TODO
                 mnuDeleteStage.Enabled = false;
                 mnuAddSubStage.Enabled = false;
                 mnuEditStage.Enabled = false;
@@ -241,43 +256,69 @@ namespace ContractTimeSharp
 
         public void showDialogStage()
         {
-            DialogStageProject d = new DialogStageProject();
+            DialogStageProject dialog = new DialogStageProject();
             if (dataGridInvestProject.CurrentRow.DataBoundItem != null && dataGridInvestProject.CurrentRow.DataBoundItem.GetType() == typeof(InvestProject))
             {
                 InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
-                d.idProject = ip.idProject;
+                dialog.idProject = ip.idProject;
             }
-            d.ShowDialog();
+            dialog.ShowDialog();
+            updateStageProject();
         }
 
         private void mnuEditStage_Click(object sender, EventArgs e)
         {
-            DialogStageProject d = new DialogStageProject();
+            DialogStageProject dialog = new DialogStageProject();
             TreeModel model = (TreeModel)treeViewAdv1.Model;
             if (model != null)
             {
-                StageProject stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
-                d.setStageProject(stage);
+                StageProject stage;
+                if (treeViewAdv1.SelectedNode.Parent.Index >= 0)
+                {
+                    stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Parent.Index].Nodes[treeViewAdv1.SelectedNode.Index]).stage;
+                }
+                else
+                {
+                    stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
+                }
+                dialog.setStageProject(stage);
                 if (dataGridInvestProject.CurrentRow.DataBoundItem != null && dataGridInvestProject.CurrentRow.DataBoundItem.GetType() == typeof(InvestProject))
                 {
                     InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
-                    d.idProject = ip.idProject;
+                    dialog.idProject = ip.idProject;
                 }
             }
-            d.ShowDialog();
+            dialog.ShowDialog();
+            updateStageProject();
         }
 
         private void mnuAddSubStage_Click(object sender, EventArgs e)
         {
-            DialogStageProject d = new DialogStageProject();
+            DialogStageProject dialog = new DialogStageProject();
             TreeModel model = (TreeModel)treeViewAdv1.Model;
             if (model != null)
             {
                 StageProject stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
-                d.setStageProject(stage, AdvanceUtil.paramStagInsert.SUB);
-                d.idProject = stage.IdProject;
+                dialog.setStageProject(stage, AdvanceUtil.paramStagInsert.SUB);
+                dialog.idProject = stage.IdProject;
             }
-            d.ShowDialog();
+            dialog.ShowDialog();
+            updateStageProject();
+        }
+
+        private void treeViewAdv1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void treeViewAdv1_RowDraw(object sender, TreeViewRowDrawEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ContractTimeSharp
 {
-    partial class Form1
+    partial class DialogGridForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -34,8 +34,6 @@
             this.создатьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.редактироватьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьПоектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.контрактыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сервисToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,6 +45,7 @@
             this.mnuEditStage = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDeleteStage = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -105,25 +104,6 @@
             this.удалитьПоектToolStripMenuItem.Text = "Удалить поект";
             this.удалитьПоектToolStripMenuItem.Click += new System.EventHandler(this.deleteInvestProjectMenu);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(688, 231);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(769, 231);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -162,10 +142,13 @@
             this.treeViewAdv1.Name = "treeViewAdv1";
             this.treeViewAdv1.NodeControls.Add(this.nodeTextBox1);
             this.treeViewAdv1.SelectedNode = null;
+            this.treeViewAdv1.ShiftFirstNode = true;
             this.treeViewAdv1.Size = new System.Drawing.Size(870, 387);
             this.treeViewAdv1.TabIndex = 6;
             this.treeViewAdv1.Text = "treeViewAdv1";
             this.treeViewAdv1.UseColumns = true;
+            this.treeViewAdv1.RowDraw += new System.EventHandler<Aga.Controls.Tree.TreeViewRowDrawEventArgs>(this.treeViewAdv1_RowDraw);
+            this.treeViewAdv1.Click += new System.EventHandler(this.treeViewAdv1_Click);
             this.treeViewAdv1.DoubleClick += new System.EventHandler(this.treeViewAdv1_DoubleClick);
             // 
             // treeColumn1
@@ -182,7 +165,7 @@
             this.mnuEditStage,
             this.mnuDeleteStage});
             this.menuStageProject.Name = "menuStageProject";
-            this.menuStageProject.Size = new System.Drawing.Size(174, 114);
+            this.menuStageProject.Size = new System.Drawing.Size(174, 92);
             this.menuStageProject.Opening += new System.ComponentModel.CancelEventHandler(this.menuStageProject_Opening);
             // 
             // mnuAddStage
@@ -219,19 +202,23 @@
             this.nodeTextBox1.LeftMargin = 3;
             this.nodeTextBox1.ParentColumn = null;
             // 
-            // Form1
+            // notifyIcon1
+            // 
+            this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon1.Text = "Инвестиционные проекты\r\n";
+            this.notifyIcon1.Visible = true;
+            // 
+            // DialogGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(894, 659);
             this.Controls.Add(this.treeViewAdv1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridInvestProject);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "DialogGridForm";
+            this.Text = "Проекты";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).EndInit();
             this.menuInvestProject.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
@@ -245,8 +232,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridInvestProject;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem контрактыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сервисToolStripMenuItem;
@@ -262,6 +247,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuAddSubStage;
         private System.Windows.Forms.ToolStripMenuItem mnuEditStage;
         private System.Windows.Forms.ToolStripMenuItem mnuDeleteStage;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 

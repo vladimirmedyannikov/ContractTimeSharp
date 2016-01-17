@@ -63,7 +63,16 @@ namespace ContractTimeSharp.Model
             set { dateBeginUser = value; }
         }
         public DateTime DateEndUser {
-            get { return dateEndUser; }
+            get
+            {
+                if (dateEndUser.CompareTo(new DateTime(1, 1, 1)) == 0) {
+                    return dateEndPlan;
+                }
+                else
+                {
+                    return dateEndUser;
+                }
+            }
             set { dateEndUser = value; }
         }
         public int StatusStage {

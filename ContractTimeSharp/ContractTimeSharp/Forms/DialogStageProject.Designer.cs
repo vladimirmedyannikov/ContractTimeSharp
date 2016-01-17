@@ -50,9 +50,9 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dateBegin = new System.Windows.Forms.DateTimePicker();
             this.dateEnd = new System.Windows.Forms.DateTimePicker();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.labelUser = new System.Windows.Forms.Label();
             this.comboBoxUser = new System.Windows.Forms.ComboBox();
             this.panelLabel.SuspendLayout();
@@ -303,14 +303,14 @@
             this.dateEnd.Size = new System.Drawing.Size(200, 20);
             this.dateEnd.TabIndex = 20;
             // 
-            // btnCancel
+            // panel2
             // 
-            this.btnCancel.Location = new System.Drawing.Point(410, 3);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Отмена";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.panel2.Controls.Add(this.btnSave);
+            this.panel2.Controls.Add(this.btnCancel);
+            this.panel2.Location = new System.Drawing.Point(143, 453);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(496, 38);
+            this.panel2.TabIndex = 18;
             // 
             // btnSave
             // 
@@ -322,14 +322,15 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // panel2
+            // btnCancel
             // 
-            this.panel2.Controls.Add(this.btnSave);
-            this.panel2.Controls.Add(this.btnCancel);
-            this.panel2.Location = new System.Drawing.Point(143, 453);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(496, 38);
-            this.panel2.TabIndex = 18;
+            this.btnCancel.Location = new System.Drawing.Point(410, 3);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = "Отмена";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // labelUser
             // 

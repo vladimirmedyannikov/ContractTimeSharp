@@ -4,30 +4,33 @@ using ContractTimeSharp.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ContractTimeSharp
 {
-    static class Program
+    class MainApplication
     {
-        private static User user;
+        static User user;
         public static User User { get { return user; } set { user = value; } }
 
         private static ParametersApp param;
-        public static ParametersApp ParamApp
-        {
+        public static ParametersApp ParamApp {
             get { return param; }
             set { param = value; }
         }
-            /// <summary>
-            /// Главная точка входа для приложения.
-            /// </summary>
-        /*    [STAThread]
-        static void Main()
+
+        public MainApplication()
+        {
+            
+        }
+
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MainApplication());
-        }*/
+            new AuthForm().ShowDialog();
+            if (User != null) Application.Run(new DialogGridForm());
+        }
     }
 }

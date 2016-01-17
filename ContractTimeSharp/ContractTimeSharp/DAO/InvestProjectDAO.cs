@@ -12,9 +12,28 @@ namespace ContractTimeSharp.DAO
     class InvestProjectDAO : DAO<InvestProject>
     {
         private DAOFactory daoFactory = new FirebirdDAO();
-        public void delete(InvestProject e)
+        public void delete(InvestProject project)
         {
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statement = null;
+            String sql = "execute procedure delete_invest_project (@idProject);";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                statement = new FbCommand(sql, connection);
+
+                statement.Parameters.Add("@idProject", project.idProject);
+                int id = Convert.ToInt32(statement.ExecuteScalar());
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("Insert Invest Project", e);
+            }
+            finally
+            {
+                if (connection != null) connection.Close();
+            }
         }
 
         public List<InvestProject> getAll()
