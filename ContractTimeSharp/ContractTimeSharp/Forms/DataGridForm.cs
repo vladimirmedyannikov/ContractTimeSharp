@@ -5,6 +5,7 @@ using ContractTimeSharp.DAO;
 using ContractTimeSharp.Forms;
 using ContractTimeSharp.Model;
 using ContractTimeSharp.NodeTree;
+using ContractTimeSharp.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -133,27 +134,9 @@ namespace ContractTimeSharp
             bindingSource.DataSource = dao.getAll();
             dataGridInvestProject.DataSource = bindingSource;
             bindingSource.CurrentItemChanged += BindingSource_CurrentItemChanged;
-            bindingSource.CurrentChanged += BindingSource_CurrentChanged;
-            bindingSource.PositionChanged += BindingSource_PositionChanged;
-            dataGridInvestProject.DataMemberChanged += DataGridView1_DataMemberChanged;
-
+        
         }
 
-        private void DataGridView1_DataMemberChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void BindingSource_PositionChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void BindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-            //MessageBox.Show("next");
-            
-        }
 
         private void BindingSource_CurrentItemChanged(object sender, EventArgs e)
         {
@@ -179,25 +162,8 @@ namespace ContractTimeSharp
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void olvDataTree_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void treeViewAdv1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void treeViewAdv1_DoubleClick(object sender, EventArgs e)
         {
@@ -236,6 +202,60 @@ namespace ContractTimeSharp
             {
                 //return;
                 //throw new Exception();
+            }
+            d.ShowDialog();
+        }
+
+        private void menuStageProject_Opening(object sender, CancelEventArgs e)
+        {
+            TreeModel model = (TreeModel)treeViewAdv1.Model;
+            if (model != null)
+            {
+                mnuDeleteStage.Enabled = true;
+                mnuEditStage.Enabled = true;
+                StageProject stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
+                if (stage.IdParentStage != 0) { mnuAddSubStage.Enabled = false; } else { mnuAddSubStage.Enabled = true; }
+                
+            }
+            else
+            {
+                mnuDeleteStage.Enabled = false;
+                mnuAddSubStage.Enabled = false;
+                mnuEditStage.Enabled = false;
+            }
+        }
+
+        private void mnuAddStage_Click(object sender, EventArgs e)
+        {
+            showDialogStage();
+        }
+
+        public void showDialogStage()
+        {
+            DialogStageProject d = new DialogStageProject();
+            d.ShowDialog();
+        }
+
+        private void mnuEditStage_Click(object sender, EventArgs e)
+        {
+            DialogStageProject d = new DialogStageProject();
+            TreeModel model = (TreeModel)treeViewAdv1.Model;
+            if (model != null)
+            {
+                StageProject stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
+                d.setStageProject(stage);
+            }
+            d.ShowDialog();
+        }
+
+        private void mnuAddSubStage_Click(object sender, EventArgs e)
+        {
+            DialogStageProject d = new DialogStageProject();
+            TreeModel model = (TreeModel)treeViewAdv1.Model;
+            if (model != null)
+            {
+                StageProject stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
+                d.setStageProject(stage, AdvanceUtil.paramStagInsert.SUB);
             }
             d.ShowDialog();
         }

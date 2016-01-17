@@ -42,10 +42,10 @@
             this.treeViewAdv1 = new Aga.Controls.Tree.TreeViewAdv();
             this.treeColumn1 = new Aga.Controls.Tree.TreeColumn();
             this.menuStageProject = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.добавитьЭтапToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьПодэтапToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.редактироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAddStage = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuAddSubStage = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEditStage = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDeleteStage = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
@@ -74,7 +74,6 @@
             this.dataGridInvestProject.ShowEditingIcon = false;
             this.dataGridInvestProject.Size = new System.Drawing.Size(870, 227);
             this.dataGridInvestProject.TabIndex = 0;
-            this.dataGridInvestProject.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // menuInvestProject
             // 
@@ -124,7 +123,6 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // menuStrip1
             // 
@@ -168,7 +166,6 @@
             this.treeViewAdv1.TabIndex = 6;
             this.treeViewAdv1.Text = "treeViewAdv1";
             this.treeViewAdv1.UseColumns = true;
-            this.treeViewAdv1.Click += new System.EventHandler(this.treeViewAdv1_Click);
             this.treeViewAdv1.DoubleClick += new System.EventHandler(this.treeViewAdv1_DoubleClick);
             // 
             // treeColumn1
@@ -180,36 +177,40 @@
             // menuStageProject
             // 
             this.menuStageProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьЭтапToolStripMenuItem,
-            this.добавитьПодэтапToolStripMenuItem,
-            this.редактироватьToolStripMenuItem,
-            this.удалитьToolStripMenuItem});
+            this.mnuAddStage,
+            this.mnuAddSubStage,
+            this.mnuEditStage,
+            this.mnuDeleteStage});
             this.menuStageProject.Name = "menuStageProject";
-            this.menuStageProject.Size = new System.Drawing.Size(174, 92);
+            this.menuStageProject.Size = new System.Drawing.Size(174, 114);
+            this.menuStageProject.Opening += new System.ComponentModel.CancelEventHandler(this.menuStageProject_Opening);
             // 
-            // добавитьЭтапToolStripMenuItem
+            // mnuAddStage
             // 
-            this.добавитьЭтапToolStripMenuItem.Name = "добавитьЭтапToolStripMenuItem";
-            this.добавитьЭтапToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.добавитьЭтапToolStripMenuItem.Text = "Добавить этап";
+            this.mnuAddStage.Name = "mnuAddStage";
+            this.mnuAddStage.Size = new System.Drawing.Size(173, 22);
+            this.mnuAddStage.Text = "Добавить этап";
+            this.mnuAddStage.Click += new System.EventHandler(this.mnuAddStage_Click);
             // 
-            // добавитьПодэтапToolStripMenuItem
+            // mnuAddSubStage
             // 
-            this.добавитьПодэтапToolStripMenuItem.Name = "добавитьПодэтапToolStripMenuItem";
-            this.добавитьПодэтапToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.добавитьПодэтапToolStripMenuItem.Text = "Добавить подэтап";
+            this.mnuAddSubStage.Name = "mnuAddSubStage";
+            this.mnuAddSubStage.Size = new System.Drawing.Size(173, 22);
+            this.mnuAddSubStage.Text = "Добавить подэтап";
+            this.mnuAddSubStage.Click += new System.EventHandler(this.mnuAddSubStage_Click);
             // 
-            // редактироватьToolStripMenuItem
+            // mnuEditStage
             // 
-            this.редактироватьToolStripMenuItem.Name = "редактироватьToolStripMenuItem";
-            this.редактироватьToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.редактироватьToolStripMenuItem.Text = "Редактировать";
+            this.mnuEditStage.Name = "mnuEditStage";
+            this.mnuEditStage.Size = new System.Drawing.Size(173, 22);
+            this.mnuEditStage.Text = "Редактировать";
+            this.mnuEditStage.Click += new System.EventHandler(this.mnuEditStage_Click);
             // 
-            // удалитьToolStripMenuItem
+            // mnuDeleteStage
             // 
-            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.удалитьToolStripMenuItem.Text = "Удалить";
+            this.mnuDeleteStage.Name = "mnuDeleteStage";
+            this.mnuDeleteStage.Size = new System.Drawing.Size(173, 22);
+            this.mnuDeleteStage.Text = "Удалить";
             // 
             // nodeTextBox1
             // 
@@ -257,10 +258,10 @@
         private System.Windows.Forms.ToolStripMenuItem редактироватьПроектToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem удалитьПоектToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip menuStageProject;
-        private System.Windows.Forms.ToolStripMenuItem добавитьЭтапToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem добавитьПодэтапToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem редактироватьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuAddStage;
+        private System.Windows.Forms.ToolStripMenuItem mnuAddSubStage;
+        private System.Windows.Forms.ToolStripMenuItem mnuEditStage;
+        private System.Windows.Forms.ToolStripMenuItem mnuDeleteStage;
     }
 }
 

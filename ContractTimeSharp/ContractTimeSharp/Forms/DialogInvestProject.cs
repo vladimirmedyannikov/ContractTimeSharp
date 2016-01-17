@@ -124,10 +124,5 @@ namespace ContractTimeSharp.Forms
 
             return valid;
         }
-
-        private void cancelButton(object sender, EventArgs e)
-        {
-            this.Close();
-        }
     }
 }

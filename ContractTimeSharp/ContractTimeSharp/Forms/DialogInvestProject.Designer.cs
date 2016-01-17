@@ -74,7 +74,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDialog.AutoSize = true;
             this.labelDialog.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelDialog.Location = new System.Drawing.Point(203, 9);
+            this.labelDialog.Location = new System.Drawing.Point(203, 10);
             this.labelDialog.Name = "labelDialog";
             this.labelDialog.Size = new System.Drawing.Size(245, 29);
             this.labelDialog.TabIndex = 2;
@@ -296,8 +296,9 @@
             // 
             this.textBoxAbout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxAbout.Location = new System.Drawing.Point(140, 341);
+            this.textBoxAbout.Multiline = true;
             this.textBoxAbout.Name = "textBoxAbout";
-            this.textBoxAbout.Size = new System.Drawing.Size(488, 20);
+            this.textBoxAbout.Size = new System.Drawing.Size(488, 35);
             this.textBoxAbout.TabIndex = 17;
             // 
             // panel2
@@ -312,7 +313,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(329, 3);
+            this.btnSave.Location = new System.Drawing.Point(329, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 1;
@@ -322,13 +323,12 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(410, 3);
+            this.btnCancel.Location = new System.Drawing.Point(410, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.cancelButton);
             // 
             // DialogInvestProject
             // 
