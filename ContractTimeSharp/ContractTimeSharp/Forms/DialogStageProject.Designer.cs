@@ -360,6 +360,7 @@
             this.Controls.Add(this.panelLabel);
             this.Controls.Add(this.panel1);
             this.Name = "DialogStageProject";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DialogStageProject";
             this.panelLabel.ResumeLayout(false);
             this.panelLabel.PerformLayout();

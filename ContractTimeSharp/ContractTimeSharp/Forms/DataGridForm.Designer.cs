@@ -218,6 +218,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "DialogGridForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Проекты";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).EndInit();
             this.menuInvestProject.ResumeLayout(false);
