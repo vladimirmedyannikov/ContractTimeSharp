@@ -12,11 +12,11 @@ namespace ContractTimeSharp.DAO.Factory
         {
             FbConnectionStringBuilder fbSb = new FbConnectionStringBuilder();
             //fbSb.Charset = "WIN1251";
-            fbSb.UserID = "SYSDBA";
-            fbSb.Password = "masterkey";
+            fbSb.UserID = Properties.Settings.Default.login;
+            fbSb.Password = Properties.Settings.Default.password;
             //fbSb.Port = 3050;
-            fbSb.DataSource = "192.168.0.105";
-            fbSb.Database = "contracttime";
+            fbSb.DataSource = Properties.Settings.Default.host;
+            fbSb.Database = Properties.Settings.Default.dbname;
             //fbSb.ServerType = 0;
             //fbSb.ConnectionTimeout = 30;
             //MessageBox.Show(fbSb.ToString());
