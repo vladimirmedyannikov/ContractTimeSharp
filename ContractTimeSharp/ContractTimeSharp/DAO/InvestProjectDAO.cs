@@ -124,10 +124,63 @@ namespace ContractTimeSharp.DAO
             return investProject;
         }
 
-        public void update(InvestProject e)
+        /// <summary>
+        /// UPDATE_INVEST_PROJECT_ALL(
+        ///ID_PROJECT integer,
+        ///NAME_PROJECT NAME_PROJECT_DOMAIN,
+        ///NUMBER_PROJECT NUMBER_PROJECT,
+        ///ID_DEPT integer,
+        ///ID_USER integer,
+        ///DATE_BEGIN_PLAN date,
+        ///DATE_END_PLAN date,
+        ///DATE_BEGIN_PROG date,
+        ///DATE_END_PROG date,
+        ///ABOUT_PROJECT ABOUT)
+        /// </summary>
+        /// <param name="NAME_PROJECT"></param>
+        /// <param name="NUMBER_PROJECT"></param>
+        /// <param name="integer"></param>
+        /// <param name="integer"></param>
+        /// <param name="date"></param>
+        /// <param name="date"></param>
+        /// <param name="date"></param>
+        /// <param name="date"></param>
+        /// <param name="ABOUT"></param>
+        
+        public void update(InvestProject investProject)
         {
-            //TODO
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statement = null;
+            FbTransaction transaction = null;
+            string sql = @"execute procedure update_invest_project_all (@id_project, @name_project, @number_project, @id_dept, @id_user, 
+                         @date_begin, @date_end, @date_begin_prog, @date_end_prog, @about)";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                transaction = connection.BeginTransaction();
+                statement = new FbCommand(sql, connection, transaction);
+                statement.Parameters.Add("@id_project", investProject.idProject);
+                statement.Parameters.Add("@name_project", investProject.nameProject);
+                statement.Parameters.Add("@number_project", investProject.numberProject);
+                statement.Parameters.Add("@id_dept", investProject.department.idDepartment);
+                statement.Parameters.Add("id_user", investProject.user.Id);
+                statement.Parameters.Add("@date_begin", investProject.dateBegin);
+                statement.Parameters.Add("@date_end", investProject.dateEnd);
+                statement.Parameters.Add("date_begin_prog", investProject.dateBeginProg);
+                statement.Parameters.Add("@date_end_prog", investProject.dateEndProg);
+                statement.Parameters.Add("@about", investProject.aboutProject);
+                statement.ExecuteNonQuery();
+                transaction.Commit();
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }

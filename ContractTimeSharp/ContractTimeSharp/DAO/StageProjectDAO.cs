@@ -28,14 +28,66 @@ namespace ContractTimeSharp.DAO
             throw new NotImplementedException();
         }
 
-        public StageProject insert(StageProject e)
+        public StageProject insert(StageProject stageProject)
         {
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statement = null;
+            string sql = @"execute procedure insert_stage_project (@name_stage, @id_user, @date_begin_plan, @date_end_plan, @id_project, @id_stage_parent)";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                statement = new FbCommand(sql, connection);
+                statement.Parameters.Add("@name_stage", stageProject.NameStage);
+                statement.Parameters.Add("@id_user", stageProject.User.Id);
+                statement.Parameters.Add("@date_begin_plan", stageProject.DateBeginPlan);
+                statement.Parameters.Add("@date_end_plan", stageProject.DateEndPlan);
+                statement.Parameters.Add("@id_project", stageProject.IdProject);
+                statement.Parameters.Add("@id_stage_parent", stageProject.IdParentStage);
+                int id = Convert.ToInt32(statement.ExecuteScalar());
+                if (id != 0) stageProject.IdStage = id;
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("Insert Stage Project", e);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return stageProject;
         }
 
-        public void update(StageProject e)
+        public void update(StageProject stageProject)
         {
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statement = null;
+            FbTransaction transaction = null;
+            string sql = @"execute procedure update_stage_project_all(@id_stage ,@name_stage, @id_user, @date_begin_plan, @date_end_plan, @status_stage)";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                transaction = connection.BeginTransaction();
+                statement = new FbCommand(sql, connection);
+                statement.Parameters.Add("@id_stage", stageProject.IdStage);
+                statement.Parameters.Add("@name_stage", stageProject.NameStage);
+                statement.Parameters.Add("@id_user", stageProject.User.Id);
+                statement.Parameters.Add("@date_begin_plan", stageProject.DateBeginPlan);
+                statement.Parameters.Add("@date_end_plan", stageProject.DateEndPlan);            
+                statement.Parameters.Add("@status_stage", stageProject.StatusStage);
+                statement.ExecuteNonQuery();
+                transaction.Commit();
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+                throw new DAOException("Insert Stage Project", e);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         public List<StageProject> getSubStageProject(int idProject)

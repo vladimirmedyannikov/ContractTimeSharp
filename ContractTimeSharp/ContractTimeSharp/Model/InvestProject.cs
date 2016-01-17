@@ -28,5 +28,14 @@ namespace ContractTime.Model
              return projectList;*/
             return null;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() == typeof(InvestProject))
+            {
+                return idProject.Equals(((InvestProject)obj).idProject) ? true : false;
+            }
+            return false;
+        }
     }
 }
