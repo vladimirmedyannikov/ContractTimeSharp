@@ -69,7 +69,7 @@ namespace ContractTimeSharp.DAO
                 connection = daoFactory.getConnection();
                 connection.Open();
                 transaction = connection.BeginTransaction();
-                statement = new FbCommand(sql, connection);
+                statement = new FbCommand(sql, connection,transaction);
                 statement.Parameters.Add("@id_stage", stageProject.IdStage);
                 statement.Parameters.Add("@name_stage", stageProject.NameStage);
                 statement.Parameters.Add("@id_user", stageProject.User.Id);

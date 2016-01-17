@@ -15,7 +15,7 @@ namespace ContractTimeSharp.DAO.Factory
             fbSb.UserID = "SYSDBA";
             fbSb.Password = "masterkey";
             //fbSb.Port = 3050;
-            fbSb.DataSource = "localhost";
+            fbSb.DataSource = "192.168.0.105";
             fbSb.Database = "contracttime";
             //fbSb.ServerType = 0;
             //fbSb.ConnectionTimeout = 30;

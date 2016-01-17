@@ -258,6 +258,7 @@
             // 
             // dateBeginProg
             // 
+            this.dateBeginProg.Enabled = false;
             this.dateBeginProg.Location = new System.Drawing.Point(140, 259);
             this.dateBeginProg.Name = "dateBeginProg";
             this.dateBeginProg.Size = new System.Drawing.Size(200, 20);
@@ -276,6 +277,7 @@
             // 
             // dateEndProg
             // 
+            this.dateEndProg.Enabled = false;
             this.dateEndProg.Location = new System.Drawing.Point(140, 300);
             this.dateEndProg.Name = "dateEndProg";
             this.dateEndProg.Size = new System.Drawing.Size(200, 20);

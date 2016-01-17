@@ -208,14 +208,23 @@ namespace ContractTimeSharp
 
         private void menuStageProject_Opening(object sender, CancelEventArgs e)
         {
+            
             TreeModel model = (TreeModel)treeViewAdv1.Model;
+            int index = -1;
+            if (treeViewAdv1.SelectedNode.Parent != null)
+            {
+                index = treeViewAdv1.SelectedNode.Parent.Index;
+            }
             if (model != null)
             {
                 mnuDeleteStage.Enabled = true;
                 mnuEditStage.Enabled = true;
-                StageProject stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
-                if (stage.IdParentStage != 0) { mnuAddSubStage.Enabled = false; } else { mnuAddSubStage.Enabled = true; }
-                
+                mnuAddSubStage.Enabled = false;
+                if (treeViewAdv1.SelectedNode != null)
+                {
+                    StageProject stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
+                    if (stage.IdParentStage != 0) { mnuAddSubStage.Enabled = false; } else { mnuAddSubStage.Enabled = true; }
+                }
             }
             else
             {
@@ -233,6 +242,11 @@ namespace ContractTimeSharp
         public void showDialogStage()
         {
             DialogStageProject d = new DialogStageProject();
+            if (dataGridInvestProject.CurrentRow.DataBoundItem != null && dataGridInvestProject.CurrentRow.DataBoundItem.GetType() == typeof(InvestProject))
+            {
+                InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
+                d.idProject = ip.idProject;
+            }
             d.ShowDialog();
         }
 
@@ -244,6 +258,11 @@ namespace ContractTimeSharp
             {
                 StageProject stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
                 d.setStageProject(stage);
+                if (dataGridInvestProject.CurrentRow.DataBoundItem != null && dataGridInvestProject.CurrentRow.DataBoundItem.GetType() == typeof(InvestProject))
+                {
+                    InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
+                    d.idProject = ip.idProject;
+                }
             }
             d.ShowDialog();
         }
@@ -256,6 +275,7 @@ namespace ContractTimeSharp
             {
                 StageProject stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
                 d.setStageProject(stage, AdvanceUtil.paramStagInsert.SUB);
+                d.idProject = stage.IdProject;
             }
             d.ShowDialog();
         }

@@ -17,6 +17,7 @@ namespace ContractTimeSharp.Forms
         private StageProject stageProject;
         public StageProject StageProejct { set { stageProject = value; } get { return stageProject; } }
         public AdvanceUtil.paramStagInsert paramInsert;
+        public int idProject { get; set; }
 
         public DialogStageProject()
         {
@@ -34,7 +35,10 @@ namespace ContractTimeSharp.Forms
         {
 
         }
-
+        public void setStageProject(StageProject stage)
+        {
+            setStageProject(stage, AdvanceUtil.paramStagInsert.NOSUB);
+        }
         public void setStageProject(StageProject stage, AdvanceUtil.paramStagInsert param)
         {
             stageProject = stage;
@@ -62,7 +66,36 @@ namespace ContractTimeSharp.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (isValid())
+            {
+                if (stageProject == null)
+                {
+                    stageProject = new StageProject();
+                }
+                stageProject.NameStage = textBoxNameStage.Text;
+                UserDAO daoUser = new UserDAO();
+                stageProject.User = daoUser.getById(Convert.ToInt32(((KeyValuePair)comboBoxUser.SelectedItem).Key));
+                stageProject.DateBeginPlan = dateBegin.Value;
+                stageProject.DateEndPlan = dateEnd.Value;
+                stageProject.CommentUser = textBoxAbout.Text;
+                stageProject.IdProject = idProject;
 
+                if (paramInsert == AdvanceUtil.paramStagInsert.SUB)
+                {
+                    stageProject.IdParentStage = stageProject.IdStage;
+                }
+                StageProjectDAO dao = new StageProjectDAO();
+                
+                if (stageProject.IdStage != 0 && paramInsert != AdvanceUtil.paramStagInsert.SUB)
+                {
+                    dao.update(stageProject);
+                }
+                else
+                {
+                    dao.insert(stageProject);
+                }
+
+            }
         }
 
         public bool isValid()
