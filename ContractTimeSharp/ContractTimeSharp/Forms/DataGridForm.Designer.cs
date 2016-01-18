@@ -62,6 +62,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridInvestProject.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridInvestProject.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridInvestProject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridInvestProject.ContextMenuStrip = this.menuInvestProject;
             this.dataGridInvestProject.Location = new System.Drawing.Point(12, 27);
@@ -69,6 +70,7 @@
             this.dataGridInvestProject.Name = "dataGridInvestProject";
             this.dataGridInvestProject.ReadOnly = true;
             this.dataGridInvestProject.RowHeadersVisible = false;
+            this.dataGridInvestProject.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dataGridInvestProject.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridInvestProject.ShowEditingIcon = false;
             this.dataGridInvestProject.Size = new System.Drawing.Size(870, 227);
@@ -136,13 +138,14 @@
             this.treeViewAdv1.ContextMenuStrip = this.menuStageProject;
             this.treeViewAdv1.DefaultToolTipProvider = null;
             this.treeViewAdv1.DragDropMarkColor = System.Drawing.Color.Black;
-            this.treeViewAdv1.LineColor = System.Drawing.SystemColors.ControlDark;
+            this.treeViewAdv1.GridLineStyle = ((Aga.Controls.Tree.GridLineStyle)((Aga.Controls.Tree.GridLineStyle.Horizontal | Aga.Controls.Tree.GridLineStyle.Vertical)));
+            this.treeViewAdv1.LineColor = System.Drawing.Color.Black;
             this.treeViewAdv1.Location = new System.Drawing.Point(12, 260);
             this.treeViewAdv1.Model = null;
             this.treeViewAdv1.Name = "treeViewAdv1";
             this.treeViewAdv1.NodeControls.Add(this.nodeTextBox1);
+            this.treeViewAdv1.RowHeight = 20;
             this.treeViewAdv1.SelectedNode = null;
-            this.treeViewAdv1.ShiftFirstNode = true;
             this.treeViewAdv1.Size = new System.Drawing.Size(870, 387);
             this.treeViewAdv1.TabIndex = 6;
             this.treeViewAdv1.Text = "treeViewAdv1";
@@ -217,6 +220,7 @@
             this.Controls.Add(this.dataGridInvestProject);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(261, 65);
             this.Name = "DialogGridForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Проекты";

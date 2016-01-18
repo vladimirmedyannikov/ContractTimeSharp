@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ambiance Theme.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\DAOException.cs" />
     <Compile Include="DAO\DepartmentDAO.cs" />
