@@ -23,6 +23,48 @@ namespace ContractTimeSharp.DAO
             throw new NotImplementedException();
         }
 
+        public List<StageProject> getByUser(User user)
+        {
+            FbConnection connection = null;
+            FbCommand statment = null;
+            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
+                "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
+                "status_stage, comment_user, id_stage_parent from stage_project " +
+                "inner join user_info u on u.id_user = stage_project.id_user where stage_project.id_user = @idUser;";
+            List<StageProject> stageProjectList = new List<StageProject>();
+            try
+            {
+                connection = daoFactory.getConnection();
+                statment = new FbCommand(sql, connection);
+                statment.Parameters.Add("@idUser", user.Id);
+                FbDataAdapter da = new FbDataAdapter(statment);
+                DataSet result = new DataSet();
+                da.Fill(result);
+                foreach (DataRow row in result.Tables[0].Rows)
+                {
+                    StageProject stageProject = generateStageProject(row);
+                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject);
+                    stageProjectList.Add(stageProject);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("Get stage project ", e);
+            }
+            finally
+            {
+                try
+                {
+                    if (connection != null) connection.Close();
+                }
+                catch (System.Data.DataException e)
+                {
+
+                }
+            }
+            return stageProjectList;
+        }
+
         public StageProject getById(int id)
         {
             throw new NotImplementedException();

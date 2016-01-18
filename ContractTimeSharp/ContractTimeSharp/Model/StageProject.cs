@@ -21,6 +21,12 @@ namespace ContractTimeSharp.Model
         private DateTime dateEndUser {get; set;}
         private int statusStage { get; set; }
         private String commentUser {get;set;}
+        private InvestProject project;
+
+        public InvestProject Project {
+            get { return project; }
+            set { project = value; }
+        }
 
         public int IdStage {
             get { return idStage; }

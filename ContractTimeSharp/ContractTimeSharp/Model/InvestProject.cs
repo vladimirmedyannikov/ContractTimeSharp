@@ -37,5 +37,10 @@ namespace ContractTime.Model
             }
             return false;
         }
+
+        public override string ToString()
+        {
+            return nameProject + " #"+ numberProject;
+        }
     }
 }

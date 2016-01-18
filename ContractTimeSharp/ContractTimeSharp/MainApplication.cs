@@ -29,7 +29,9 @@ namespace ContractTimeSharp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
             new AuthForm().ShowDialog();
+            Application.Run(new UserStageForm());
             if (User != null) Application.Run(new DialogGridForm());
         }
     }

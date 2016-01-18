@@ -102,7 +102,65 @@ namespace ContractTimeSharp.DAO
 
         public InvestProject getById(int id)
         {
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statment = null;
+            String sql = "select invest_project.*, l_name, f_name, p_name, dept_name from invest_project " +
+                "left join depts on depts.dept_id = invest_project.id_dept " +
+                "left join user_info u on u.id_user = invest_project.id_user where id_project = @id_project";
+            InvestProject investProject = new InvestProject();
+
+            try
+            {
+                connection = daoFactory.getConnection();
+                statment = new FbCommand(sql, connection);
+                statment.Parameters.Add("@id_project", id);
+                FbDataAdapter da = new FbDataAdapter(statment);
+                DataSet result = new DataSet();
+                da.Fill(result);
+                foreach (DataRow row in result.Tables[0].Rows)
+                {
+                    investProject.idProject = Convert.ToInt32(row["id_project"].ToString());
+
+                    Department department = new Department();
+                    department.nameDepartment = row["dept_name"].ToString();
+                    department.idDepartment = Convert.ToInt32(row["id_dept"].ToString());
+                    investProject.department = department;
+
+                    investProject.aboutProject = row["about_project"].ToString();
+                    investProject.dateBegin = DateTime.Parse(row["date_begin_plan"].ToString());
+
+                    investProject.dateEnd = DateTime.Parse(row["date_end_plan"].ToString());
+                    investProject.dateBeginProg = DateTime.Parse(row["date_begin_prog"].ToString());
+                    investProject.dateEndProg = DateTime.Parse(row["date_end_prog"].ToString());
+                    investProject.numberProject = row["number_project"].ToString();
+
+                    User user = new User();
+                    user.FirstName = row["f_name"].ToString();
+                    user.SecondName = row["l_name"].ToString();
+                    user.ThirdName = row["p_name"].ToString();
+                    user.Id = Convert.ToInt32(row["id_user"].ToString());
+
+                    investProject.user = user;
+                    //investProject.setUser(userDAO.getById(resultSet.getInt("id_user")));
+                    investProject.nameProject = row["name_project"].ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("Department getAll ", e);
+            }
+            finally
+            {
+                try
+                {
+                    if (connection != null) connection.Close();
+                }
+                catch (System.Data.DataException e)
+                {
+
+                }
+            }
+            return investProject;
         }
 
         public InvestProject insert(InvestProject investProject)
