@@ -31,7 +31,7 @@ namespace ContractTimeSharp
             TreeColumn columnDateBegin = new TreeColumn("Начало (план)", 60);
             TreeColumn columnDateEnd = new TreeColumn("Завершение (план)", 60);
             TreeColumn columnDateBeginUser = new TreeColumn("Начало (пользв.)", 60);
-
+           
             TreeColumn columnDateEndUser = new TreeColumn("Завершение (пользв.)", 60);
             TreeColumn columnStatus = new TreeColumn("Статус", 10);
             TreeColumn columnDateBeginProg = new TreeColumn("Начало (прогноз)", 60);
@@ -83,7 +83,9 @@ namespace ContractTimeSharp
             NodeTextBox nodeTextDateEndUser = new NodeTextBox();
             nodeTextDateEndUser.DataPropertyName = "DateEndUser";
             nodeTextDateEndUser.ParentColumn = columnDateEndUser;
-            nodeTextDateEndUser.IncrementalSearchEnabled = true;
+            nodeTextDateEndUser.IncrementalSearchEnabled = false;
+            
+
             treeViewAdv1.NodeControls.Add(nodeTextDateEndUser);
 
             NodeTextBox nodeTextStatus = new NodeTextBox();
@@ -150,10 +152,10 @@ namespace ContractTimeSharp
                 treeViewAdv1.BeginUpdate();
                 foreach (StageProject stage in listProject)
                 {
-                    Node node = new StageProjectNode(stage.NameStage, stage.CommentUser, stage.DateBeginPlan.ToString(), stage.DateEndPlan.ToString(), stage.DateBeginProg.ToString(), stage.DateEndProg.ToString(), stage.DateBeginUser.ToString(), stage.DateEndUser.ToString(), stage.User.FullName, stage.StatusStage.ToString(), stage);
+                    Node node = new StageProjectNode(stage.NameStage, stage.CommentUser, stage.DateBeginPlan.ToShortDateString(), stage.DateEndPlan.ToShortDateString(), stage.DateBeginProg.ToShortDateString(), stage.DateEndProg.ToShortDateString(), stage.DateBeginUser.ToShortDateString(), stage.DateEndUser.ToShortDateString(), stage.User.FullName, stage.StatusStage.ToString(), stage);
                     foreach (StageProject child in stage.SubStage)
                     {
-                        Node childNode = new StageProjectNode(child.NameStage, child.CommentUser, child.DateBeginPlan.ToString(), child.DateEndPlan.ToString(), child.DateBeginProg.ToString(), child.DateEndProg.ToString(), child.DateBeginUser.ToString(), child.DateEndUser.ToString(), child.User.FullName, child.StatusStage.ToString(), child);
+                        Node childNode = new StageProjectNode(child.NameStage, child.CommentUser, child.DateBeginPlan.ToShortDateString(), child.DateEndPlan.ToShortDateString(), child.DateBeginProg.ToShortDateString(), child.DateEndProg.ToShortDateString(), child.DateBeginUser.ToShortDateString(), child.DateEndUser.ToShortDateString(), child.User.FullName, child.StatusStage.ToString(), child);
                         node.Nodes.Add(childNode);
                     }
                     model.Nodes.Add(node);

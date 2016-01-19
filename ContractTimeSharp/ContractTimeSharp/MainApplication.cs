@@ -31,8 +31,18 @@ namespace ContractTimeSharp
             Application.SetCompatibleTextRenderingDefault(false);
             
             new AuthForm().ShowDialog();
-            Application.Run(new UserStageForm());
-            if (User != null) Application.Run(new DialogGridForm());
+
+            if (User != null)
+            {
+                if (User.TypeUser == (int)AdvanceUtil.typeUser.ADMIN)
+                {
+                    Application.Run(new DialogGridForm());
+                }
+                else
+                {
+                    Application.Run(new UserStageForm());
+                }
+            }
         }
     }
 }

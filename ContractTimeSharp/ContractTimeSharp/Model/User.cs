@@ -8,6 +8,12 @@ namespace ContractTime.Model
     class User
     {
         private int id;
+        private int typeUser;
+        public int TypeUser
+        {
+            get { return typeUser; }
+            set { typeUser = value; }
+        }
         public int Id
         {
             get { return id; }

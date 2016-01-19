@@ -164,7 +164,7 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id from user_info u " +
+            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user from user_info u " +
                 " left join depts on depts.dept_id = u.id_dept where login = @login and password = @password";
             User user = null;
             try
@@ -184,6 +184,7 @@ namespace ContractTimeSharp.DAO
                     user.FirstName = row["f_name"].ToString();
                     user.SecondName = row["l_name"].ToString();
                     user.ThirdName = row["p_name"].ToString();
+                    user.TypeUser = Convert.ToInt32(row["type_user"].ToString());
 
                     Department department = new Department();
                     department.idDepartment = Convert.ToInt32(row["dept_id"].ToString());

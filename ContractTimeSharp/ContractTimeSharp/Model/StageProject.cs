@@ -71,13 +71,14 @@ namespace ContractTimeSharp.Model
         public DateTime DateEndUser {
             get
             {
-                if (dateEndUser.CompareTo(new DateTime(1, 1, 1)) == 0) {
+                return dateEndUser;
+                /*if (dateEndUser.CompareTo(new DateTime(1, 1, 1)) == 0) {
                     return dateEndPlan;
                 }
                 else
                 {
                     return dateEndUser;
-                }
+                }*/
             }
             set { dateEndUser = value; }
         }

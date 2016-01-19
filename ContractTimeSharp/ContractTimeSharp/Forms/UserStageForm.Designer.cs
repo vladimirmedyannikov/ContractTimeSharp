@@ -68,7 +68,7 @@
             this.tabNotComplete.Padding = new System.Windows.Forms.Padding(3);
             this.tabNotComplete.Size = new System.Drawing.Size(634, 308);
             this.tabNotComplete.TabIndex = 0;
-            this.tabNotComplete.Text = "Невыполненные";
+            this.tabNotComplete.Text = "Планируемые";
             this.tabNotComplete.UseVisualStyleBackColor = true;
             // 
             // gridNotComplete
@@ -91,6 +91,8 @@
             this.gridNotComplete.ShowEditingIcon = false;
             this.gridNotComplete.Size = new System.Drawing.Size(628, 302);
             this.gridNotComplete.TabIndex = 1;
+            this.gridNotComplete.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotComplete_CellContentClick);
+            this.gridNotComplete.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotComplete_CellDoubleClick);
             // 
             // tabComplete
             // 
@@ -100,7 +102,7 @@
             this.tabComplete.Padding = new System.Windows.Forms.Padding(3);
             this.tabComplete.Size = new System.Drawing.Size(634, 308);
             this.tabComplete.TabIndex = 1;
-            this.tabComplete.Text = "Выполненные";
+            this.tabComplete.Text = "Фактические";
             this.tabComplete.UseVisualStyleBackColor = true;
             // 
             // gridComplete
@@ -123,6 +125,7 @@
             this.gridComplete.ShowEditingIcon = false;
             this.gridComplete.Size = new System.Drawing.Size(628, 302);
             this.gridComplete.TabIndex = 2;
+            this.gridComplete.DoubleClick += new System.EventHandler(this.gridComplete_DoubleClick);
             // 
             // UserStageForm
             // 

@@ -34,8 +34,8 @@ namespace ContractTimeSharp.NodeTree
             DateEnd = dateEnd;
             DateBeginProg = dateBeginProg;
             DateEndProg = dateEndProg;
-            DateBeginUser = dateBeginUser;
-            DateEndUser = dateEndUser;
+            DateBeginUser =  (dateBeginUser.Equals("01.01.0001")) ? "" : dateBeginUser;
+            DateEndUser = (dateEndUser.Equals("01.01.0001")) ? "" : dateEndUser;
             User = user;
             Status = status.ToString();
             

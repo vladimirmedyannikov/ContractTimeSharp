@@ -18,11 +18,25 @@ namespace ContractTimeSharp.Forms
         public StageProject StageProejct { set { stageProject = value; } get { return stageProject; } }
         public AdvanceUtil.paramStagInsert paramInsert;
         public int idProject { get; set; }
+        public bool userMode { get; set; }
 
         public DialogStageProject()
         {
             InitializeComponent();
             InitializationDataBox();
+        }
+
+        private void InitializationPermission()
+        {
+            if (userMode)
+            {
+                textBoxNameStage.Enabled = false;
+                comboBoxUser.Enabled = false;
+                dateBegin.Enabled = false;
+                dateEnd.Enabled = false;
+                dateBeginProg.Enabled = false;
+                dateEndProg.Enabled = false;
+            }
         }
 
         public void InitializationDataBox()
@@ -51,11 +65,17 @@ namespace ContractTimeSharp.Forms
                     comboBoxUser.SelectedItem = new KeyValuePair(stage.User.Id.ToString(), stage.User.FullName);
                     dateBegin.Value = stage.DateBeginPlan;
                     dateEnd.Value = stage.DateEndPlan;
-                    dateBeginUser.Value = stage.DateBeginUser < dateBeginUser.MinDate ? stage.DateBeginPlan : stage.DateBeginUser;
+
+                    dateBeginUser.Checked = true;
+                    dateEndUser.Checked = true;
+
+                    dateBeginUser.Value = stage.DateBeginUser < dateBeginUser.MinDate ?  stage.DateBeginPlan : stage.DateBeginUser;
                     dateEndUser.Value = stage.DateEndUser < dateEndUser.MinDate ? stage.DateEndPlan : stage.DateEndUser;
+
                     dateBeginProg.Value = stage.DateBeginProg< dateBeginProg.MinDate ? stage.DateBeginPlan : stage.DateBeginProg;
                     dateEndProg.Value = stage.DateEndProg < dateEndProg.MinDate ? stage.DateEndPlan : stage.DateEndProg;
                     textBoxAbout.Text = stage.CommentUser;
+                    comboBoxStatus.SelectedIndex = stage.StatusStage == 0 ? 0 : 1;
                 }
                 else
                 {
@@ -77,8 +97,17 @@ namespace ContractTimeSharp.Forms
                 stageProject.User = daoUser.getById(Convert.ToInt32(((KeyValuePair)comboBoxUser.SelectedItem).Key));
                 stageProject.DateBeginPlan = dateBegin.Value;
                 stageProject.DateEndPlan = dateEnd.Value;
+                if (dateBeginUser.Checked)
+                {
+                    stageProject.DateBeginUser = dateBeginUser.Value;
+                }
+                if(dateEndUser.Checked)
+                {
+                    stageProject.DateEndUser = dateEndUser.Value;
+                }
                 stageProject.CommentUser = textBoxAbout.Text;
                 stageProject.IdProject = idProject;
+                stageProject.StatusStage = comboBoxStatus.SelectedIndex;
 
                 if (paramInsert == AdvanceUtil.paramStagInsert.SUB)
                 {
@@ -94,8 +123,13 @@ namespace ContractTimeSharp.Forms
                 {
                     dao.insert(stageProject);
                 }
-
+                this.Close();
             }
+        }
+
+        internal void setUserMode(bool mode)
+        {
+            userMode = mode;
         }
 
         public bool isValid()
@@ -132,6 +166,11 @@ namespace ContractTimeSharp.Forms
             {
                 this.Close();
             }
+        }
+
+        private void DialogStageProject_Load(object sender, EventArgs e)
+        {
+            InitializationPermission();
         }
     }
 }

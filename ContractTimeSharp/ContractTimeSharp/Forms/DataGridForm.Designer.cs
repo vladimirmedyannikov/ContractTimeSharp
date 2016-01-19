@@ -35,8 +35,8 @@
             this.редактироватьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьПоектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.контрактыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сервисToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuContract = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuService = new System.Windows.Forms.ToolStripMenuItem();
             this.treeViewAdv1 = new Aga.Controls.Tree.TreeViewAdv();
             this.treeColumn1 = new Aga.Controls.Tree.TreeColumn();
             this.menuStageProject = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -46,6 +46,7 @@
             this.mnuDeleteStage = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.menuMyTask = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -109,25 +110,26 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.контрактыToolStripMenuItem,
-            this.сервисToolStripMenuItem});
+            this.menuContract,
+            this.menuMyTask,
+            this.menuService});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(894, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // контрактыToolStripMenuItem
+            // menuContract
             // 
-            this.контрактыToolStripMenuItem.Name = "контрактыToolStripMenuItem";
-            this.контрактыToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
-            this.контрактыToolStripMenuItem.Text = "Контракты";
+            this.menuContract.Name = "menuContract";
+            this.menuContract.Size = new System.Drawing.Size(78, 20);
+            this.menuContract.Text = "Контракты";
             // 
-            // сервисToolStripMenuItem
+            // menuService
             // 
-            this.сервисToolStripMenuItem.Name = "сервисToolStripMenuItem";
-            this.сервисToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.сервисToolStripMenuItem.Text = "Сервис";
+            this.menuService.Name = "menuService";
+            this.menuService.Size = new System.Drawing.Size(59, 20);
+            this.menuService.Text = "Сервис";
             // 
             // treeViewAdv1
             // 
@@ -211,6 +213,12 @@
             this.notifyIcon1.Text = "Инвестиционные проекты\r\n";
             this.notifyIcon1.Visible = true;
             // 
+            // menuMyTask
+            // 
+            this.menuMyTask.Name = "menuMyTask";
+            this.menuMyTask.Size = new System.Drawing.Size(84, 20);
+            this.menuMyTask.Text = "Мои задачи";
+            // 
             // DialogGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,8 +246,8 @@
 
         private System.Windows.Forms.DataGridView dataGridInvestProject;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem контрактыToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сервисToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuContract;
+        private System.Windows.Forms.ToolStripMenuItem menuService;
         private Aga.Controls.Tree.TreeViewAdv treeViewAdv1;
         private Aga.Controls.Tree.TreeColumn treeColumn1;
         private Aga.Controls.Tree.NodeControls.NodeTextBox nodeTextBox1;
@@ -253,6 +261,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuEditStage;
         private System.Windows.Forms.ToolStripMenuItem mnuDeleteStage;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ToolStripMenuItem menuMyTask;
     }
 }
 

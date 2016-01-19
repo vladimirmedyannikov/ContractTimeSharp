@@ -30,7 +30,7 @@ namespace ContractTimeSharp.DAO
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
                 "status_stage, comment_user, id_stage_parent from stage_project " +
-                "inner join user_info u on u.id_user = stage_project.id_user where stage_project.id_user = @idUser;";
+                "left join user_info u on u.id_user = stage_project.id_user where stage_project.id_user = @idUser;";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
             {
@@ -105,7 +105,7 @@ namespace ContractTimeSharp.DAO
             FbConnection connection = null;
             FbCommand statement = null;
             FbTransaction transaction = null;
-            string sql = @"execute procedure update_stage_project_all(@id_stage ,@name_stage, @id_user, @date_begin_plan, @date_end_plan, @status_stage)";
+            string sql = @"execute procedure update_stage_project_all(@id_stage ,@name_stage, @id_user, @date_begin_plan, @date_end_plan, @status_stage, @date_begin_user, @date_end_user)";
             try
             {
                 connection = daoFactory.getConnection();
@@ -118,6 +118,8 @@ namespace ContractTimeSharp.DAO
                 statement.Parameters.Add("@date_begin_plan", stageProject.DateBeginPlan);
                 statement.Parameters.Add("@date_end_plan", stageProject.DateEndPlan);            
                 statement.Parameters.Add("@status_stage", stageProject.StatusStage);
+                statement.Parameters.Add("@date_begin_user", stageProject.DateBeginUser);
+                statement.Parameters.Add("@date_end_user", stageProject.DateEndUser);
                 statement.ExecuteNonQuery();
                 transaction.Commit();
             }
@@ -139,7 +141,7 @@ namespace ContractTimeSharp.DAO
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
                 "status_stage, comment_user, id_stage_parent from stage_project " +
-                "inner join user_info u on u.id_user = stage_project.id_user where stage_project.id_stage_parent <> 0 and id_project = @idProject;";
+                "left join user_info u on u.id_user = stage_project.id_user where stage_project.id_stage_parent <> 0 and id_project = @idProject;";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
             {
@@ -181,7 +183,7 @@ namespace ContractTimeSharp.DAO
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
                 "status_stage, comment_user, id_stage_parent from stage_project " +
-                "inner join user_info u on u.id_user = stage_project.id_user where id_project = @idProject and stage_project.id_stage_parent = 0;";
+                "left join user_info u on u.id_user = stage_project.id_user where id_project = @idProject and stage_project.id_stage_parent = 0;";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
             {
@@ -225,11 +227,13 @@ namespace ContractTimeSharp.DAO
             stageProject.NameStage = row["name_stage"].ToString();
 
             User user = new User();
-            user.Id = Convert.ToInt32(row["id_user"].ToString());
-            user.FirstName = row["f_name"].ToString();
-            user.SecondName = row["l_name"].ToString();
-            user.ThirdName = row["p_name"].ToString();
-
+            if (row["id_user"].ToString() != "") {
+                user.Id = Convert.ToInt32(row["id_user"].ToString());
+                user.FirstName = row["f_name"].ToString();
+                user.SecondName = row["l_name"].ToString();
+                user.ThirdName = row["p_name"].ToString();
+                
+            }
             stageProject.User = user;
             DateTime dateBeginPlan;
             DateTime.TryParse(row["date_begin_plan"].ToString(), out dateBeginPlan);
