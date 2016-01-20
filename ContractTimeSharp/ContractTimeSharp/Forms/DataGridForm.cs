@@ -13,6 +13,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using Excel = Microsoft.Office.Interop.Excel;
 
 using System.Windows.Forms;
 
@@ -167,7 +168,7 @@ namespace ContractTimeSharp
         private void treeViewAdv1_DoubleClick(object sender, EventArgs e)
         {
             TreeModel model = (TreeModel)treeViewAdv1.Model;
-            //MessageBox.Show(((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage.User.SecondName);
+            if (model != null && model.Nodes.Count > 0) mnuEditStage.PerformClick();
         }
 
         private void insertInvestProjectMenu(object sender, EventArgs e)
@@ -272,7 +273,7 @@ namespace ContractTimeSharp
         {
             DialogStageProject dialog = new DialogStageProject();
             TreeModel model = (TreeModel)treeViewAdv1.Model;
-            if (model != null)
+            if (model != null && treeViewAdv1.SelectedNode != null)
             {
                 StageProject stage;
                 if (treeViewAdv1.SelectedNode.Parent.Index >= 0)
@@ -289,9 +290,10 @@ namespace ContractTimeSharp
                     InvestProject ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
                     dialog.idProject = ip.idProject;
                 }
+
+                dialog.ShowDialog();
+                updateStageProject();
             }
-            dialog.ShowDialog();
-            updateStageProject();
         }
 
         private void mnuAddSubStage_Click(object sender, EventArgs e)
@@ -322,5 +324,184 @@ namespace ContractTimeSharp
         {
 
         }
+
+        private void menuMyTask_Click(object sender, EventArgs e)
+        {
+            UserStageForm form = new UserStageForm();
+            form.ShowDialog();
+        }
+
+        private void mnuDeleteStage_Click(object sender, EventArgs e)
+        {
+            StageProject stage;
+            stage = getCurrentStage();
+            if (stage != null)
+            {
+                if (MessageBox.Show("Вы действительно хотите удалить проект и все связанные с ним данные ?", "Удаление", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    StageProjectDAO dao = new StageProjectDAO();
+                    dao.delete(stage);
+                    updateStageProject();
+                }
+            }
+        }
+
+        private StageProject getCurrentStage()
+        {
+            StageProject stage = null;
+            TreeModel model = (TreeModel)treeViewAdv1.Model;
+            if (model != null && treeViewAdv1.SelectedNode != null)
+            {
+                if (treeViewAdv1.SelectedNode.Parent.Index >= 0)
+                {
+                    stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Parent.Index].Nodes[treeViewAdv1.SelectedNode.Index]).stage;
+                }
+                else
+                {
+                    stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
+                }
+            }
+            return stage;
+        }
+
+        private InvestProject getCurrentProject()
+        {
+            InvestProject ip = null;
+            if (dataGridInvestProject.CurrentRow.DataBoundItem != null && dataGridInvestProject.CurrentRow.DataBoundItem.GetType() == typeof(InvestProject))
+            {
+                ip = (InvestProject)dataGridInvestProject.CurrentRow.DataBoundItem;
+            }
+            return ip;
+        }
+
+        private void treeViewAdv1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                    mnuDeleteStage.PerformClick();
+                    break;
+            }
+
+        }
+
+        private void menuInvestProject_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void mnuInvestPrint_Click(object sender, EventArgs e)
+        {
+            Excel.Application xlApp = new Excel.Application();
+            if (xlApp == null)
+            {
+                MessageBox.Show("Не удалось создать Excel документ");
+                return;
+            }
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+
+            xlWorkBook = xlApp.Workbooks.Add(misValue);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Item[1];
+
+            xlWorkSheet.Cells[4, 2] = "# СОВА";
+            xlWorkSheet.Cells[4, 3] = "Производство";
+            xlWorkSheet.Cells[4, 4] = "Мероприятие";
+            xlWorkSheet.Cells[4, 5] = "Этап";
+            xlWorkSheet.Cells[4, 6] = "Ответственный";
+            xlWorkSheet.Cells[4, 7] = "Начало(план)";
+            xlWorkSheet.Cells[4, 8] = "Окончание(план)";
+            xlWorkSheet.Cells[4, 9] = "Начало(план/факт)";
+            xlWorkSheet.Cells[4, 10] = "Окончание(план/факт)";
+            xlWorkSheet.Cells[4, 11] = "Статус";
+            xlWorkSheet.Cells[4, 12] = "Начало(прогноз)";
+            xlWorkSheet.Cells[4, 13] = "Окончание(прогноз)";
+            xlWorkSheet.Cells[4, 14] = "Комментарий";
+            xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[4, 14]].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
+            xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[4, 14]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+
+            InvestProject project = getCurrentProject();
+
+            int index = 5;
+            foreach(StageProject s in project.getProjectList())
+            {
+                xlWorkSheet.Cells[index, 2] = project.numberProject;
+                xlWorkSheet.Cells[index, 3] = project.department.nameDepartment;
+                xlWorkSheet.Cells[index, 4] = project.nameProject;
+                xlWorkSheet.Cells[index, 5] = s.NameStage;
+                xlWorkSheet.Cells[index, 6] = s.User.FullName;
+                xlWorkSheet.Cells[index, 7] = s.DateBeginPlan;
+                xlWorkSheet.Cells[index, 8] = s.DateEndPlan;
+                xlWorkSheet.Cells[index, 9] = s.DateBeginUser;
+                xlWorkSheet.Cells[index, 10] = s.DateEndUser;
+                xlWorkSheet.Cells[index, 11] = s.StatusStage.ToString();
+                xlWorkSheet.Cells[index, 12] = s.DateBeginProg;
+                xlWorkSheet.Cells[index, 13] = s.DateEndProg;
+                xlWorkSheet.Cells[index, 14] = s.CommentUser;
+                if (s.SubStage != null && s.SubStage.Count > 0) 
+                {
+                    xlWorkSheet.Range[xlWorkSheet.Cells[index, 2], xlWorkSheet.Cells[index, 14]].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
+                    
+                    foreach (StageProject sub in s.SubStage)
+                    {
+                        index++;
+                        xlWorkSheet.Cells[index, 2] = project.numberProject;
+                        xlWorkSheet.Cells[index, 3] = project.department.nameDepartment;
+                        xlWorkSheet.Cells[index, 4] = project.nameProject;
+                        xlWorkSheet.Cells[index, 5] = sub.NameStage;
+                        xlWorkSheet.Cells[index, 6] = sub.User.FullName;
+                        xlWorkSheet.Cells[index, 7] = sub.DateBeginPlan;
+                        xlWorkSheet.Cells[index, 8] = sub.DateEndPlan;
+                        xlWorkSheet.Cells[index, 9] = sub.DateBeginUser;
+                        xlWorkSheet.Cells[index, 10] = sub.DateEndUser;
+                        xlWorkSheet.Cells[index, 11] = sub.StatusStage.ToString();
+                        xlWorkSheet.Cells[index, 12] = sub.DateBeginProg;
+                        xlWorkSheet.Cells[index, 13] = sub.DateEndProg;
+                        xlWorkSheet.Cells[index, 14] = sub.CommentUser;
+                        Excel.Range range =  xlWorkSheet.Rows[index] as Excel.Range;
+                        range.OutlineLevel = 1;
+                        range.Group(System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
+
+                    }
+                    
+                    //Excel.Range range = xlWorkSheet.Range[xlWorkSheet.Cells[index - s.SubStage.Count-1, 2], xlWorkSheet.Cells[index- s.SubStage.Count-1, 14]];
+                    //Excel.Range range = xlWorkSheet.Rows["1:10", null] as Excel.Range;
+
+                    //range.Group(0,0,0,0);
+                }
+                index++;
+
+            }
+
+            xlApp.Visible = true;
+
+            //xlWorkBook.SaveAs("d:\\csharp-Excel.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            //xlWorkBook.Close(true, misValue, misValue);
+            xlApp.Quit();
+
+            releaseObject(xlWorkSheet);
+            releaseObject(xlWorkBook);
+            releaseObject(xlApp);
+        }
+
+        private void releaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
+            }
+        }
+
     }
 }

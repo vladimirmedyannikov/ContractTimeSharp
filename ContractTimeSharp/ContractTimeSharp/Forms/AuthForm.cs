@@ -42,6 +42,17 @@ namespace ContractTimeSharp.Forms
             }
         }
 
-        
+        private void AuthForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void textPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                btnOk.PerformClick();
+            }
+        }
     }
 }

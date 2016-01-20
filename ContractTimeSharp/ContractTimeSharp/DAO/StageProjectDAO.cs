@@ -13,9 +13,28 @@ namespace ContractTimeSharp.DAO
     class StageProjectDAO : DAO<StageProject>
     {
         private DAOFactory daoFactory = new FirebirdDAO();
-        public void delete(StageProject e)
+        public void delete(StageProject stage)
         {
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statement = null;
+            String sql = "execute procedure delete_stage_project (@idStage);";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                statement = new FbCommand(sql, connection);
+
+                statement.Parameters.Add("@idStage", stage.IdStage);
+                int id = Convert.ToInt32(statement.ExecuteScalar());
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("Delete Stage "+ stage.IdStage, e);
+            }
+            finally
+            {
+                if (connection != null) connection.Close();
+            }
         }
 
         public List<StageProject> getAll()

@@ -98,7 +98,7 @@
             this.textBoxNameStage.Location = new System.Drawing.Point(143, 50);
             this.textBoxNameStage.Name = "textBoxNameStage";
             this.textBoxNameStage.Size = new System.Drawing.Size(496, 20);
-            this.textBoxNameStage.TabIndex = 3;
+            this.textBoxNameStage.TabIndex = 1;
             // 
             // label3
             // 
@@ -161,7 +161,7 @@
             this.dateBeginUser.Name = "dateBeginUser";
             this.dateBeginUser.ShowCheckBox = true;
             this.dateBeginUser.Size = new System.Drawing.Size(200, 20);
-            this.dateBeginUser.TabIndex = 9;
+            this.dateBeginUser.TabIndex = 6;
             // 
             // label6
             // 
@@ -181,7 +181,7 @@
             this.dateEndUser.Name = "dateEndUser";
             this.dateEndUser.ShowCheckBox = true;
             this.dateEndUser.Size = new System.Drawing.Size(200, 20);
-            this.dateEndUser.TabIndex = 11;
+            this.dateEndUser.TabIndex = 7;
             // 
             // label7
             // 
@@ -199,7 +199,7 @@
             this.dateBeginProg.Location = new System.Drawing.Point(143, 309);
             this.dateBeginProg.Name = "dateBeginProg";
             this.dateBeginProg.Size = new System.Drawing.Size(200, 20);
-            this.dateBeginProg.TabIndex = 13;
+            this.dateBeginProg.TabIndex = 8;
             // 
             // label8
             // 
@@ -217,7 +217,7 @@
             this.dateEndProg.Location = new System.Drawing.Point(143, 346);
             this.dateEndProg.Name = "dateEndProg";
             this.dateEndProg.Size = new System.Drawing.Size(200, 20);
-            this.dateEndProg.TabIndex = 15;
+            this.dateEndProg.TabIndex = 9;
             // 
             // label9
             // 
@@ -237,7 +237,7 @@
             this.textBoxAbout.Multiline = true;
             this.textBoxAbout.Name = "textBoxAbout";
             this.textBoxAbout.Size = new System.Drawing.Size(496, 31);
-            this.textBoxAbout.TabIndex = 17;
+            this.textBoxAbout.TabIndex = 10;
             // 
             // panel1
             // 
@@ -318,21 +318,21 @@
             this.comboBoxStatus.Location = new System.Drawing.Point(143, 198);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(200, 21);
-            this.comboBoxStatus.TabIndex = 26;
+            this.comboBoxStatus.TabIndex = 5;
             // 
             // dateBegin
             // 
             this.dateBegin.Location = new System.Drawing.Point(143, 124);
             this.dateBegin.Name = "dateBegin";
             this.dateBegin.Size = new System.Drawing.Size(200, 20);
-            this.dateBegin.TabIndex = 19;
+            this.dateBegin.TabIndex = 3;
             // 
             // dateEnd
             // 
             this.dateEnd.Location = new System.Drawing.Point(143, 161);
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Size = new System.Drawing.Size(200, 20);
-            this.dateEnd.TabIndex = 20;
+            this.dateEnd.TabIndex = 4;
             // 
             // panel2
             // 
@@ -348,7 +348,7 @@
             this.btnSave.Location = new System.Drawing.Point(329, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 1;
+            this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Сохранить";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -358,7 +358,7 @@
             this.btnCancel.Location = new System.Drawing.Point(410, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
+            this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -381,7 +381,7 @@
             this.comboBoxUser.Location = new System.Drawing.Point(143, 87);
             this.comboBoxUser.Name = "comboBoxUser";
             this.comboBoxUser.Size = new System.Drawing.Size(496, 21);
-            this.comboBoxUser.TabIndex = 22;
+            this.comboBoxUser.TabIndex = 2;
             // 
             // DialogStageProject
             // 

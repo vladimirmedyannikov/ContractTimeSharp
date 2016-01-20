@@ -17,6 +17,13 @@ namespace ContractTimeSharp.Forms
         {
             InitializeComponent();
             initializateDataGrid();
+            initializateUserData();
+        }
+
+        private void initializateUserData()
+        {
+            textFio.Text = MainApplication.User.FullName;
+            textDept.Text = MainApplication.User.Department.nameDepartment;
         }
 
         private void initializateDataGrid()

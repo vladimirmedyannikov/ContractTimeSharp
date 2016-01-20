@@ -36,6 +36,7 @@
             this.удалитьПоектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuContract = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuMyTask = new System.Windows.Forms.ToolStripMenuItem();
             this.menuService = new System.Windows.Forms.ToolStripMenuItem();
             this.treeViewAdv1 = new Aga.Controls.Tree.TreeViewAdv();
             this.treeColumn1 = new Aga.Controls.Tree.TreeColumn();
@@ -46,7 +47,7 @@
             this.mnuDeleteStage = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.menuMyTask = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuInvestPrint = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -82,9 +83,11 @@
             this.menuInvestProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.создатьПроектToolStripMenuItem,
             this.редактироватьПроектToolStripMenuItem,
+            this.mnuInvestPrint,
             this.удалитьПоектToolStripMenuItem});
             this.menuInvestProject.Name = "menuInvestProject";
-            this.menuInvestProject.Size = new System.Drawing.Size(196, 70);
+            this.menuInvestProject.Size = new System.Drawing.Size(196, 114);
+            this.menuInvestProject.Opening += new System.ComponentModel.CancelEventHandler(this.menuInvestProject_Opening);
             // 
             // создатьПроектToolStripMenuItem
             // 
@@ -125,6 +128,13 @@
             this.menuContract.Size = new System.Drawing.Size(78, 20);
             this.menuContract.Text = "Контракты";
             // 
+            // menuMyTask
+            // 
+            this.menuMyTask.Name = "menuMyTask";
+            this.menuMyTask.Size = new System.Drawing.Size(84, 20);
+            this.menuMyTask.Text = "Мои задачи";
+            this.menuMyTask.Click += new System.EventHandler(this.menuMyTask_Click);
+            // 
             // menuService
             // 
             this.menuService.Name = "menuService";
@@ -140,6 +150,7 @@
             this.treeViewAdv1.ContextMenuStrip = this.menuStageProject;
             this.treeViewAdv1.DefaultToolTipProvider = null;
             this.treeViewAdv1.DragDropMarkColor = System.Drawing.Color.Black;
+            this.treeViewAdv1.FullRowSelect = true;
             this.treeViewAdv1.GridLineStyle = ((Aga.Controls.Tree.GridLineStyle)((Aga.Controls.Tree.GridLineStyle.Horizontal | Aga.Controls.Tree.GridLineStyle.Vertical)));
             this.treeViewAdv1.LineColor = System.Drawing.Color.Black;
             this.treeViewAdv1.Location = new System.Drawing.Point(12, 260);
@@ -155,6 +166,7 @@
             this.treeViewAdv1.RowDraw += new System.EventHandler<Aga.Controls.Tree.TreeViewRowDrawEventArgs>(this.treeViewAdv1_RowDraw);
             this.treeViewAdv1.Click += new System.EventHandler(this.treeViewAdv1_Click);
             this.treeViewAdv1.DoubleClick += new System.EventHandler(this.treeViewAdv1_DoubleClick);
+            this.treeViewAdv1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeViewAdv1_KeyDown);
             // 
             // treeColumn1
             // 
@@ -199,6 +211,7 @@
             this.mnuDeleteStage.Name = "mnuDeleteStage";
             this.mnuDeleteStage.Size = new System.Drawing.Size(173, 22);
             this.mnuDeleteStage.Text = "Удалить";
+            this.mnuDeleteStage.Click += new System.EventHandler(this.mnuDeleteStage_Click);
             // 
             // nodeTextBox1
             // 
@@ -213,11 +226,12 @@
             this.notifyIcon1.Text = "Инвестиционные проекты\r\n";
             this.notifyIcon1.Visible = true;
             // 
-            // menuMyTask
+            // mnuInvestPrint
             // 
-            this.menuMyTask.Name = "menuMyTask";
-            this.menuMyTask.Size = new System.Drawing.Size(84, 20);
-            this.menuMyTask.Text = "Мои задачи";
+            this.mnuInvestPrint.Name = "mnuInvestPrint";
+            this.mnuInvestPrint.Size = new System.Drawing.Size(195, 22);
+            this.mnuInvestPrint.Text = "Печать проекта";
+            this.mnuInvestPrint.Click += new System.EventHandler(this.mnuInvestPrint_Click);
             // 
             // DialogGridForm
             // 
@@ -262,6 +276,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuDeleteStage;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ToolStripMenuItem menuMyTask;
+        private System.Windows.Forms.ToolStripMenuItem mnuInvestPrint;
     }
 }
 

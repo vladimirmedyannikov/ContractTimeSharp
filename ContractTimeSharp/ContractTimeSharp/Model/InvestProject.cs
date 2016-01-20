@@ -1,4 +1,5 @@
-﻿using ContractTimeSharp.Model;
+﻿using ContractTimeSharp.DAO;
+using ContractTimeSharp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,10 +24,9 @@ namespace ContractTime.Model
 
         public List<StageProject> getProjectList()
         {
-            /* StageProjectDAO dao = new StageProjectDAO();
-             projectList = dao.getByProject(this.getIdProject());
-             return projectList;*/
-            return null;
+             StageProjectDAO dao = new StageProjectDAO();
+             projectList = dao.getByProject(this.idProject);
+             return projectList;
         }
 
         public override bool Equals(object obj)
