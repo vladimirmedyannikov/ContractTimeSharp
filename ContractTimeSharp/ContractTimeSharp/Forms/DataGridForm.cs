@@ -34,7 +34,7 @@ namespace ContractTimeSharp
             TreeColumn columnDateBeginUser = new TreeColumn("Начало (пользв.)", 60);
            
             TreeColumn columnDateEndUser = new TreeColumn("Завершение (пользв.)", 60);
-            TreeColumn columnStatus = new TreeColumn("Статус", 10);
+            TreeColumn columnStatus = new TreeColumn("Статус", 60);
             TreeColumn columnDateBeginProg = new TreeColumn("Начало (прогноз)", 60);
             TreeColumn columnDateEndProg = new TreeColumn("Завершение (прогноз)", 60);
             TreeColumn columnComment = new TreeColumn("Комментарий", 200);

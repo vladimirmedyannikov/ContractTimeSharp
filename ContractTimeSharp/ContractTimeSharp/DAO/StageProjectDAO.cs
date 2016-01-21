@@ -160,7 +160,7 @@ namespace ContractTimeSharp.DAO
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
                 "status_stage, comment_user, id_stage_parent from stage_project " +
-                "left join user_info u on u.id_user = stage_project.id_user where stage_project.id_stage_parent <> 0 and id_project = @idProject;";
+                "left join user_info u on u.id_user = stage_project.id_user where stage_project.id_stage_parent <> 0 and id_project = @idProject order by id_inner_index;";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
             {
@@ -202,7 +202,7 @@ namespace ContractTimeSharp.DAO
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
                 "status_stage, comment_user, id_stage_parent from stage_project " +
-                "left join user_info u on u.id_user = stage_project.id_user where id_project = @idProject and stage_project.id_stage_parent = 0;";
+                "left join user_info u on u.id_user = stage_project.id_user where id_project = @idProject and stage_project.id_stage_parent = 0 order by id_inner_index;";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
             {

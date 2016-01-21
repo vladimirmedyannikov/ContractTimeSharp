@@ -86,6 +86,11 @@ namespace ContractTimeSharp.Model
             get { return statusStage; }
             set { statusStage = value; }
         }
+
+        public String StatusStageStr
+        {
+            get { if (statusStage == 1) return "Факт"; else return "Прогнозируемая"; }
+        }
         public String CommentUser {
             get { return commentUser; }
             set { commentUser = value; }

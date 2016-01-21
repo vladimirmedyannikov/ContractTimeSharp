@@ -37,7 +37,7 @@ namespace ContractTimeSharp.NodeTree
             DateBeginUser =  (dateBeginUser.Equals("01.01.0001")) ? "" : dateBeginUser;
             DateEndUser = (dateEndUser.Equals("01.01.0001")) ? "" : dateEndUser;
             User = user;
-            Status = status.ToString();
+            Status = (status.Equals("1") == true) ? "Факт" : "План" ;
             
         }
     }
