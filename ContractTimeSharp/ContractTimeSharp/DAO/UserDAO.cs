@@ -60,7 +60,7 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id from user_info u " +
+            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user from user_info u " +
                 " left join depts on depts.dept_id = u.id_dept order by f_name, l_name, p_name";
             List<User> userList = new List<User>();
             try
@@ -77,6 +77,10 @@ namespace ContractTimeSharp.DAO
                     user.FirstName = row["f_name"].ToString();
                     user.SecondName = row["l_name"].ToString();
                     user.ThirdName = row["p_name"].ToString();
+                    user.TypeUser = Convert.ToInt32(row["type_user"].ToString());
+                    user.Login = row["login"].ToString();
+                    user.Email = row["e_mail"].ToString();
+                    user.HashPass = row["e_mail"].ToString();
 
                     Department department = new Department();
                     department.idDepartment = Convert.ToInt32(row["id_dept"].ToString());
@@ -107,7 +111,7 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id from user_info u " +
+            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user from user_info u " +
                 " left join depts on depts.dept_id = u.id_dept where id_user = @id_user";
             User user = null;
             try
@@ -125,6 +129,10 @@ namespace ContractTimeSharp.DAO
                     user.FirstName = row["f_name"].ToString();
                     user.SecondName = row["l_name"].ToString();
                     user.ThirdName = row["p_name"].ToString();
+                    user.TypeUser = Convert.ToInt32(row["type_user"].ToString());
+                    user.Login = row["login"].ToString();
+                    user.Email = row["e_mail"].ToString();
+                    user.HashPass = row["e_mail"].ToString();
 
                     Department department = new Department();
                     department.idDepartment = Convert.ToInt32(row["dept_id"].ToString());
@@ -185,6 +193,9 @@ namespace ContractTimeSharp.DAO
                     user.SecondName = row["l_name"].ToString();
                     user.ThirdName = row["p_name"].ToString();
                     user.TypeUser = Convert.ToInt32(row["type_user"].ToString());
+                    user.Login = row["login"].ToString();
+                    user.Email = row["e_mail"].ToString();
+                    user.HashPass = row["e_mail"].ToString();
 
                     Department department = new Department();
                     department.idDepartment = Convert.ToInt32(row["dept_id"].ToString());

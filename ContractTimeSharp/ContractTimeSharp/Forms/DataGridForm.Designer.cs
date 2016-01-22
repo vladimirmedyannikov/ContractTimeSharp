@@ -33,6 +33,7 @@
             this.menuInvestProject = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.создатьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.редактироватьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuInvestPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьПоектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuContract = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +48,11 @@
             this.mnuDeleteStage = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.mnuInvestPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLib = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSendMessage = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMonStage = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLog = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -77,6 +82,7 @@
             this.dataGridInvestProject.ShowEditingIcon = false;
             this.dataGridInvestProject.Size = new System.Drawing.Size(870, 227);
             this.dataGridInvestProject.TabIndex = 0;
+            this.dataGridInvestProject.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInvestProject_CellContentClick);
             // 
             // menuInvestProject
             // 
@@ -86,7 +92,7 @@
             this.mnuInvestPrint,
             this.удалитьПоектToolStripMenuItem});
             this.menuInvestProject.Name = "menuInvestProject";
-            this.menuInvestProject.Size = new System.Drawing.Size(196, 114);
+            this.menuInvestProject.Size = new System.Drawing.Size(196, 92);
             this.menuInvestProject.Opening += new System.ComponentModel.CancelEventHandler(this.menuInvestProject_Opening);
             // 
             // создатьПроектToolStripMenuItem
@@ -103,6 +109,13 @@
             this.редактироватьПроектToolStripMenuItem.Text = "Редактировать проект";
             this.редактироватьПроектToolStripMenuItem.Click += new System.EventHandler(this.editInvestProjectMenu);
             // 
+            // mnuInvestPrint
+            // 
+            this.mnuInvestPrint.Name = "mnuInvestPrint";
+            this.mnuInvestPrint.Size = new System.Drawing.Size(195, 22);
+            this.mnuInvestPrint.Text = "Печать проекта";
+            this.mnuInvestPrint.Click += new System.EventHandler(this.mnuInvestPrint_Click);
+            // 
             // удалитьПоектToolStripMenuItem
             // 
             this.удалитьПоектToolStripMenuItem.Name = "удалитьПоектToolStripMenuItem";
@@ -115,7 +128,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuContract,
             this.menuMyTask,
-            this.menuService});
+            this.menuService,
+            this.mnuLib});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(894, 24);
@@ -137,6 +151,10 @@
             // 
             // menuService
             // 
+            this.menuService.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuSendMessage,
+            this.mnuMonStage,
+            this.mnuLog});
             this.menuService.Name = "menuService";
             this.menuService.Size = new System.Drawing.Size(59, 20);
             this.menuService.Text = "Сервис";
@@ -226,12 +244,38 @@
             this.notifyIcon1.Text = "Инвестиционные проекты\r\n";
             this.notifyIcon1.Visible = true;
             // 
-            // mnuInvestPrint
+            // mnuLib
             // 
-            this.mnuInvestPrint.Name = "mnuInvestPrint";
-            this.mnuInvestPrint.Size = new System.Drawing.Size(195, 22);
-            this.mnuInvestPrint.Text = "Печать проекта";
-            this.mnuInvestPrint.Click += new System.EventHandler(this.mnuInvestPrint_Click);
+            this.mnuLib.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuUser});
+            this.mnuLib.Name = "mnuLib";
+            this.mnuLib.Size = new System.Drawing.Size(94, 20);
+            this.mnuLib.Text = "Справочники";
+            // 
+            // mnuUser
+            // 
+            this.mnuUser.Name = "mnuUser";
+            this.mnuUser.Size = new System.Drawing.Size(152, 22);
+            this.mnuUser.Text = "Пользователи";
+            this.mnuUser.Click += new System.EventHandler(this.mnuUser_Click);
+            // 
+            // mnuSendMessage
+            // 
+            this.mnuSendMessage.Name = "mnuSendMessage";
+            this.mnuSendMessage.Size = new System.Drawing.Size(184, 22);
+            this.mnuSendMessage.Text = "Отправка писем";
+            // 
+            // mnuMonStage
+            // 
+            this.mnuMonStage.Name = "mnuMonStage";
+            this.mnuMonStage.Size = new System.Drawing.Size(184, 22);
+            this.mnuMonStage.Text = "Мониторинг этапов";
+            // 
+            // mnuLog
+            // 
+            this.mnuLog.Name = "mnuLog";
+            this.mnuLog.Size = new System.Drawing.Size(184, 22);
+            this.mnuLog.Text = "Логи входа";
             // 
             // DialogGridForm
             // 
@@ -277,6 +321,11 @@
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ToolStripMenuItem menuMyTask;
         private System.Windows.Forms.ToolStripMenuItem mnuInvestPrint;
+        private System.Windows.Forms.ToolStripMenuItem mnuSendMessage;
+        private System.Windows.Forms.ToolStripMenuItem mnuMonStage;
+        private System.Windows.Forms.ToolStripMenuItem mnuLog;
+        private System.Windows.Forms.ToolStripMenuItem mnuLib;
+        private System.Windows.Forms.ToolStripMenuItem mnuUser;
     }
 }
 

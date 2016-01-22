@@ -503,5 +503,15 @@ namespace ContractTimeSharp
             }
         }
 
+        private void dataGridInvestProject_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void mnuUser_Click(object sender, EventArgs e)
+        {
+            DirectoryUserForm userDirectory = new DirectoryUserForm();
+            userDirectory.Show();
+        }
     }
 }

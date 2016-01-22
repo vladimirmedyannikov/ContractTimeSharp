@@ -9,11 +9,23 @@ namespace ContractTime.Model
     {
         private int id;
         private int typeUser;
+        private string login;
+        private string hashPass;
+        public string HashPass
+        {
+            set { hashPass = value; }
+        }
+        public string Login
+        {
+            get { return login; }
+            set { login = value; }
+        }
         public int TypeUser
         {
             get { return typeUser; }
             set { typeUser = value; }
         }
+
         public int Id
         {
             get { return id; }
@@ -52,11 +64,14 @@ namespace ContractTime.Model
         private DateTime dateBirthday { get; set; }
         private DateTime dateIn { get; set; }
         private DateTime dateOut { get; set; }
-        private String login { get; set; }
         private String password { get; set; }
         private Department department { get; set; }
         private String email { get; set; }
-
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
+        }
         public User()
         {
 
