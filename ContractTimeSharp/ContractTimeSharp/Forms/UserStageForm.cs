@@ -59,10 +59,6 @@ namespace ContractTimeSharp.Forms
             grid.Columns[5].DataPropertyName = "DateEndUser";
             grid.Columns[5].HeaderText = "Завершение(ответств.)";
         }
-        private void gridNotComplete_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void gridNotComplete_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

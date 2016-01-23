@@ -36,6 +36,10 @@ namespace ContractTimeSharp.Forms
                 dateEnd.Enabled = false;
                 dateBeginProg.Enabled = false;
                 dateEndProg.Enabled = false;
+                dateBeginProg.Visible = false;
+                dateEndProg.Visible = false;
+                labeldbp.Visible = false;
+                labeldep.Visible = false;
             }
         }
 
@@ -97,14 +101,16 @@ namespace ContractTimeSharp.Forms
                 stageProject.User = daoUser.getById(Convert.ToInt32(((KeyValuePair)comboBoxUser.SelectedItem).Key));
                 stageProject.DateBeginPlan = dateBegin.Value;
                 stageProject.DateEndPlan = dateEnd.Value;
+
                 if (dateBeginUser.Checked)
                 {
                     stageProject.DateBeginUser = dateBeginUser.Value;
                 }
-                if(dateEndUser.Checked)
+                if (dateEndUser.Checked)
                 {
                     stageProject.DateEndUser = dateEndUser.Value;
                 }
+
                 stageProject.CommentUser = textBoxAbout.Text;
                 stageProject.IdProject = idProject;
                 stageProject.StatusStage = comboBoxStatus.SelectedIndex;
@@ -152,6 +158,28 @@ namespace ContractTimeSharp.Forms
                 error += "Дата окончания не должна быть меньше даты начала\n";
                 valid = false;
             }
+
+            if (dateEndUser.Value.CompareTo(dateBeginUser.Value) < 0)
+            {
+                error += "Дата окончания(ответств.) не должна быть меньше даты начала\n";
+                valid = false;
+            }
+
+            if (userMode)
+            {
+                if (textBoxAbout.Text.Trim().Length < 5 && comboBoxStatus.SelectedIndex == 0)
+                {
+                    error += "Необходимо ввести комментарий\n";
+                    valid = false;
+                }
+                if (!dateBeginUser.Checked && !dateEndUser.Checked)
+                {
+                    error += "Необходимо ввести минимум одну дату\n";
+                    valid = false;
+                }
+
+            }
+
             if (!valid)
             {
                 MessageBox.Show("Ошибки:\n" + error, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);

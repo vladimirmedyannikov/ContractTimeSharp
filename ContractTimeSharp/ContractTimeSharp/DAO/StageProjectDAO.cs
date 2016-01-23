@@ -124,7 +124,7 @@ namespace ContractTimeSharp.DAO
             FbConnection connection = null;
             FbCommand statement = null;
             FbTransaction transaction = null;
-            string sql = @"execute procedure update_stage_project_all(@id_stage ,@name_stage, @id_user, @date_begin_plan, @date_end_plan, @status_stage, @date_begin_user, @date_end_user)";
+            string sql = @"execute procedure update_stage_project_all(@id_stage ,@name_stage, @id_user, @date_begin_plan, @date_end_plan, @status_stage, @date_begin_user, @date_end_user, @comment_user)";
             try
             {
                 connection = daoFactory.getConnection();
@@ -137,8 +137,19 @@ namespace ContractTimeSharp.DAO
                 statement.Parameters.Add("@date_begin_plan", stageProject.DateBeginPlan);
                 statement.Parameters.Add("@date_end_plan", stageProject.DateEndPlan);            
                 statement.Parameters.Add("@status_stage", stageProject.StatusStage);
-                statement.Parameters.Add("@date_begin_user", stageProject.DateBeginUser);
-                statement.Parameters.Add("@date_end_user", stageProject.DateEndUser);
+                if (stageProject.DateBeginUser.CompareTo(new DateTime(1, 1, 1)) == 0)
+                {
+                    statement.Parameters.Add("@date_begin_user", null);
+                }
+                else { statement.Parameters.Add("@date_begin_user", stageProject.DateBeginUser); }
+                if (stageProject.DateEndUser.CompareTo(new DateTime(1, 1, 1)) == 0)
+                {
+                    statement.Parameters.Add("@date_end_user", null);
+                }
+                else
+                { statement.Parameters.Add("@date_end_user", stageProject.DateEndUser); }
+
+                statement.Parameters.Add("@comment_user", stageProject.CommentUser);
                 statement.ExecuteNonQuery();
                 transaction.Commit();
             }

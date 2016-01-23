@@ -40,9 +40,9 @@
             this.dateBeginUser = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.dateEndUser = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
+            this.labeldbp = new System.Windows.Forms.Label();
             this.dateBeginProg = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
+            this.labeldep = new System.Windows.Forms.Label();
             this.dateEndProg = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxAbout = new System.Windows.Forms.TextBox();
@@ -183,16 +183,16 @@
             this.dateEndUser.Size = new System.Drawing.Size(200, 20);
             this.dateEndUser.TabIndex = 7;
             // 
-            // label7
+            // labeldbp
             // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label7.Location = new System.Drawing.Point(13, 306);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 37);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Начало (прогноз)";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labeldbp.AutoSize = true;
+            this.labeldbp.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labeldbp.Location = new System.Drawing.Point(13, 306);
+            this.labeldbp.Name = "labeldbp";
+            this.labeldbp.Size = new System.Drawing.Size(94, 37);
+            this.labeldbp.TabIndex = 12;
+            this.labeldbp.Text = "Начало (прогноз)";
+            this.labeldbp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dateBeginProg
             // 
@@ -201,16 +201,16 @@
             this.dateBeginProg.Size = new System.Drawing.Size(200, 20);
             this.dateBeginProg.TabIndex = 8;
             // 
-            // label8
+            // labeldep
             // 
-            this.label8.AutoSize = true;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label8.Location = new System.Drawing.Point(13, 343);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(120, 37);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Завершение (прогноз)";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labeldep.AutoSize = true;
+            this.labeldep.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labeldep.Location = new System.Drawing.Point(13, 343);
+            this.labeldep.Name = "labeldep";
+            this.labeldep.Size = new System.Drawing.Size(120, 37);
+            this.labeldep.TabIndex = 14;
+            this.labeldep.Text = "Завершение (прогноз)";
+            this.labeldep.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dateEndProg
             // 
@@ -236,6 +236,7 @@
             this.textBoxAbout.Location = new System.Drawing.Point(143, 383);
             this.textBoxAbout.Multiline = true;
             this.textBoxAbout.Name = "textBoxAbout";
+            this.textBoxAbout.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxAbout.Size = new System.Drawing.Size(496, 31);
             this.textBoxAbout.TabIndex = 10;
             // 
@@ -260,8 +261,8 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.labeldbp, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.labeldep, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.dateEndProg, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.textBoxAbout, 1, 10);
@@ -311,9 +312,10 @@
             // comboBoxStatus
             // 
             this.comboBoxStatus.Dock = System.Windows.Forms.DockStyle.Left;
+            this.comboBoxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxStatus.FormattingEnabled = true;
             this.comboBoxStatus.Items.AddRange(new object[] {
-            "План",
+            "Прогноз",
             "Факт"});
             this.comboBoxStatus.Location = new System.Drawing.Point(143, 198);
             this.comboBoxStatus.Name = "comboBoxStatus";
@@ -392,7 +394,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "DialogStageProject";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DialogStageProject";
+            this.Text = "Этап";
             this.Load += new System.EventHandler(this.DialogStageProject_Load);
             this.panelLabel.ResumeLayout(false);
             this.panelLabel.PerformLayout();
@@ -418,9 +420,9 @@
         private System.Windows.Forms.DateTimePicker dateBeginUser;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dateEndUser;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labeldbp;
         private System.Windows.Forms.DateTimePicker dateBeginProg;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labeldep;
         private System.Windows.Forms.DateTimePicker dateEndProg;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxAbout;

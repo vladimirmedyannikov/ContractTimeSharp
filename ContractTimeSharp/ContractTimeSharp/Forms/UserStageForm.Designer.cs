@@ -29,25 +29,25 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.textPost = new System.Windows.Forms.TextBox();
+            this.textDept = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textFio = new System.Windows.Forms.TextBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabNotComplete = new System.Windows.Forms.TabPage();
             this.gridNotComplete = new System.Windows.Forms.DataGridView();
             this.tabComplete = new System.Windows.Forms.TabPage();
             this.gridComplete = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textFio = new System.Windows.Forms.TextBox();
-            this.textDept = new System.Windows.Forms.TextBox();
-            this.textPost = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabNotComplete.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridNotComplete)).BeginInit();
             this.tabComplete.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridComplete)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -58,6 +58,91 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(642, 75);
             this.panel1.TabIndex = 0;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Controls.Add(this.textPost, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.textDept, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.textFio, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.92857F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.07143F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(642, 75);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // textPost
+            // 
+            this.textPost.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textPost.Location = new System.Drawing.Point(431, 28);
+            this.textPost.Multiline = true;
+            this.textPost.Name = "textPost";
+            this.textPost.ReadOnly = true;
+            this.textPost.Size = new System.Drawing.Size(208, 44);
+            this.textPost.TabIndex = 5;
+            // 
+            // textDept
+            // 
+            this.textDept.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textDept.Location = new System.Drawing.Point(217, 28);
+            this.textDept.Multiline = true;
+            this.textDept.Name = "textDept";
+            this.textDept.ReadOnly = true;
+            this.textDept.Size = new System.Drawing.Size(208, 44);
+            this.textDept.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(431, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(208, 25);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Должность";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(217, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(208, 25);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Подразделение";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(208, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "ФИО";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textFio
+            // 
+            this.textFio.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textFio.Location = new System.Drawing.Point(3, 28);
+            this.textFio.Multiline = true;
+            this.textFio.Name = "textFio";
+            this.textFio.ReadOnly = true;
+            this.textFio.Size = new System.Drawing.Size(208, 44);
+            this.textFio.TabIndex = 3;
             // 
             // tabControl
             // 
@@ -101,7 +186,7 @@
             this.gridNotComplete.ShowEditingIcon = false;
             this.gridNotComplete.Size = new System.Drawing.Size(628, 333);
             this.gridNotComplete.TabIndex = 1;
-            this.gridNotComplete.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotComplete_CellContentClick);
+            this.gridNotComplete.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotComplete_CellDoubleClick);
             this.gridNotComplete.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotComplete_CellDoubleClick);
             // 
             // tabComplete
@@ -110,7 +195,7 @@
             this.tabComplete.Location = new System.Drawing.Point(4, 22);
             this.tabComplete.Name = "tabComplete";
             this.tabComplete.Padding = new System.Windows.Forms.Padding(3);
-            this.tabComplete.Size = new System.Drawing.Size(634, 308);
+            this.tabComplete.Size = new System.Drawing.Size(634, 339);
             this.tabComplete.TabIndex = 1;
             this.tabComplete.Text = "Фактические";
             this.tabComplete.UseVisualStyleBackColor = true;
@@ -133,94 +218,9 @@
             this.gridComplete.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.gridComplete.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridComplete.ShowEditingIcon = false;
-            this.gridComplete.Size = new System.Drawing.Size(628, 302);
+            this.gridComplete.Size = new System.Drawing.Size(628, 333);
             this.gridComplete.TabIndex = 2;
             this.gridComplete.DoubleClick += new System.EventHandler(this.gridComplete_DoubleClick);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.textPost, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textDept, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textFio, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.92857F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.07143F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(642, 75);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(207, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ФИО";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(216, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(207, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Подразделение";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(429, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(210, 25);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Должность";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textFio
-            // 
-            this.textFio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textFio.Location = new System.Drawing.Point(3, 28);
-            this.textFio.Multiline = true;
-            this.textFio.Name = "textFio";
-            this.textFio.ReadOnly = true;
-            this.textFio.Size = new System.Drawing.Size(207, 44);
-            this.textFio.TabIndex = 3;
-            // 
-            // textDept
-            // 
-            this.textDept.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textDept.Location = new System.Drawing.Point(216, 28);
-            this.textDept.Multiline = true;
-            this.textDept.Name = "textDept";
-            this.textDept.ReadOnly = true;
-            this.textDept.Size = new System.Drawing.Size(207, 44);
-            this.textDept.TabIndex = 4;
-            // 
-            // textPost
-            // 
-            this.textPost.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textPost.Location = new System.Drawing.Point(429, 28);
-            this.textPost.Multiline = true;
-            this.textPost.Name = "textPost";
-            this.textPost.ReadOnly = true;
-            this.textPost.Size = new System.Drawing.Size(210, 44);
-            this.textPost.TabIndex = 5;
             // 
             // UserStageForm
             // 
@@ -230,15 +230,16 @@
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.panel1);
             this.Name = "UserStageForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Мои задачи";
             this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tabNotComplete.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridNotComplete)).EndInit();
             this.tabComplete.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridComplete)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

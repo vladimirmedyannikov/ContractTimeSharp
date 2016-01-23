@@ -392,6 +392,12 @@ namespace ContractTimeSharp
 
         private void mnuInvestPrint_Click(object sender, EventArgs e)
         {
+            InvestProject project = getCurrentProject();
+            PrintExcelProject(project);
+        }
+
+        private void PrintExcelProject(InvestProject project)
+        {
             Excel.Application xlApp = new Excel.Application();
             if (xlApp == null)
             {
@@ -404,6 +410,7 @@ namespace ContractTimeSharp
 
             xlWorkBook = xlApp.Workbooks.Add(misValue);
             xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Item[1];
+            
 
             xlWorkSheet.Cells[4, 2] = "# СОВА";
             xlWorkSheet.Cells[4, 3] = "Производство";
@@ -418,13 +425,34 @@ namespace ContractTimeSharp
             xlWorkSheet.Cells[4, 12] = "Начало(прогноз)";
             xlWorkSheet.Cells[4, 13] = "Окончание(прогноз)";
             xlWorkSheet.Cells[4, 14] = "Комментарий";
+
+            ((Excel.Range)(xlWorkSheet.Columns[2])).EntireColumn.ColumnWidth = 10;
+            ((Excel.Range)(xlWorkSheet.Columns[3])).EntireColumn.ColumnWidth = 20;
+            ((Excel.Range)(xlWorkSheet.Columns[4])).EntireColumn.ColumnWidth = 26;
+            ((Excel.Range)(xlWorkSheet.Columns[5])).EntireColumn.ColumnWidth = 22;
+            ((Excel.Range)(xlWorkSheet.Columns[6])).EntireColumn.ColumnWidth = 16;
+            ((Excel.Range)(xlWorkSheet.Columns[7])).EntireColumn.ColumnWidth = 11.5D;
+            ((Excel.Range)(xlWorkSheet.Columns[8])).EntireColumn.ColumnWidth = 14.5;
+            ((Excel.Range)(xlWorkSheet.Columns[9])).EntireColumn.ColumnWidth = 11.5;
+            ((Excel.Range)(xlWorkSheet.Columns[10])).EntireColumn.ColumnWidth = 14.5;
+            ((Excel.Range)(xlWorkSheet.Columns[11])).EntireColumn.ColumnWidth = 12.5;
+            ((Excel.Range)(xlWorkSheet.Columns[12])).EntireColumn.ColumnWidth = 14;
+            ((Excel.Range)(xlWorkSheet.Columns[13])).EntireColumn.ColumnWidth = 14;
+            ((Excel.Range)(xlWorkSheet.Columns[14])).EntireColumn.ColumnWidth = 20;
+
             xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[4, 14]].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
             xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[4, 14]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
-
-            InvestProject project = getCurrentProject();
+            xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[4, 14]].Font.Bold = true;
+            
 
             int index = 5;
-            foreach(StageProject s in project.getProjectList())
+            xlWorkSheet.Cells[index, 2] = project.numberProject;
+            xlWorkSheet.Cells[index, 3] = project.department.nameDepartment;
+            xlWorkSheet.Cells[index, 4] = project.nameProject;
+            xlWorkSheet.Cells[index, 12] = project.dateBeginProg;
+            xlWorkSheet.Cells[index, 13] = project.dateEndProg;
+            index++;
+            foreach (StageProject s in project.getProjectList())
             {
                 xlWorkSheet.Cells[index, 2] = project.numberProject;
                 xlWorkSheet.Cells[index, 3] = project.department.nameDepartment;
@@ -439,10 +467,9 @@ namespace ContractTimeSharp
                 xlWorkSheet.Cells[index, 12] = s.DateBeginProg;
                 xlWorkSheet.Cells[index, 13] = s.DateEndProg;
                 xlWorkSheet.Cells[index, 14] = s.CommentUser;
-                if (s.SubStage != null && s.SubStage.Count > 0) 
+                if (s.SubStage != null && s.SubStage.Count > 0)
                 {
                     xlWorkSheet.Range[xlWorkSheet.Cells[index, 2], xlWorkSheet.Cells[index, 14]].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
-                    
                     foreach (StageProject sub in s.SubStage)
                     {
                         index++;
@@ -459,26 +486,30 @@ namespace ContractTimeSharp
                         xlWorkSheet.Cells[index, 12] = sub.DateBeginProg;
                         xlWorkSheet.Cells[index, 13] = sub.DateEndProg;
                         xlWorkSheet.Cells[index, 14] = sub.CommentUser;
-                        Excel.Range range =  xlWorkSheet.Rows[index] as Excel.Range;
+                        Excel.Range range = xlWorkSheet.Rows[index] as Excel.Range;
                         range.OutlineLevel = 1;
                         range.Group(System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
 
                     }
-                    
                     //Excel.Range range = xlWorkSheet.Range[xlWorkSheet.Cells[index - s.SubStage.Count-1, 2], xlWorkSheet.Cells[index- s.SubStage.Count-1, 14]];
                     //Excel.Range range = xlWorkSheet.Rows["1:10", null] as Excel.Range;
-
                     //range.Group(0,0,0,0);
                 }
                 index++;
 
             }
 
+            xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[index, 14]].Font.Size = 8;
+            xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[index, 14]].WrapText = true;
+            xlWorkSheet.Range[xlWorkSheet.Cells[6, 9], xlWorkSheet.Cells[index, 11]].Interior.Color = System.Drawing.ColorTranslator.ToOle(Color.FromArgb(252, 228, 214));
+            xlWorkSheet.Range[xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[index, 13]].Interior.Color = System.Drawing.ColorTranslator.ToOle(Color.FromArgb(218, 238, 243));
+            //xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[index, 14]].AutoFit();
+
             xlApp.Visible = true;
 
             //xlWorkBook.SaveAs("d:\\csharp-Excel.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             //xlWorkBook.Close(true, misValue, misValue);
-            xlApp.Quit();
+            //xlApp.Quit();
 
             releaseObject(xlWorkSheet);
             releaseObject(xlWorkBook);
