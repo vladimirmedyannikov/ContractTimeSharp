@@ -14,16 +14,87 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using Excel = Microsoft.Office.Interop.Excel;
-
 using System.Windows.Forms;
 
 namespace ContractTimeSharp
 {
     public partial class DialogGridForm : Form
     {
+        private int bookMark;
+        private int scrollIndex;
+        public int BookMarkInvestProject
+        {
+            get { return bookMark; }
+            set
+            {
+                bookMark = value;
+            }
+        }
+        public int ScrollIndex
+        {
+            get { return scrollIndex; }
+            set
+            {
+                scrollIndex = value;
+            }
+        }
         public DialogGridForm()
         {
             InitializeComponent();
+            InitializeColumnStageProject();
+            InitializeColumnInvestProject();
+            initializationInvestProject();
+        }
+
+        private void InitializeColumnInvestProject()
+        {
+            #region Инициализация столбцов Проекта
+            dataGridInvestProject.AutoGenerateColumns = false;
+
+            DataGridViewColumn columnNameProject = new DataGridViewTextBoxColumn();
+            columnNameProject.HeaderText = "Название проекта";
+            columnNameProject.DataPropertyName = "nameProject";
+
+            DataGridViewColumn columnNumberProject = new DataGridViewTextBoxColumn();
+            columnNumberProject.HeaderText = "Номер проекта";
+            columnNumberProject.DataPropertyName = "numberProject";
+
+            DataGridViewColumn columnDepartment = new DataGridViewTextBoxColumn();
+            columnDepartment.HeaderText = "Подразделение";
+            columnDepartment.DataPropertyName = "department";
+
+            DataGridViewColumn columnUserProject = new DataGridViewTextBoxColumn();
+            columnUserProject.HeaderText = "Ответственный";
+            columnUserProject.DataPropertyName = "user";
+
+            DataGridViewColumn columnDateBeginProject = new DataGridViewTextBoxColumn();
+            columnDateBeginProject.HeaderText = "Дата начала (план)";
+            columnDateBeginProject.DataPropertyName = "dateBegin";
+
+            DataGridViewColumn columnDateEndProject = new DataGridViewTextBoxColumn();
+            columnDateEndProject.HeaderText = "Дата завершения (план)";
+            columnDateEndProject.DataPropertyName = "dateEnd";
+
+            DataGridViewColumn columnDateBeginProgProject = new DataGridViewTextBoxColumn();
+            columnDateBeginProgProject.HeaderText = "Дата начала (прогноз)";
+            columnDateBeginProgProject.DataPropertyName = "dateBeginProg";
+
+            DataGridViewColumn columnDateEndProgProject = new DataGridViewTextBoxColumn();
+            columnDateEndProgProject.HeaderText = "Дата завершения (прогноз)";
+            columnDateEndProgProject.DataPropertyName = "dateEndProg";
+
+            DataGridViewColumn columnAboutProject = new DataGridViewTextBoxColumn();
+            columnAboutProject.HeaderText = "Комментарий";
+            columnAboutProject.DataPropertyName = "aboutProject";
+
+            dataGridInvestProject.Columns.AddRange(new DataGridViewColumn[] { columnNameProject, columnNumberProject, columnDepartment, columnUserProject, columnDateBeginProject,
+                columnDateEndProject, columnDateBeginProgProject, columnDateEndProgProject, columnAboutProject });
+            #endregion
+        }
+
+        private void InitializeColumnStageProject()
+        {
+            #region Инициализация столбцов Этапов
             treeViewAdv1.UseColumns = true;
 
             TreeColumn columnName = new TreeColumn("Этап", 120);
@@ -32,7 +103,7 @@ namespace ContractTimeSharp
             TreeColumn columnDateBegin = new TreeColumn("Начало (план)", 60);
             TreeColumn columnDateEnd = new TreeColumn("Завершение (план)", 60);
             TreeColumn columnDateBeginUser = new TreeColumn("Начало (пользв.)", 60);
-           
+
             TreeColumn columnDateEndUser = new TreeColumn("Завершение (пользв.)", 60);
             TreeColumn columnStatus = new TreeColumn("Статус", 60);
             TreeColumn columnDateBeginProg = new TreeColumn("Начало (прогноз)", 60);
@@ -85,7 +156,7 @@ namespace ContractTimeSharp
             nodeTextDateEndUser.DataPropertyName = "DateEndUser";
             nodeTextDateEndUser.ParentColumn = columnDateEndUser;
             nodeTextDateEndUser.IncrementalSearchEnabled = false;
-            
+
 
             treeViewAdv1.NodeControls.Add(nodeTextDateEndUser);
 
@@ -112,8 +183,7 @@ namespace ContractTimeSharp
             nodeTextCommentUser.ParentColumn = columnComment;
             nodeTextCommentUser.IncrementalSearchEnabled = true;
             treeViewAdv1.NodeControls.Add(nodeTextCommentUser);
-
-            initializationInvestProject();
+            #endregion
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -125,13 +195,21 @@ namespace ContractTimeSharp
         public void initializationInvestProject()
         {
             BindingSource bindingSource = new BindingSource();
-
             InvestProjectDAO dao = new InvestProjectDAO();
             bindingSource.Clear();
             bindingSource.DataSource = dao.getAll();
             dataGridInvestProject.DataSource = bindingSource;
             bindingSource.CurrentItemChanged += BindingSource_CurrentItemChanged;
-            bindingSource.MoveFirst();
+            
+            if ((ScrollIndex >=0) && (dataGridInvestProject.Rows.Count > 0))
+            {
+                dataGridInvestProject.FirstDisplayedScrollingRowIndex = ScrollIndex;
+            }
+            if (BookMarkInvestProject != 0)
+            {
+                dataGridInvestProject.Rows[BookMarkInvestProject].Selected = true;
+                bindingSource.Position = BookMarkInvestProject;
+            }
         }
 
 
@@ -173,8 +251,10 @@ namespace ContractTimeSharp
 
         private void insertInvestProjectMenu(object sender, EventArgs e)
         {
+            
             DialogInvestProject d = new DialogInvestProject();
             d.ShowDialog();
+            initializationInvestProject();
         }
 
         private void editInvestProjectMenu(object sender, EventArgs e)
@@ -195,6 +275,7 @@ namespace ContractTimeSharp
 
         public void showDialogInvestProject()
         {
+            generateBookMark();
             DialogInvestProject dialog = new DialogInvestProject();
             try
             {
@@ -210,6 +291,7 @@ namespace ContractTimeSharp
                 //throw new Exception();
             }
             dialog.ShowDialog();
+            initializationInvestProject();
         }
 
         private void menuStageProject_Opening(object sender, CancelEventArgs e)
@@ -259,6 +341,7 @@ namespace ContractTimeSharp
 
         public void showDialogStage()
         {
+            generateBookMark();
             DialogStageProject dialog = new DialogStageProject();
             if (dataGridInvestProject.CurrentRow.DataBoundItem != null && dataGridInvestProject.CurrentRow.DataBoundItem.GetType() == typeof(InvestProject))
             {
@@ -266,11 +349,15 @@ namespace ContractTimeSharp
                 dialog.idProject = ip.idProject;
             }
             dialog.ShowDialog();
+            initializationInvestProject();
             updateStageProject();
+            
+
         }
 
         private void mnuEditStage_Click(object sender, EventArgs e)
         {
+            generateBookMark();
             DialogStageProject dialog = new DialogStageProject();
             TreeModel model = (TreeModel)treeViewAdv1.Model;
             if (model != null && treeViewAdv1.SelectedNode != null)
@@ -292,12 +379,16 @@ namespace ContractTimeSharp
                 }
 
                 dialog.ShowDialog();
+                initializationInvestProject();
                 updateStageProject();
+                
+
             }
         }
 
         private void mnuAddSubStage_Click(object sender, EventArgs e)
         {
+            generateBookMark();
             DialogStageProject dialog = new DialogStageProject();
             TreeModel model = (TreeModel)treeViewAdv1.Model;
             if (model != null)
@@ -307,7 +398,14 @@ namespace ContractTimeSharp
                 dialog.idProject = stage.IdProject;
             }
             dialog.ShowDialog();
+            initializationInvestProject();
             updateStageProject();
+        }
+
+        private void generateBookMark()
+        {
+            BookMarkInvestProject = dataGridInvestProject.CurrentRow.Index;
+            ScrollIndex = dataGridInvestProject.FirstDisplayedScrollingRowIndex;
         }
 
         private void treeViewAdv1_Click(object sender, EventArgs e)
@@ -393,146 +491,11 @@ namespace ContractTimeSharp
         private void mnuInvestPrint_Click(object sender, EventArgs e)
         {
             InvestProject project = getCurrentProject();
+            ReportGenerate.
             PrintExcelProject(project);
         }
 
-        private void PrintExcelProject(InvestProject project)
-        {
-            Excel.Application xlApp = new Excel.Application();
-            if (xlApp == null)
-            {
-                MessageBox.Show("Не удалось создать Excel документ");
-                return;
-            }
-            Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
-            object misValue = System.Reflection.Missing.Value;
-
-            xlWorkBook = xlApp.Workbooks.Add(misValue);
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Item[1];
-            
-
-            xlWorkSheet.Cells[4, 2] = "# СОВА";
-            xlWorkSheet.Cells[4, 3] = "Производство";
-            xlWorkSheet.Cells[4, 4] = "Мероприятие";
-            xlWorkSheet.Cells[4, 5] = "Этап";
-            xlWorkSheet.Cells[4, 6] = "Ответственный";
-            xlWorkSheet.Cells[4, 7] = "Начало(план)";
-            xlWorkSheet.Cells[4, 8] = "Окончание(план)";
-            xlWorkSheet.Cells[4, 9] = "Начало(план/факт)";
-            xlWorkSheet.Cells[4, 10] = "Окончание(план/факт)";
-            xlWorkSheet.Cells[4, 11] = "Статус";
-            xlWorkSheet.Cells[4, 12] = "Начало(прогноз)";
-            xlWorkSheet.Cells[4, 13] = "Окончание(прогноз)";
-            xlWorkSheet.Cells[4, 14] = "Комментарий";
-
-            ((Excel.Range)(xlWorkSheet.Columns[2])).EntireColumn.ColumnWidth = 10;
-            ((Excel.Range)(xlWorkSheet.Columns[3])).EntireColumn.ColumnWidth = 20;
-            ((Excel.Range)(xlWorkSheet.Columns[4])).EntireColumn.ColumnWidth = 26;
-            ((Excel.Range)(xlWorkSheet.Columns[5])).EntireColumn.ColumnWidth = 22;
-            ((Excel.Range)(xlWorkSheet.Columns[6])).EntireColumn.ColumnWidth = 16;
-            ((Excel.Range)(xlWorkSheet.Columns[7])).EntireColumn.ColumnWidth = 11.5D;
-            ((Excel.Range)(xlWorkSheet.Columns[8])).EntireColumn.ColumnWidth = 14.5;
-            ((Excel.Range)(xlWorkSheet.Columns[9])).EntireColumn.ColumnWidth = 11.5;
-            ((Excel.Range)(xlWorkSheet.Columns[10])).EntireColumn.ColumnWidth = 14.5;
-            ((Excel.Range)(xlWorkSheet.Columns[11])).EntireColumn.ColumnWidth = 12.5;
-            ((Excel.Range)(xlWorkSheet.Columns[12])).EntireColumn.ColumnWidth = 14;
-            ((Excel.Range)(xlWorkSheet.Columns[13])).EntireColumn.ColumnWidth = 14;
-            ((Excel.Range)(xlWorkSheet.Columns[14])).EntireColumn.ColumnWidth = 20;
-
-            xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[4, 14]].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
-            xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[4, 14]].Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
-            xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[4, 14]].Font.Bold = true;
-            
-
-            int index = 5;
-            xlWorkSheet.Cells[index, 2] = project.numberProject;
-            xlWorkSheet.Cells[index, 3] = project.department.nameDepartment;
-            xlWorkSheet.Cells[index, 4] = project.nameProject;
-            xlWorkSheet.Cells[index, 12] = project.dateBeginProg;
-            xlWorkSheet.Cells[index, 13] = project.dateEndProg;
-            index++;
-            foreach (StageProject s in project.getProjectList())
-            {
-                xlWorkSheet.Cells[index, 2] = project.numberProject;
-                xlWorkSheet.Cells[index, 3] = project.department.nameDepartment;
-                xlWorkSheet.Cells[index, 4] = project.nameProject;
-                xlWorkSheet.Cells[index, 5] = s.NameStage;
-                xlWorkSheet.Cells[index, 6] = s.User.FullName;
-                xlWorkSheet.Cells[index, 7] = s.DateBeginPlan;
-                xlWorkSheet.Cells[index, 8] = s.DateEndPlan;
-                xlWorkSheet.Cells[index, 9] = s.DateBeginUser;
-                xlWorkSheet.Cells[index, 10] = s.DateEndUser;
-                xlWorkSheet.Cells[index, 11] = s.StatusStage.ToString();
-                xlWorkSheet.Cells[index, 12] = s.DateBeginProg;
-                xlWorkSheet.Cells[index, 13] = s.DateEndProg;
-                xlWorkSheet.Cells[index, 14] = s.CommentUser;
-                if (s.SubStage != null && s.SubStage.Count > 0)
-                {
-                    xlWorkSheet.Range[xlWorkSheet.Cells[index, 2], xlWorkSheet.Cells[index, 14]].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray);
-                    foreach (StageProject sub in s.SubStage)
-                    {
-                        index++;
-                        xlWorkSheet.Cells[index, 2] = project.numberProject;
-                        xlWorkSheet.Cells[index, 3] = project.department.nameDepartment;
-                        xlWorkSheet.Cells[index, 4] = project.nameProject;
-                        xlWorkSheet.Cells[index, 5] = sub.NameStage;
-                        xlWorkSheet.Cells[index, 6] = sub.User.FullName;
-                        xlWorkSheet.Cells[index, 7] = sub.DateBeginPlan;
-                        xlWorkSheet.Cells[index, 8] = sub.DateEndPlan;
-                        xlWorkSheet.Cells[index, 9] = sub.DateBeginUser;
-                        xlWorkSheet.Cells[index, 10] = sub.DateEndUser;
-                        xlWorkSheet.Cells[index, 11] = sub.StatusStage.ToString();
-                        xlWorkSheet.Cells[index, 12] = sub.DateBeginProg;
-                        xlWorkSheet.Cells[index, 13] = sub.DateEndProg;
-                        xlWorkSheet.Cells[index, 14] = sub.CommentUser;
-                        Excel.Range range = xlWorkSheet.Rows[index] as Excel.Range;
-                        range.OutlineLevel = 1;
-                        range.Group(System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
-
-                    }
-                    //Excel.Range range = xlWorkSheet.Range[xlWorkSheet.Cells[index - s.SubStage.Count-1, 2], xlWorkSheet.Cells[index- s.SubStage.Count-1, 14]];
-                    //Excel.Range range = xlWorkSheet.Rows["1:10", null] as Excel.Range;
-                    //range.Group(0,0,0,0);
-                }
-                index++;
-
-            }
-
-            xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[index, 14]].Font.Size = 8;
-            xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[index, 14]].WrapText = true;
-            xlWorkSheet.Range[xlWorkSheet.Cells[6, 9], xlWorkSheet.Cells[index, 11]].Interior.Color = System.Drawing.ColorTranslator.ToOle(Color.FromArgb(252, 228, 214));
-            xlWorkSheet.Range[xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[index, 13]].Interior.Color = System.Drawing.ColorTranslator.ToOle(Color.FromArgb(218, 238, 243));
-            //xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[index, 14]].AutoFit();
-
-            xlApp.Visible = true;
-
-            //xlWorkBook.SaveAs("d:\\csharp-Excel.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            //xlWorkBook.Close(true, misValue, misValue);
-            //xlApp.Quit();
-
-            releaseObject(xlWorkSheet);
-            releaseObject(xlWorkBook);
-            releaseObject(xlApp);
-        }
-
-        private void releaseObject(object obj)
-        {
-            try
-            {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
-                obj = null;
-            }
-            catch (Exception ex)
-            {
-                obj = null;
-                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
-            }
-            finally
-            {
-                GC.Collect();
-            }
-        }
+        
 
         private void dataGridInvestProject_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -543,6 +506,20 @@ namespace ContractTimeSharp
         {
             DirectoryUserForm userDirectory = new DirectoryUserForm();
             userDirectory.Show();
+        }
+
+        private void mnuResposibleUsers_Click(object sender, EventArgs e)
+        {
+            ResposibleUsers usersForm = new ResposibleUsers();
+            usersForm.Show();
+        }
+
+
+
+        private void mnuDateMonitoring_Click(object sender, EventArgs e)
+        {
+            MonitoringStage form = new MonitoringStage();
+            form.Show();
         }
     }
 }

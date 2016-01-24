@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ContractTime.Model
 {
-    class User
+    public class User
     {
         private int id;
         private int typeUser;
@@ -84,6 +84,15 @@ namespace ContractTime.Model
         public override string ToString()
         {
             return this.FullName;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() == typeof(User))
+            {
+                return this.id == ((User)obj).id;
+            }
+            else return false;
         }
     }
 }

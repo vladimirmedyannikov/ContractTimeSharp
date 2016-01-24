@@ -20,7 +20,7 @@ namespace ContractTime.Model
         public DateTime dateBeginProg { get; set; }
         public DateTime dateEndProg { get; set; }
         public string aboutProject { get; set; }
-        public List<StageProject> projectList { get; set; }
+        List<StageProject> projectList { get; set; }
 
         public List<StageProject> getProjectList()
         {

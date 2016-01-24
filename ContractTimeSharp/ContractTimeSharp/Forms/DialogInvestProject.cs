@@ -66,6 +66,7 @@ namespace ContractTimeSharp.Forms
                 {
                     projectDAO.insert(Project);
                 }
+                this.Close();
             }
         }
 

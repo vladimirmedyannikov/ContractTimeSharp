@@ -37,9 +37,87 @@ namespace ContractTimeSharp.DAO
             }
         }
 
+        public List<StageProject> getByDate(DateTime date)
+        {
+            FbConnection connection = null;
+            FbCommand statement = null;
+            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
+                "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
+                "status_stage, comment_user, id_stage_parent from stage_project " +
+                "left join user_info u on u.id_user = stage_project.id_user where date_begin_plan = @date";
+            List<StageProject> stageProjectList = new List<StageProject>();
+            try
+            {
+                connection = daoFactory.getConnection();
+                statement = new FbCommand(sql, connection);
+                statement.Parameters.Add("@date", date);
+                FbDataAdapter da = new FbDataAdapter(statement);
+                DataSet result = new DataSet();
+                da.Fill(result);
+                foreach (DataRow row in result.Tables[0].Rows)
+                {
+                    StageProject stageProject = generateStageProject(row);
+                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject);
+                    stageProjectList.Add(stageProject);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("GetAll stage project ", e);
+            }
+            finally
+            {
+                try
+                {
+                    if (connection != null) connection.Close();
+                }
+                catch (System.Data.DataException e)
+                {
+
+                }
+            }
+            return stageProjectList;
+        }
+
         public List<StageProject> getAll()
         {
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statment = null;
+            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
+                "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
+                "status_stage, comment_user, id_stage_parent from stage_project " +
+                "left join user_info u on u.id_user = stage_project.id_user";
+            List<StageProject> stageProjectList = new List<StageProject>();
+            try
+            {
+                connection = daoFactory.getConnection();
+                statment = new FbCommand(sql, connection);
+                FbDataAdapter da = new FbDataAdapter(statment);
+                DataSet result = new DataSet();
+                da.Fill(result);
+                foreach (DataRow row in result.Tables[0].Rows)
+                {
+                    StageProject stageProject = generateStageProject(row);
+                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject);
+                    stageProjectList.Add(stageProject);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("GetAll stage project ", e);
+            }
+            finally
+            {
+                try
+                {
+                    if (connection != null) connection.Close();
+                }
+                catch (System.Data.DataException e)
+                {
+
+                }
+            }
+            return stageProjectList;
         }
 
         public List<StageProject> getByUser(User user)

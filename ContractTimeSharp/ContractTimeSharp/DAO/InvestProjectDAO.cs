@@ -42,7 +42,7 @@ namespace ContractTimeSharp.DAO
             FbCommand statment = null;
             String sql = "select invest_project.*, l_name, f_name, p_name, dept_name from invest_project " +
                 "left join depts on depts.dept_id = invest_project.id_dept " +
-                "left join user_info u on u.id_user = invest_project.id_user";
+                "left join user_info u on u.id_user = invest_project.id_user order by name_Project, number_project";
             List<InvestProject> investProjectList = new List<InvestProject>();
 
             try
@@ -66,6 +66,8 @@ namespace ContractTimeSharp.DAO
                     investProject.dateBegin = DateTime.Parse(row["date_begin_plan"].ToString());
 
                     investProject.dateEnd = DateTime.Parse(row["date_end_plan"].ToString());
+
+                    //TODO check
                     investProject.dateBeginProg = DateTime.Parse(row["date_begin_prog"].ToString());
                     investProject.dateEndProg = DateTime.Parse(row["date_end_prog"].ToString());
                     investProject.numberProject = row["number_project"].ToString();

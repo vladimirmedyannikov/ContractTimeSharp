@@ -39,6 +39,13 @@
             this.menuContract = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMyTask = new System.Windows.Forms.ToolStripMenuItem();
             this.menuService = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSendMessage = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMonStage = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuResposibleUsers = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDateMonitoring = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLib = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUser = new System.Windows.Forms.ToolStripMenuItem();
             this.treeViewAdv1 = new Aga.Controls.Tree.TreeViewAdv();
             this.treeColumn1 = new Aga.Controls.Tree.TreeColumn();
             this.menuStageProject = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -48,11 +55,6 @@
             this.mnuDeleteStage = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.mnuLib = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuUser = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuSendMessage = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuMonStage = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuLog = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -159,6 +161,56 @@
             this.menuService.Size = new System.Drawing.Size(59, 20);
             this.menuService.Text = "Сервис";
             // 
+            // mnuSendMessage
+            // 
+            this.mnuSendMessage.Name = "mnuSendMessage";
+            this.mnuSendMessage.Size = new System.Drawing.Size(184, 22);
+            this.mnuSendMessage.Text = "Отправка писем";
+            // 
+            // mnuMonStage
+            // 
+            this.mnuMonStage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuResposibleUsers,
+            this.mnuDateMonitoring});
+            this.mnuMonStage.Name = "mnuMonStage";
+            this.mnuMonStage.Size = new System.Drawing.Size(184, 22);
+            this.mnuMonStage.Text = "Мониторинг этапов";
+            // 
+            // mnuResposibleUsers
+            // 
+            this.mnuResposibleUsers.Name = "mnuResposibleUsers";
+            this.mnuResposibleUsers.Size = new System.Drawing.Size(152, 22);
+            this.mnuResposibleUsers.Text = "Список";
+            this.mnuResposibleUsers.Click += new System.EventHandler(this.mnuResposibleUsers_Click);
+            // 
+            // mnuDateMonitoring
+            // 
+            this.mnuDateMonitoring.Name = "mnuDateMonitoring";
+            this.mnuDateMonitoring.Size = new System.Drawing.Size(152, 22);
+            this.mnuDateMonitoring.Text = "По дате";
+            this.mnuDateMonitoring.Click += new System.EventHandler(this.mnuDateMonitoring_Click);
+            // 
+            // mnuLog
+            // 
+            this.mnuLog.Name = "mnuLog";
+            this.mnuLog.Size = new System.Drawing.Size(184, 22);
+            this.mnuLog.Text = "Логи входа";
+            // 
+            // mnuLib
+            // 
+            this.mnuLib.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuUser});
+            this.mnuLib.Name = "mnuLib";
+            this.mnuLib.Size = new System.Drawing.Size(94, 20);
+            this.mnuLib.Text = "Справочники";
+            // 
+            // mnuUser
+            // 
+            this.mnuUser.Name = "mnuUser";
+            this.mnuUser.Size = new System.Drawing.Size(152, 22);
+            this.mnuUser.Text = "Пользователи";
+            this.mnuUser.Click += new System.EventHandler(this.mnuUser_Click);
+            // 
             // treeViewAdv1
             // 
             this.treeViewAdv1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -244,39 +296,6 @@
             this.notifyIcon1.Text = "Инвестиционные проекты\r\n";
             this.notifyIcon1.Visible = true;
             // 
-            // mnuLib
-            // 
-            this.mnuLib.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuUser});
-            this.mnuLib.Name = "mnuLib";
-            this.mnuLib.Size = new System.Drawing.Size(94, 20);
-            this.mnuLib.Text = "Справочники";
-            // 
-            // mnuUser
-            // 
-            this.mnuUser.Name = "mnuUser";
-            this.mnuUser.Size = new System.Drawing.Size(152, 22);
-            this.mnuUser.Text = "Пользователи";
-            this.mnuUser.Click += new System.EventHandler(this.mnuUser_Click);
-            // 
-            // mnuSendMessage
-            // 
-            this.mnuSendMessage.Name = "mnuSendMessage";
-            this.mnuSendMessage.Size = new System.Drawing.Size(184, 22);
-            this.mnuSendMessage.Text = "Отправка писем";
-            // 
-            // mnuMonStage
-            // 
-            this.mnuMonStage.Name = "mnuMonStage";
-            this.mnuMonStage.Size = new System.Drawing.Size(184, 22);
-            this.mnuMonStage.Text = "Мониторинг этапов";
-            // 
-            // mnuLog
-            // 
-            this.mnuLog.Name = "mnuLog";
-            this.mnuLog.Size = new System.Drawing.Size(184, 22);
-            this.mnuLog.Text = "Логи входа";
-            // 
             // DialogGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,6 +345,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuLog;
         private System.Windows.Forms.ToolStripMenuItem mnuLib;
         private System.Windows.Forms.ToolStripMenuItem mnuUser;
+        private System.Windows.Forms.ToolStripMenuItem mnuResposibleUsers;
+        private System.Windows.Forms.ToolStripMenuItem mnuDateMonitoring;
     }
 }
 

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ContractTime.Model
 {
-    class Firm
+    public class Firm
     {
         private int idFirm { get; set; }
         private String nameFirm { get; set; }
