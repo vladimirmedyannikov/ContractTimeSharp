@@ -19,7 +19,7 @@ namespace ContractTimeSharp.Utils
         //Логин
         private static String smtpUserName = "mr.betchit@mail.ru";
         //Пароль
-        private static String smtpUserPass = "MAngysT<>Shadum123";
+        private static String smtpUserPass = "";
 
         private static String msgFrom = "mr.betchit@mail.ru";
 
