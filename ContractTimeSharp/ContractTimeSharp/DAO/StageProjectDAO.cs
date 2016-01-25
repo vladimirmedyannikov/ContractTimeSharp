@@ -41,7 +41,7 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statement = null;
-            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
+            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
                 "status_stage, comment_user, id_stage_parent from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user where date_begin_plan = @date";
@@ -83,7 +83,7 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
+            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
                 "status_stage, comment_user, id_stage_parent from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user";
@@ -124,7 +124,7 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
+            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
                 "status_stage, comment_user, id_stage_parent from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user where stage_project.id_user = @idUser;";
@@ -246,7 +246,7 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
+            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
                 "status_stage, comment_user, id_stage_parent from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user where stage_project.id_stage_parent <> 0 and id_project = @idProject order by id_inner_index;";
@@ -262,6 +262,7 @@ namespace ContractTimeSharp.DAO
                 foreach (DataRow row in result.Tables[0].Rows)
                 {
                     StageProject stageProject = generateStageProject(row);
+                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject);
                     stageProjectList.Add(stageProject);
                 }
             }
@@ -288,7 +289,7 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, " +
+            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
                 "status_stage, comment_user, id_stage_parent from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user where id_project = @idProject and stage_project.id_stage_parent = 0 order by id_inner_index;";
@@ -305,6 +306,7 @@ namespace ContractTimeSharp.DAO
                 foreach (DataRow row in result.Tables[0].Rows)
                 {
                     StageProject stageProject = generateStageProject(row);
+                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject);
                     stageProject.SubStage = subStage.Where(s=>s.IdParentStage == stageProject.IdStage).ToList();
                     stageProjectList.Add(stageProject);
                 }
@@ -340,6 +342,7 @@ namespace ContractTimeSharp.DAO
                 user.FirstName = row["f_name"].ToString();
                 user.SecondName = row["l_name"].ToString();
                 user.ThirdName = row["p_name"].ToString();
+                user.Email = row["e_mail"].ToString();
                 
             }
             stageProject.User = user;

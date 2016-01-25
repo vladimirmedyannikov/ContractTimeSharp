@@ -13,16 +13,18 @@ namespace ContractTimeSharp.Utils
         public enum typeUser { ADMIN = 1, USER = 0};
         public enum stageStatus {FACT = 1, PLAN = 0, ALL = 3 };
 
+        private static String smtpHost = "smtp.mail.ru";
+        //Порт SMTP-сервера
+        private static int smtpPort = 25;
+        //Логин
+        private static String smtpUserName = "mr.betchit@mail.ru";
+        //Пароль
+        private static String smtpUserPass = "MAngysT<>Shadum123";
+
+        private static String msgFrom = "mr.betchit@mail.ru";
+
         public static void  SendMessage(string email, string messageMail)
         {
-            String smtpHost = "smtp.mail.ru";
-            //Порт SMTP-сервера
-            int smtpPort = 25;
-            //Логин
-            String smtpUserName = "yourmail@bk.ru";
-            //Пароль
-            String smtpUserPass = "YourPassWord";
-
             //Создание подключения
             SmtpClient client = new SmtpClient(smtpHost, smtpPort);
             client.UseDefaultCredentials = false;
@@ -30,17 +32,17 @@ namespace ContractTimeSharp.Utils
             client.EnableSsl = true;
 
             //Адрес для поля "От"
-            String msgFrom = "yourmail@bk.ru";
+            
             //Адрес для поля "Кому" (адрес получателя)
-            String msgTo = "tomail@tobe.com, lolka@mail.ru";
+            String msgTo = email;
 
             //Тема письма
             String msgSubject = "Theme mail";
             //Текст письма, можно использовать html
-            String msgBody = "Тут текст письма <table><tr><td>1</td><td>2</td></tr></table>";
+            String msgBody = messageMail;
             //Вложение для письма
             //Если нужно больше вложений, для каждого вложения создаем свой объект Attachment с нужным путем к файлу
-            Attachment attachData = new Attachment(@"D:\Тестовое вложение.zip");
+            //Attachment attachData = new Attachment(@"D:\Тестовое вложение.zip");
 
             //Создание сообщения
             MailMessage message = new MailMessage(msgFrom, msgTo, msgSubject, msgBody);
@@ -48,7 +50,7 @@ namespace ContractTimeSharp.Utils
             //Указываем что текст сообщения содержит html контент
             message.IsBodyHtml = true;
             //Крепим к сообщению подготовленное заранее вложение
-            message.Attachments.Add(attachData);
+            //message.Attachments.Add(attachData);
 
             try
             {

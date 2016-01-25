@@ -40,5 +40,10 @@ namespace ContractTimeSharp.NodeTree
             Status = (status.Equals("1") == true) ? "Факт" : "План" ;
             
         }
+
+        public override string ToString()
+        {
+            return String.Format("Название {0} | Дата начала {1} | Дата завершения {2} | Дата начала(прогноз) {3} | Дата завершения(прогноз) {4} | Статус {5} | Ответственный {6} | {7} | {8}", NameStage, DateBegin, DateEnd, DateBeginProg, DateEndProg, Status, User, DateEndUser, DateBeginUser);
+        }
     }
 }
