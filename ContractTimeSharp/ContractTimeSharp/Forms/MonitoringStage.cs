@@ -186,20 +186,6 @@ namespace ContractTimeSharp.Forms
             List<StageProject> listSubStage = null;
             foreach (InvestProject project in listProject)
             {
-                /*listStage = dao.getByProject(project.idProject);
-                listSubStage = dao.getSubStageProject(project.idProject);
-                TreeNode nodeProject = new TreeNode(new StageProjectNode(project.nameProject, "", project.dateBegin.ToShortDateString(), project.dateEnd.ToShortDateString(), project.dateBeginProg.ToShortDateString(), project.dateEndProg.ToShortDateString(), "", "", "", "", null).ToString());
-                foreach (StageProject stage in listStage)
-                {
-                    TreeNode node = new TreeNode(new StageProjectNode(stage.NameStage, stage.CommentUser, stage.DateBeginPlan.ToShortDateString(), stage.DateEndPlan.ToShortDateString(), stage.DateBeginProg.ToShortDateString(), stage.DateEndProg.ToShortDateString(), stage.DateBeginUser.ToShortDateString(), stage.DateEndUser.ToShortDateString(), stage.User.FullName, stage.StatusStage.ToString(), stage).ToString());
-                    nodeProject.Nodes.Add(node);
-                    foreach (StageProject child in stage.SubStage)
-                    {
-                        TreeNode childNode = new TreeNode(new StageProjectNode(child.NameStage, child.CommentUser, child.DateBeginPlan.ToShortDateString(), child.DateEndPlan.ToShortDateString(), child.DateBeginProg.ToShortDateString(), child.DateEndProg.ToShortDateString(), child.DateBeginUser.ToShortDateString(), child.DateEndUser.ToShortDateString(), child.User.FullName, child.StatusStage.ToString(), child).ToString());
-                        node.Nodes.Add(childNode);
-                    }
-                    treeViewProject.Nodes.Add(nodeProject);
-                }*/
                 listStage = dao.getByProject(project.idProject);
                 listSubStage = dao.getSubStageProject(project.idProject);
                 TreeNode nodeProject = new TreeNode(String.Format("Проект: {0} || Дата начала {1} || Дата завершения {2} || Дана начала(прогноз) {3} || Дата завершения(прогноз) {4}",project.nameProject, project.dateBegin.ToShortDateString(), project.dateEnd.ToShortDateString(), project.dateBeginProg.ToShortDateString(), project.dateEndProg.ToShortDateString()));
@@ -240,10 +226,10 @@ namespace ContractTimeSharp.Forms
             {
                 List<StageProject> listSend = listStage.Where(u => u.User.Id == user.Id).ToList();
                 StringBuilder message = new StringBuilder();
-                message.Append("<H1>Добрый день<br>У Вас имеется задачи для заполения в системе: </H1><br><ul>");
+                message.Append("<H1>Добрый день<br>У Вас имеются задачи для заполения в системе: </H1><br><ul>");
                 foreach (StageProject stage in listSend)
                 {
-                    message.AppendFormat("<li>Проект: {0}, Этап: {1} </li>",stage.Project.nameProject, stage.NameStage);
+                    message.AppendFormat("<li>Проект: {0}, Этап: {1}, Плановая дата начала: {2}, Плановая дата завершения: {3} </li>",stage.Project.nameProject, stage.NameStage, stage.DateBeginPlan.ToShortDateString(), stage.DateEndPlan.ToShortDateString());
                 }
                 message.Append("</li>");
                 AdvanceUtil.SendMessage(user.Email, message.ToString());

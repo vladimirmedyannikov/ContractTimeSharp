@@ -69,5 +69,13 @@ namespace ContractTimeSharp.Forms
         {
             showDialog(gridAll);
         }
+
+        private void gridNotComplete_DoubleClick(object sender, EventArgs e)
+        {
+            User user = (User)((BindingSource)gridNotComplete.DataSource).Current;
+            UserStageForm form = new UserStageForm(user);
+            form.ShowDialog();
+            
+        }
     }
 }

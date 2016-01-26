@@ -29,19 +29,264 @@
         private void InitializeComponent()
         {
             this.panelParam = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.labelFirstName = new System.Windows.Forms.Label();
+            this.tbFirstName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbSecondName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbThirdName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbAppointment = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbDepartment = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbLogin = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbAdmin = new System.Windows.Forms.RadioButton();
+            this.rbUser = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panelGrid = new System.Windows.Forms.Panel();
             this.gridUsers = new System.Windows.Forms.DataGridView();
+            this.panelParam.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.panelGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // panelParam
             // 
+            this.panelParam.Controls.Add(this.flowLayoutPanel1);
+            this.panelParam.Controls.Add(this.panel1);
             this.panelParam.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelParam.Location = new System.Drawing.Point(682, 0);
+            this.panelParam.Location = new System.Drawing.Point(645, 0);
             this.panelParam.Name = "panelParam";
-            this.panelParam.Size = new System.Drawing.Size(200, 639);
+            this.panelParam.Size = new System.Drawing.Size(237, 639);
             this.panelParam.TabIndex = 0;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.labelFirstName);
+            this.flowLayoutPanel1.Controls.Add(this.tbFirstName);
+            this.flowLayoutPanel1.Controls.Add(this.label2);
+            this.flowLayoutPanel1.Controls.Add(this.tbSecondName);
+            this.flowLayoutPanel1.Controls.Add(this.label3);
+            this.flowLayoutPanel1.Controls.Add(this.tbThirdName);
+            this.flowLayoutPanel1.Controls.Add(this.label4);
+            this.flowLayoutPanel1.Controls.Add(this.tbAppointment);
+            this.flowLayoutPanel1.Controls.Add(this.label5);
+            this.flowLayoutPanel1.Controls.Add(this.tbEmail);
+            this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.cbDepartment);
+            this.flowLayoutPanel1.Controls.Add(this.groupBox1);
+            this.flowLayoutPanel1.Controls.Add(this.groupBox2);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 42);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(237, 597);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // labelFirstName
+            // 
+            this.labelFirstName.AutoSize = true;
+            this.labelFirstName.Location = new System.Drawing.Point(3, 0);
+            this.labelFirstName.Name = "labelFirstName";
+            this.labelFirstName.Size = new System.Drawing.Size(56, 13);
+            this.labelFirstName.TabIndex = 0;
+            this.labelFirstName.Text = "Фамилия";
+            // 
+            // tbFirstName
+            // 
+            this.tbFirstName.Location = new System.Drawing.Point(3, 16);
+            this.tbFirstName.Name = "tbFirstName";
+            this.tbFirstName.Size = new System.Drawing.Size(231, 20);
+            this.tbFirstName.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Имя";
+            // 
+            // tbSecondName
+            // 
+            this.tbSecondName.Location = new System.Drawing.Point(3, 55);
+            this.tbSecondName.Name = "tbSecondName";
+            this.tbSecondName.Size = new System.Drawing.Size(231, 20);
+            this.tbSecondName.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 78);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Отчество";
+            // 
+            // tbThirdName
+            // 
+            this.tbThirdName.Location = new System.Drawing.Point(3, 94);
+            this.tbThirdName.Name = "tbThirdName";
+            this.tbThirdName.Size = new System.Drawing.Size(231, 20);
+            this.tbThirdName.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 117);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Должность";
+            // 
+            // tbAppointment
+            // 
+            this.tbAppointment.Location = new System.Drawing.Point(3, 133);
+            this.tbAppointment.Name = "tbAppointment";
+            this.tbAppointment.Size = new System.Drawing.Size(231, 20);
+            this.tbAppointment.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 156);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "E-mail";
+            // 
+            // tbEmail
+            // 
+            this.tbEmail.Location = new System.Drawing.Point(3, 172);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(231, 20);
+            this.tbEmail.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 195);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Подразделение";
+            // 
+            // cbDepartment
+            // 
+            this.cbDepartment.FormattingEnabled = true;
+            this.cbDepartment.Location = new System.Drawing.Point(3, 211);
+            this.cbDepartment.Name = "cbDepartment";
+            this.cbDepartment.Size = new System.Drawing.Size(231, 21);
+            this.cbDepartment.TabIndex = 11;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.flowLayoutPanel2);
+            this.groupBox1.Location = new System.Drawing.Point(3, 238);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(231, 105);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Аутентификация";
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.label6);
+            this.flowLayoutPanel2.Controls.Add(this.tbLogin);
+            this.flowLayoutPanel2.Controls.Add(this.label7);
+            this.flowLayoutPanel2.Controls.Add(this.tbPassword);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 16);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(225, 86);
+            this.flowLayoutPanel2.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Логин";
+            // 
+            // tbLogin
+            // 
+            this.tbLogin.Location = new System.Drawing.Point(3, 16);
+            this.tbLogin.Name = "tbLogin";
+            this.tbLogin.Size = new System.Drawing.Size(219, 20);
+            this.tbLogin.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 39);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Пароль";
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.Location = new System.Drawing.Point(3, 55);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(219, 20);
+            this.tbPassword.TabIndex = 7;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.rbAdmin);
+            this.groupBox2.Controls.Add(this.rbUser);
+            this.groupBox2.Location = new System.Drawing.Point(3, 349);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(231, 88);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Тип учетной записи";
+            // 
+            // rbAdmin
+            // 
+            this.rbAdmin.AutoSize = true;
+            this.rbAdmin.Location = new System.Drawing.Point(20, 56);
+            this.rbAdmin.Name = "rbAdmin";
+            this.rbAdmin.Size = new System.Drawing.Size(104, 17);
+            this.rbAdmin.TabIndex = 1;
+            this.rbAdmin.TabStop = true;
+            this.rbAdmin.Text = "Администратор";
+            this.rbAdmin.UseVisualStyleBackColor = true;
+            // 
+            // rbUser
+            // 
+            this.rbUser.AutoSize = true;
+            this.rbUser.Location = new System.Drawing.Point(20, 19);
+            this.rbUser.Name = "rbUser";
+            this.rbUser.Size = new System.Drawing.Size(98, 17);
+            this.rbUser.TabIndex = 0;
+            this.rbUser.TabStop = true;
+            this.rbUser.Text = "Пользователь";
+            this.rbUser.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(237, 42);
+            this.panel1.TabIndex = 0;
             // 
             // panelGrid
             // 
@@ -49,7 +294,7 @@
             this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGrid.Location = new System.Drawing.Point(0, 0);
             this.panelGrid.Name = "panelGrid";
-            this.panelGrid.Size = new System.Drawing.Size(682, 639);
+            this.panelGrid.Size = new System.Drawing.Size(645, 639);
             this.panelGrid.TabIndex = 1;
             // 
             // gridUsers
@@ -70,8 +315,9 @@
             this.gridUsers.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.gridUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridUsers.ShowEditingIcon = false;
-            this.gridUsers.Size = new System.Drawing.Size(682, 639);
+            this.gridUsers.Size = new System.Drawing.Size(645, 639);
             this.gridUsers.TabIndex = 1;
+            this.gridUsers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsers_CellDoubleClick);
             // 
             // DirectoryUserForm
             // 
@@ -83,6 +329,14 @@
             this.Name = "DirectoryUserForm";
             this.Text = "Пользователи";
             this.Load += new System.EventHandler(this.DirectoryUserForm_Load);
+            this.panelParam.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.panelGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).EndInit();
             this.ResumeLayout(false);
@@ -94,5 +348,28 @@
         private System.Windows.Forms.Panel panelParam;
         private System.Windows.Forms.Panel panelGrid;
         private System.Windows.Forms.DataGridView gridUsers;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label labelFirstName;
+        private System.Windows.Forms.TextBox tbFirstName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbSecondName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbThirdName;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbAppointment;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbEmail;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbDepartment;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tbLogin;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton rbAdmin;
+        private System.Windows.Forms.RadioButton rbUser;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

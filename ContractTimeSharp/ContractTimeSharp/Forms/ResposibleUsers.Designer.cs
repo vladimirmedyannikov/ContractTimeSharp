@@ -88,6 +88,7 @@
             this.gridNotComplete.Size = new System.Drawing.Size(603, 409);
             this.gridNotComplete.TabIndex = 1;
             this.gridNotComplete.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotComplete_CellDoubleClick);
+            this.gridNotComplete.DoubleClick += new System.EventHandler(this.gridNotComplete_DoubleClick);
             // 
             // tabComplete
             // 

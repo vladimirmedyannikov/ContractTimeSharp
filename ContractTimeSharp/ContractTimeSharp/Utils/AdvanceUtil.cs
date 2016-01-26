@@ -19,7 +19,7 @@ namespace ContractTimeSharp.Utils
         //Логин
         private static String smtpUserName = "mr.betchit@mail.ru";
         //Пароль
-        private static String smtpUserPass = "";
+        private static String smtpUserPass = "MAngysT<>Shadum123";
 
         private static String msgFrom = "mr.betchit@mail.ru";
 
@@ -37,7 +37,7 @@ namespace ContractTimeSharp.Utils
             String msgTo = email;
 
             //Тема письма
-            String msgSubject = "Theme mail";
+            String msgSubject = "Заполнение информации о состоянии проектов";
             //Текст письма, можно использовать html
             String msgBody = messageMail;
             //Вложение для письма

@@ -1,4 +1,5 @@
-﻿using ContractTimeSharp.DAO;
+﻿using ContractTime.Model;
+using ContractTimeSharp.DAO;
 using ContractTimeSharp.Model;
 using System;
 using System.Collections.Generic;
@@ -13,27 +14,43 @@ namespace ContractTimeSharp.Forms
 {
     public partial class UserStageForm : Form
     {
+        private User user;
+        public User User
+        {
+            set { user = value; }
+            get { return user; }
+        }
+
+        public UserStageForm(User u)
+        {
+            User = u;
+            InitializeComponent();
+            initializateDataGrid(User);
+            initializateUserData(User);
+        }
+
         public UserStageForm()
         {
+            User = MainApplication.User;
             InitializeComponent();
-            initializateDataGrid();
-            initializateUserData();
+            initializateDataGrid(User);
+            initializateUserData(User);
         }
 
-        private void initializateUserData()
+        private void initializateUserData(User u)
         {
-            textFio.Text = MainApplication.User.FullName;
-            textDept.Text = MainApplication.User.Department.nameDepartment;
+            textFio.Text = u.FullName;
+            textDept.Text = u.Department.nameDepartment;
         }
 
-        private void initializateDataGrid()
+        private void initializateDataGrid(User u)
         {
             gridNotComplete.DataSource = null;
             gridComplete.DataSource = null;
             gridPrepare(gridComplete);
             gridPrepare(gridNotComplete);
             BindingSource sourceNotComplete = new BindingSource();
-            List<StageProject> stageList = new StageProjectDAO().getByUser(MainApplication.User);
+            List<StageProject> stageList = new StageProjectDAO().getByUser(u);
             sourceNotComplete.DataSource = stageList.Where(x => x.StatusStage == 0).ToList();
             gridNotComplete.DataSource = sourceNotComplete;
             
@@ -63,13 +80,13 @@ namespace ContractTimeSharp.Forms
         private void gridNotComplete_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             showDialog(gridNotComplete);
-            initializateDataGrid();
+            initializateDataGrid(User);
         }
 
         private void gridComplete_DoubleClick(object sender, EventArgs e)
         {
             showDialog(gridComplete);
-            initializateDataGrid();
+            initializateDataGrid(User);
         }
 
         private void showDialog(DataGridView grid)

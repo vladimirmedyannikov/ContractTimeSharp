@@ -72,6 +72,9 @@ namespace ContractTime.Model
             get { return email; }
             set { email = value; }
         }
+
+        public string Appointment { get; internal set; }
+
         public User()
         {
 
