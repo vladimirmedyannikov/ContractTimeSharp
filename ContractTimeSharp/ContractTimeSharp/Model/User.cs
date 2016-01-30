@@ -14,6 +14,7 @@ namespace ContractTime.Model
         public string HashPass
         {
             set { hashPass = value; }
+            get { return hashPass; }
         }
         public string Login
         {
@@ -64,7 +65,7 @@ namespace ContractTime.Model
         private DateTime dateBirthday { get; set; }
         private DateTime dateIn { get; set; }
         private DateTime dateOut { get; set; }
-        private String password { get; set; }
+        public String Password { get; set; }
         private Department department { get; set; }
         private String email { get; set; }
         public string Email

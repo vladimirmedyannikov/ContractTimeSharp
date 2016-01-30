@@ -224,9 +224,45 @@ namespace ContractTimeSharp.DAO
             return user;
         }
 
-        public User insert(User e)
+        public User insert(User user)
         {
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statement = null;
+            string sql = "execute procedure insert_user(@first_name, @second_name, @third_name, @app, @id_dept, @type, @login, @pass, @e_mail, @hash_pass)";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                statement = new FbCommand(sql, connection);
+
+                statement.Parameters.Add("@first_name", user.FirstName);
+                statement.Parameters.Add("@second_name", user.SecondName);
+                statement.Parameters.Add("@third_name", user.ThirdName);
+                statement.Parameters.Add("@app", user.Appointment);
+                statement.Parameters.Add("@id_dept", user.Department.idDepartment);
+                statement.Parameters.Add("@type", user.TypeUser);
+                statement.Parameters.Add("@login", user.Login);
+                statement.Parameters.Add("@pass", user.Password);
+                statement.Parameters.Add("@e_mail", user.Email);
+                statement.Parameters.Add("@hash_pass", user.HashPass);
+
+                int id = Convert.ToInt32(statement.ExecuteScalar());
+
+                if (id != 0)
+                {
+                    user.Id = (int)id;
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("Insert Invest Project", e);
+            }
+            finally
+            {
+                if (connection != null) connection.Close();
+            }
+            return user;
         }
 
         public void update(User e)

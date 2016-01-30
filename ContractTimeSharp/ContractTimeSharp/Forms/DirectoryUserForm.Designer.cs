@@ -54,6 +54,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelGrid = new System.Windows.Forms.Panel();
             this.gridUsers = new System.Windows.Forms.DataGridView();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panelParam.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -89,6 +91,8 @@
             this.flowLayoutPanel1.Controls.Add(this.cbDepartment);
             this.flowLayoutPanel1.Controls.Add(this.groupBox1);
             this.flowLayoutPanel1.Controls.Add(this.groupBox2);
+            this.flowLayoutPanel1.Controls.Add(this.btnSave);
+            this.flowLayoutPanel1.Controls.Add(this.btnCancel);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 42);
@@ -265,13 +269,13 @@
             this.rbAdmin.Name = "rbAdmin";
             this.rbAdmin.Size = new System.Drawing.Size(104, 17);
             this.rbAdmin.TabIndex = 1;
-            this.rbAdmin.TabStop = true;
             this.rbAdmin.Text = "Администратор";
             this.rbAdmin.UseVisualStyleBackColor = true;
             // 
             // rbUser
             // 
             this.rbUser.AutoSize = true;
+            this.rbUser.Checked = true;
             this.rbUser.Location = new System.Drawing.Point(20, 19);
             this.rbUser.Name = "rbUser";
             this.rbUser.Size = new System.Drawing.Size(98, 17);
@@ -318,6 +322,27 @@
             this.gridUsers.Size = new System.Drawing.Size(645, 639);
             this.gridUsers.TabIndex = 1;
             this.gridUsers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsers_CellDoubleClick);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSave.Location = new System.Drawing.Point(159, 443);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 14;
+            this.btnSave.Text = "Сохранить";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCancel.Location = new System.Drawing.Point(159, 472);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 15;
+            this.btnCancel.Text = "Отмена";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // DirectoryUserForm
             // 
@@ -371,5 +396,7 @@
         private System.Windows.Forms.RadioButton rbAdmin;
         private System.Windows.Forms.RadioButton rbUser;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

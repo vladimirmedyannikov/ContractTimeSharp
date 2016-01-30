@@ -77,5 +77,62 @@ namespace ContractTimeSharp.Forms
         {
             
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (isValid())
+            {
+
+            }
+        }
+
+        public bool isValid()
+        {
+            bool valid = true;
+            MessageBox alert = null;
+            String error = "";
+            if (tbFirstName.Text == null || tbFirstName.Text.Length <= 2)
+            {
+                error += "Имя должно быть более 2х символов\n";
+                valid = false;
+            }
+            if (tbSecondName.Text == null || tbSecondName.Text.Length <= 2)
+            {
+                error += "Фамилия должна быть более 2х символов\n";
+                valid = false;
+            }
+            if (tbThirdName.Text == null || tbThirdName.Text.Length <= 2)
+            {
+                error += "Отчество должна быть более 2х символов\n";
+                valid = false;
+            }
+            if (tbAppointment.Text == null || tbAppointment.Text.Length <= 2)
+            {
+                error += "Должность должна быть более 2х символов\n";
+                valid = false;
+            }
+            if (tbLogin.Text == null || tbLogin.Text.Length <= 2)
+            {
+                error += "Логин должен быть более 2х символов\n";
+                valid = false;
+            }
+            if (tbPassword.Text == null || tbPassword.Text.Length <= 5)
+            {
+                error += "Логин должен быть более 5х символов\n";
+                valid = false;
+            }
+            if (cbDepartment.SelectedIndex == -1)
+            {
+                error += "Выберите подразделение сотрудника за проект\n";
+                valid = false;
+            }
+
+            if (!valid)
+            {
+                MessageBox.Show("Ошибки:\n" + error, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return valid;
+        }
     }
 }
