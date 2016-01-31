@@ -41,6 +41,7 @@ namespace ContractTimeSharp.Forms
         {
             textFio.Text = u.FullName;
             textDept.Text = u.Department.nameDepartment;
+            textPost.Text = u.Appointment;
         }
 
         private void initializateDataGrid(User u)
@@ -93,7 +94,8 @@ namespace ContractTimeSharp.Forms
         {
             DialogStageProject dialog = new DialogStageProject();
             StageProject stage;
-            if (grid.CurrentRow.DataBoundItem != null && grid.CurrentRow.DataBoundItem.GetType() == typeof(StageProject))
+            
+            if (grid.RowCount > 0 && grid.CurrentRow.DataBoundItem != null && grid.CurrentRow.DataBoundItem.GetType() == typeof(StageProject))
             {
                 stage = (StageProject)grid.CurrentRow.DataBoundItem;
                 dialog.setStageProject(stage);

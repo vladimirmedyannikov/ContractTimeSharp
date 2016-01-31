@@ -40,7 +40,7 @@ namespace ContractTimeSharp.DAO
             }
             catch (Exception e)
             {
-                throw new DAOException("User getAll ", e);
+                throw new DAOException("User KeyValuePair ", e);
             }
             finally
             {
@@ -60,7 +60,7 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user from user_info u " +
+            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user, post from user_info u " +
                 " left join depts on depts.dept_id = u.id_dept order by f_name, l_name, p_name";
             List<User> userList = new List<User>();
             try
@@ -81,6 +81,7 @@ namespace ContractTimeSharp.DAO
                     user.Login = row["login"].ToString();
                     user.Email = row["e_mail"].ToString();
                     user.HashPass = row["e_mail"].ToString();
+                    user.Appointment = row["post"].ToString();
 
                     Department department = new Department();
                     department.idDepartment = Convert.ToInt32(row["id_dept"].ToString());
@@ -114,12 +115,12 @@ namespace ContractTimeSharp.DAO
             string sql = "";
             if (status == AdvanceUtil.stageStatus.ALL)
             {
-                sql = "Select distinct u.id_user, u.id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user from user_info u " +
+                sql = "Select distinct u.id_user, u.id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user, post from user_info u " +
                     " left join depts on depts.dept_id = u.id_dept " +
                     " right join stage_project sp on sp.id_user = u.id_user";
             }
             else {
-                sql = "Select distinct u.id_user, u.id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user from user_info u " +
+                sql = "Select distinct u.id_user, u.id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user, post from user_info u " +
                     " left join depts on depts.dept_id = u.id_dept " +
                     " inner join stage_project sp on sp.id_user = u.id_user and sp.status_stage = @status";
             }
@@ -147,6 +148,7 @@ namespace ContractTimeSharp.DAO
                     user.Login = row["login"].ToString();
                     user.Email = row["e_mail"].ToString();
                     user.HashPass = row["e_mail"].ToString();
+                    user.Appointment = row["post"].ToString();
 
                     Department department = new Department();
                     department.idDepartment = Convert.ToInt32(row["id_dept"].ToString());
@@ -157,7 +159,7 @@ namespace ContractTimeSharp.DAO
             }
             catch (Exception e)
             {
-                throw new DAOException("User getAll ", e);
+                throw new DAOException("User getResponsible ", e);
             }
             finally
             {
@@ -177,7 +179,7 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user from user_info u " +
+            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user, post from user_info u " +
                 " left join depts on depts.dept_id = u.id_dept where id_user = @id_user";
             User user = null;
             try
@@ -199,6 +201,7 @@ namespace ContractTimeSharp.DAO
                     user.Login = row["login"].ToString();
                     user.Email = row["e_mail"].ToString();
                     user.HashPass = row["e_mail"].ToString();
+                    user.Appointment = row["post"].ToString();
 
                     Department department = new Department();
                     department.idDepartment = Convert.ToInt32(row["dept_id"].ToString());
@@ -268,16 +271,51 @@ namespace ContractTimeSharp.DAO
             return user;
         }
 
-        public void update(User e)
+        public void update(User user)
         {
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statement = null;
+            FbTransaction transaction = null;
+            string sql = "execute procedure update_user_all(@id_user,@first_name, @second_name, @third_name, @app, @id_dept, @type, @login, @pass, @e_mail, @hash_pass)";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                //transaction = connection.BeginTransaction();
+                statement = new FbCommand(sql, connection);
+
+                statement.Parameters.Add("@id_user", user.Id);
+                statement.Parameters.Add("@first_name", user.FirstName);
+                statement.Parameters.Add("@second_name", user.SecondName);
+                statement.Parameters.Add("@third_name", user.ThirdName);
+                statement.Parameters.Add("@app", user.Appointment);
+                statement.Parameters.Add("@id_dept", user.Department.idDepartment);
+                statement.Parameters.Add("@type", user.TypeUser);
+                statement.Parameters.Add("@login", user.Login);
+                statement.Parameters.Add("@pass", user.Password);
+                statement.Parameters.Add("@e_mail", user.Email);
+                statement.Parameters.Add("@hash_pass", user.HashPass);
+
+                statement.ExecuteNonQuery();
+                //transaction.Commit();
+
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+                throw new DAOException("Update User error ", e);
+            }
+            finally
+            {
+                if (connection != null) connection.Close();
+            }
         }
 
         public User auth(string login, string hashPass)
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user from user_info u " +
+            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user, post from user_info u " +
                 " left join depts on depts.dept_id = u.id_dept where login = @login and password = @password";
             User user = null;
             try
@@ -301,6 +339,7 @@ namespace ContractTimeSharp.DAO
                     user.Login = row["login"].ToString();
                     user.Email = row["e_mail"].ToString();
                     user.HashPass = row["e_mail"].ToString();
+                    user.Appointment = row["post"].ToString();
 
                     Department department = new Department();
                     department.idDepartment = Convert.ToInt32(row["dept_id"].ToString());

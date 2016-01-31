@@ -186,7 +186,6 @@
             this.gridNotComplete.ShowEditingIcon = false;
             this.gridNotComplete.Size = new System.Drawing.Size(628, 333);
             this.gridNotComplete.TabIndex = 1;
-            this.gridNotComplete.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotComplete_CellDoubleClick);
             this.gridNotComplete.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotComplete_CellDoubleClick);
             // 
             // tabComplete

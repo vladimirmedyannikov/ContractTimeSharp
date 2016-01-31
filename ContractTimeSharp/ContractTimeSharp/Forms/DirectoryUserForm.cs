@@ -15,6 +15,8 @@ namespace ContractTimeSharp.Forms
 {
     public partial class DirectoryUserForm : Form
     {
+        private int bookMark { get; set; }
+        private int scrollIndex { get; set; }
         private UserDAO dao = new UserDAO();
         private BindingSource bindingSource = new BindingSource();
         private List<User> userList = new List<User>();
@@ -37,6 +39,16 @@ namespace ContractTimeSharp.Forms
             bindingSource.DataSource = userList;
             gridUsers.DataSource = bindingSource;
             bindingSource.CurrentItemChanged += BindingSource_CurrentItemChanged;
+
+            if ((scrollIndex >= 0) && (gridUsers.Rows.Count > 0))
+            {
+                gridUsers.FirstDisplayedScrollingRowIndex = scrollIndex;
+            }
+            if (bookMark != 0)
+            {
+                gridUsers.Rows[bookMark].Selected = true;
+                bindingSource.Position = bookMark;
+            }
         }
 
         public void InitializationDataBox()
@@ -47,9 +59,11 @@ namespace ContractTimeSharp.Forms
 
         private void BindingSource_CurrentItemChanged(object sender, EventArgs e)
         {
-            User user = (User)((BindingSource)gridUsers.DataSource).Current;
-
-            initializatePanelEdit(user);
+            if (!addUser)
+            {
+                User user = (User)((BindingSource)gridUsers.DataSource).Current;
+                initializatePanelEdit(user);
+            }
         }
 
         private void gridUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -84,6 +98,7 @@ namespace ContractTimeSharp.Forms
         {
             if (isValid())
             {
+                generateBookMark();
                 if (addUser)
                 {
                     User user = new User();
@@ -108,7 +123,20 @@ namespace ContractTimeSharp.Forms
                 {
                     User user = new User();
                     user = (User)((BindingSource)gridUsers.DataSource).Current;
+                    user.FirstName = tbFirstName.Text;
+                    user.SecondName = tbSecondName.Text;
+                    user.ThirdName = tbThirdName.Text;
+                    user.Appointment = tbAppointment.Text;
+                    DepartmentDAO daoDepartment = new DepartmentDAO();
+                    user.Department = daoDepartment.getById(Convert.ToInt32(((KeyValuePair)(cbDepartment.SelectedItem)).Key));
+                    user.Login = tbLogin.Text;
+                    user.Password = tbPassword.Text;
+                    user.HashPass = Encoding.ASCII.GetString(new SHA1CryptoServiceProvider().ComputeHash(Encoding.ASCII.GetBytes(tbPassword.Text)));
+                    user.TypeUser = (rbUser.Checked) ? (int)AdvanceUtil.typeUser.USER : (int)AdvanceUtil.typeUser.ADMIN;
+                    user.Email = tbEmail.Text;
+                    dao.update(user);
                 }
+                initializationData();
             }
         }
 
@@ -163,12 +191,34 @@ namespace ContractTimeSharp.Forms
         private void mnuUserAdd_Click(object sender, EventArgs e)
         {
             addUser = true;
+            tbAppointment.Text = "";
+            tbEmail.Text = "";
+            tbFirstName.Text = "";
+            tbLogin.Text = "";
+            tbPassword.Text = "";
+            tbSecondName.Text = "";
+            tbThirdName.Text = "";
+            cbDepartment.SelectedIndex = -1;
             panelParam.Show();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             panelParam.Hide();
+        }
+
+        private void mnuUserEdit_Click(object sender, EventArgs e)
+        {
+            addUser = false;
+            User user = (User)((BindingSource)gridUsers.DataSource).Current;
+            initializatePanelEdit(user);
+            panelParam.Show();
+        }
+
+        private void generateBookMark()
+        {
+            bookMark = gridUsers.CurrentRow.Index;
+            scrollIndex = gridUsers.FirstDisplayedScrollingRowIndex;
         }
     }
 }

@@ -54,6 +54,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panelGrid = new System.Windows.Forms.Panel();
             this.gridUsers = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -61,7 +62,6 @@
             this.mnuUserAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUserEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUserDel = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnClose = new System.Windows.Forms.Button();
             this.panelParam.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -82,6 +82,7 @@
             this.panelParam.Name = "panelParam";
             this.panelParam.Size = new System.Drawing.Size(237, 639);
             this.panelParam.TabIndex = 0;
+            this.panelParam.Visible = false;
             // 
             // flowLayoutPanel1
             // 
@@ -322,6 +323,16 @@
             this.panel1.Size = new System.Drawing.Size(237, 24);
             this.panel1.TabIndex = 0;
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(162, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 0;
+            this.btnClose.Text = "Закрыть панель";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // panelGrid
             // 
             this.panelGrid.Controls.Add(this.gridUsers);
@@ -386,22 +397,13 @@
             this.mnuUserEdit.Name = "mnuUserEdit";
             this.mnuUserEdit.Size = new System.Drawing.Size(152, 22);
             this.mnuUserEdit.Text = "Изменить";
+            this.mnuUserEdit.Click += new System.EventHandler(this.mnuUserEdit_Click);
             // 
             // mnuUserDel
             // 
             this.mnuUserDel.Name = "mnuUserDel";
             this.mnuUserDel.Size = new System.Drawing.Size(152, 22);
             this.mnuUserDel.Text = "Удалить";
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(162, 0);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 0;
-            this.btnClose.Text = "Закрыть панель";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // DirectoryUserForm
             // 

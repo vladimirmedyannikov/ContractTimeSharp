@@ -251,7 +251,6 @@ namespace ContractTimeSharp
 
         private void insertInvestProjectMenu(object sender, EventArgs e)
         {
-            
             DialogInvestProject d = new DialogInvestProject();
             d.ShowDialog();
             initializationInvestProject();
