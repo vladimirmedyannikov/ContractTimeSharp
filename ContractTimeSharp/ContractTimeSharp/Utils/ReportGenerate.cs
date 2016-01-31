@@ -101,9 +101,9 @@ namespace ContractTimeSharp.Utils
                         xlWorkSheet.Cells[index, 6] = sub.User.FullName;
                         xlWorkSheet.Cells[index, 7] = sub.DateBeginPlan;
                         xlWorkSheet.Cells[index, 8] = sub.DateEndPlan;
-                        xlWorkSheet.Cells[index, 9] = sub.DateBeginUser;
-                        xlWorkSheet.Cells[index, 10] = sub.DateEndUser;
-                        xlWorkSheet.Cells[index, 11] = sub.StatusStage.ToString();
+                        xlWorkSheet.Cells[index, 9] = (sub.DateBeginUser.CompareTo(new DateTime(1, 1, 1)) == 0) ? "" : sub.DateBeginUser.ToShortDateString();
+                        xlWorkSheet.Cells[index, 10] = (sub.DateEndUser.CompareTo(new DateTime(1,1,1)) == 0) ? "" : sub.DateEndUser.ToShortDateString();
+                        xlWorkSheet.Cells[index, 11] = sub.StatusStageStr;
                         xlWorkSheet.Cells[index, 12] = sub.DateBeginProg;
                         xlWorkSheet.Cells[index, 13] = sub.DateEndProg;
                         xlWorkSheet.Cells[index, 14] = sub.CommentUser;

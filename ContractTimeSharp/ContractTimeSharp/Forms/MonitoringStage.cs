@@ -22,12 +22,13 @@ namespace ContractTimeSharp.Forms
         public MonitoringStage()
         {
             InitializeComponent();
+            updateProjectTreeView();
         }
 
         private void butnShow_Click(object sender, EventArgs e)
         {
             initializeData();
-            updateProjectTreeView();
+            
         }
 
 
@@ -133,13 +134,66 @@ namespace ContractTimeSharp.Forms
             #endregion
         }
 
+        private void InitializeColumn()
+        {
+            #region Колонки по дате
+            gridProject.AutoGenerateColumns = false;
+
+            DataGridViewColumn colummNameProject = new DataGridViewTextBoxColumn();
+            colummNameProject.DataPropertyName = "Project";
+            colummNameProject.HeaderText = "Проект";
+
+            DataGridViewColumn columnNameStage = new DataGridViewTextBoxColumn();
+            columnNameStage.DataPropertyName = "NameStage";
+            columnNameStage.HeaderText = "Этап";
+
+            DataGridViewColumn columnUser = new DataGridViewTextBoxColumn();
+            columnUser.DataPropertyName = "User";
+            columnUser.HeaderText = "Ответственный";
+
+            DataGridViewColumn columnDateBeginPlan = new DataGridViewTextBoxColumn();
+            columnDateBeginPlan.DataPropertyName = "DateBeginPlan";
+            columnDateBeginPlan.HeaderText = "Дата начала (план)";
+
+            DataGridViewColumn columnDateEndPlan = new DataGridViewTextBoxColumn();
+            columnDateEndPlan.DataPropertyName = "DateEndPlan";
+            columnDateEndPlan.HeaderText = "Дата завершения (план)";
+
+            DataGridViewColumn columnDateBeginProg = new DataGridViewTextBoxColumn();
+            columnDateBeginProg.DataPropertyName = "DateBeginProg";
+            columnDateBeginProg.HeaderText = "Дата начала (прогноз)";
+
+            DataGridViewColumn columnDateEndProg = new DataGridViewTextBoxColumn();
+            columnDateEndProg.DataPropertyName = "DateEndProg";
+            columnDateEndProg.HeaderText = "Дата завершеия (прогноз)";
+
+            DataGridViewColumn columnDateBeginUser = new DataGridViewTextBoxColumn();
+            columnDateBeginUser.DataPropertyName = "DateBeginUser";
+            columnDateBeginUser.HeaderText = "Дата начала (пользоват.)";
+
+            DataGridViewColumn columnDateEndUser = new DataGridViewTextBoxColumn();
+            columnDateEndUser.DataPropertyName = "DateEndUser";
+            columnDateEndUser.HeaderText = "Дата завершения (пользоват.)";
+
+            DataGridViewColumn columnStatus = new DataGridViewTextBoxColumn();
+            columnStatus.DataPropertyName = "StatusStageStr";
+            columnStatus.HeaderText = "Статус";
+
+            #endregion
+            gridProject.Columns.AddRange(new DataGridViewColumn[] { colummNameProject, columnNameStage, columnUser, columnDateBeginPlan, columnDateEndPlan, columnDateBeginProg ,
+                columnDateEndProg , columnDateBeginUser, columnDateEndUser, columnStatus });
+
+        }
+
         public void initializeData()
         {
+
+            InitializeColumn();
             StageProjectDAO dao = new StageProjectDAO();
             BindingSource source = new BindingSource();
             List<StageProject> listStage = dao.getByDate(dateTimePicker1.Value);
             source.DataSource = listStage;
-            dataStage.DataSource = source;
+            gridProject.DataSource = source;
         }
 
         public void updateStageProject()
@@ -251,6 +305,22 @@ namespace ContractTimeSharp.Forms
             }
             else
                 return new List<TreeNode>();
+        }
+
+        private void treeViewProject_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            treeViewProject.BeginUpdate();
+            TreeNode parent = e.Node;
+            foreach (TreeNode node in e.Node.Nodes)
+            {
+                if (parent.Checked) { node.Checked = true; } else { node.Checked = false; }
+            }
+            treeViewProject.EndUpdate();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            updateProjectTreeView();
         }
     }
 }
