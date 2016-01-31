@@ -255,10 +255,11 @@ namespace ContractTimeSharp.DAO
             catch (Exception e)
             {
                 transaction.Rollback();
+                throw new DAOException("Insert Project error", e);
             }
             finally
             {
-                connection.Close();
+                if (connection != null) connection.Close();
             }
         }
     }

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 
@@ -17,6 +18,7 @@ namespace ContractTimeSharp.Forms
         private UserDAO dao = new UserDAO();
         private BindingSource bindingSource = new BindingSource();
         private List<User> userList = new List<User>();
+        private bool addUser = false;
 
         public DirectoryUserForm()
         {
@@ -82,14 +84,37 @@ namespace ContractTimeSharp.Forms
         {
             if (isValid())
             {
-
+                if (addUser)
+                {
+                    User user = new User();
+                    user.FirstName = tbFirstName.Text;
+                    user.SecondName = tbSecondName.Text;
+                    user.ThirdName = tbThirdName.Text;
+                    user.Appointment = tbAppointment.Text;
+                    DepartmentDAO daoDepartment = new DepartmentDAO();
+                    user.Department = daoDepartment.getById(Convert.ToInt32(((KeyValuePair)(cbDepartment.SelectedItem)).Key));
+                    user.Login = tbLogin.Text;
+                    user.Password = tbPassword.Text;
+                    user.HashPass = Encoding.ASCII.GetString(new SHA1CryptoServiceProvider().ComputeHash(Encoding.ASCII.GetBytes(tbPassword.Text)));
+                    user.TypeUser = (rbUser.Checked) ? (int)AdvanceUtil.typeUser.USER : (int)AdvanceUtil.typeUser.ADMIN;
+                    user.Email = tbEmail.Text;
+                    user = dao.insert(user);
+                    if (user.Id == 0)
+                    {
+                        MessageBox.Show("Пользователь не добавлен");
+                    }
+                }
+                else
+                {
+                    User user = new User();
+                    user = (User)((BindingSource)gridUsers.DataSource).Current;
+                }
             }
         }
 
         public bool isValid()
         {
             bool valid = true;
-            MessageBox alert = null;
             String error = "";
             if (tbFirstName.Text == null || tbFirstName.Text.Length <= 2)
             {
@@ -133,6 +158,17 @@ namespace ContractTimeSharp.Forms
             }
 
             return valid;
+        }
+
+        private void mnuUserAdd_Click(object sender, EventArgs e)
+        {
+            addUser = true;
+            panelParam.Show();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            panelParam.Hide();
         }
     }
 }

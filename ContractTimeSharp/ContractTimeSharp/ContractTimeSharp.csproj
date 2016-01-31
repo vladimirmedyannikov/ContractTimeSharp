@@ -128,6 +128,11 @@
     <Compile Include="Forms\UserStageForm.Designer.cs">
       <DependentUpon>UserStageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="iGrid Sample VB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>iGrid Sample VB.resx</DependentUpon>
+    </Compile>
     <Compile Include="MainApplication.cs" />
     <Compile Include="Model\Department.cs" />
     <Compile Include="Model\Firm.cs" />
@@ -171,7 +176,10 @@
     <EmbeddedResource Include="Forms\UserStageForm.resx">
       <DependentUpon>UserStageForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="iGrid Sample VB.resx" />
+    <EmbeddedResource Include="iGrid Sample VB.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>iGrid Sample VB.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -51,18 +51,26 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rbAdmin = new System.Windows.Forms.RadioButton();
             this.rbUser = new System.Windows.Forms.RadioButton();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelGrid = new System.Windows.Forms.Panel();
             this.gridUsers = new System.Windows.Forms.DataGridView();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.пользовательToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUserAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUserEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUserDel = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panelParam.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panelGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelParam
@@ -95,9 +103,9 @@
             this.flowLayoutPanel1.Controls.Add(this.btnCancel);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 42);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(237, 597);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(237, 615);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // labelFirstName
@@ -284,45 +292,6 @@
             this.rbUser.Text = "Пользователь";
             this.rbUser.UseVisualStyleBackColor = true;
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(237, 42);
-            this.panel1.TabIndex = 0;
-            // 
-            // panelGrid
-            // 
-            this.panelGrid.Controls.Add(this.gridUsers);
-            this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelGrid.Location = new System.Drawing.Point(0, 0);
-            this.panelGrid.Name = "panelGrid";
-            this.panelGrid.Size = new System.Drawing.Size(645, 639);
-            this.panelGrid.TabIndex = 1;
-            // 
-            // gridUsers
-            // 
-            this.gridUsers.AllowUserToAddRows = false;
-            this.gridUsers.AllowUserToDeleteRows = false;
-            this.gridUsers.AllowUserToOrderColumns = true;
-            this.gridUsers.AllowUserToResizeRows = false;
-            this.gridUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridUsers.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridUsers.Location = new System.Drawing.Point(0, 0);
-            this.gridUsers.MultiSelect = false;
-            this.gridUsers.Name = "gridUsers";
-            this.gridUsers.ReadOnly = true;
-            this.gridUsers.RowHeadersVisible = false;
-            this.gridUsers.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gridUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUsers.ShowEditingIcon = false;
-            this.gridUsers.Size = new System.Drawing.Size(645, 639);
-            this.gridUsers.TabIndex = 1;
-            this.gridUsers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsers_CellDoubleClick);
-            // 
             // btnSave
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Right;
@@ -344,6 +313,96 @@
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnClose);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(237, 24);
+            this.panel1.TabIndex = 0;
+            // 
+            // panelGrid
+            // 
+            this.panelGrid.Controls.Add(this.gridUsers);
+            this.panelGrid.Controls.Add(this.menuStrip1);
+            this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelGrid.Location = new System.Drawing.Point(0, 0);
+            this.panelGrid.Name = "panelGrid";
+            this.panelGrid.Size = new System.Drawing.Size(645, 639);
+            this.panelGrid.TabIndex = 1;
+            // 
+            // gridUsers
+            // 
+            this.gridUsers.AllowUserToAddRows = false;
+            this.gridUsers.AllowUserToDeleteRows = false;
+            this.gridUsers.AllowUserToOrderColumns = true;
+            this.gridUsers.AllowUserToResizeRows = false;
+            this.gridUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridUsers.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridUsers.Location = new System.Drawing.Point(0, 24);
+            this.gridUsers.MultiSelect = false;
+            this.gridUsers.Name = "gridUsers";
+            this.gridUsers.ReadOnly = true;
+            this.gridUsers.RowHeadersVisible = false;
+            this.gridUsers.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gridUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridUsers.ShowEditingIcon = false;
+            this.gridUsers.Size = new System.Drawing.Size(645, 615);
+            this.gridUsers.TabIndex = 1;
+            this.gridUsers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsers_CellDoubleClick);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.пользовательToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(645, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // пользовательToolStripMenuItem
+            // 
+            this.пользовательToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuUserAdd,
+            this.mnuUserEdit,
+            this.mnuUserDel});
+            this.пользовательToolStripMenuItem.Name = "пользовательToolStripMenuItem";
+            this.пользовательToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.пользовательToolStripMenuItem.Text = "Пользователь";
+            // 
+            // mnuUserAdd
+            // 
+            this.mnuUserAdd.Name = "mnuUserAdd";
+            this.mnuUserAdd.Size = new System.Drawing.Size(152, 22);
+            this.mnuUserAdd.Text = "Добавить";
+            this.mnuUserAdd.Click += new System.EventHandler(this.mnuUserAdd_Click);
+            // 
+            // mnuUserEdit
+            // 
+            this.mnuUserEdit.Name = "mnuUserEdit";
+            this.mnuUserEdit.Size = new System.Drawing.Size(152, 22);
+            this.mnuUserEdit.Text = "Изменить";
+            // 
+            // mnuUserDel
+            // 
+            this.mnuUserDel.Name = "mnuUserDel";
+            this.mnuUserDel.Size = new System.Drawing.Size(152, 22);
+            this.mnuUserDel.Text = "Удалить";
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(162, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 0;
+            this.btnClose.Text = "Закрыть панель";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // DirectoryUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,6 +410,7 @@
             this.ClientSize = new System.Drawing.Size(882, 639);
             this.Controls.Add(this.panelGrid);
             this.Controls.Add(this.panelParam);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "DirectoryUserForm";
             this.Text = "Пользователи";
             this.Load += new System.EventHandler(this.DirectoryUserForm_Load);
@@ -362,8 +422,12 @@
             this.flowLayoutPanel2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.panelGrid.ResumeLayout(false);
+            this.panelGrid.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -398,5 +462,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem пользовательToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuUserAdd;
+        private System.Windows.Forms.ToolStripMenuItem mnuUserEdit;
+        private System.Windows.Forms.ToolStripMenuItem mnuUserDel;
+        private System.Windows.Forms.Button btnClose;
     }
 }

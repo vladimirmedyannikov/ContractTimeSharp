@@ -228,11 +228,13 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statement = null;
+            FbTransaction transaction = null;
             string sql = "execute procedure insert_user(@first_name, @second_name, @third_name, @app, @id_dept, @type, @login, @pass, @e_mail, @hash_pass)";
             try
             {
                 connection = daoFactory.getConnection();
                 connection.Open();
+                transaction = connection.BeginTransaction();
                 statement = new FbCommand(sql, connection);
 
                 statement.Parameters.Add("@first_name", user.FirstName);
@@ -247,7 +249,7 @@ namespace ContractTimeSharp.DAO
                 statement.Parameters.Add("@hash_pass", user.HashPass);
 
                 int id = Convert.ToInt32(statement.ExecuteScalar());
-
+                transaction.Commit();
                 if (id != 0)
                 {
                     user.Id = (int)id;
@@ -256,7 +258,8 @@ namespace ContractTimeSharp.DAO
             }
             catch (Exception e)
             {
-                throw new DAOException("Insert Invest Project", e);
+                transaction.Rollback();
+                throw new DAOException("Insert User error ", e);
             }
             finally
             {
