@@ -112,6 +112,12 @@
     <Compile Include="Forms\DirectoryUserForm.Designer.cs">
       <DependentUpon>DirectoryUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Directory\DirectoryDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Directory\DirectoryDepartment.Designer.cs">
+      <DependentUpon>DirectoryDepartment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MonitoringStage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DirectoryUserForm.resx">
       <DependentUpon>DirectoryUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Directory\DirectoryDepartment.resx">
+      <DependentUpon>DirectoryDepartment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MonitoringStage.resx">
       <DependentUpon>MonitoringStage.cs</DependentUpon>

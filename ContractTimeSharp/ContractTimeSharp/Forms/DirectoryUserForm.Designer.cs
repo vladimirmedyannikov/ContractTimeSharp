@@ -388,21 +388,21 @@
             // mnuUserAdd
             // 
             this.mnuUserAdd.Name = "mnuUserAdd";
-            this.mnuUserAdd.Size = new System.Drawing.Size(152, 22);
+            this.mnuUserAdd.Size = new System.Drawing.Size(128, 22);
             this.mnuUserAdd.Text = "Добавить";
             this.mnuUserAdd.Click += new System.EventHandler(this.mnuUserAdd_Click);
             // 
             // mnuUserEdit
             // 
             this.mnuUserEdit.Name = "mnuUserEdit";
-            this.mnuUserEdit.Size = new System.Drawing.Size(152, 22);
+            this.mnuUserEdit.Size = new System.Drawing.Size(128, 22);
             this.mnuUserEdit.Text = "Изменить";
             this.mnuUserEdit.Click += new System.EventHandler(this.mnuUserEdit_Click);
             // 
             // mnuUserDel
             // 
             this.mnuUserDel.Name = "mnuUserDel";
-            this.mnuUserDel.Size = new System.Drawing.Size(152, 22);
+            this.mnuUserDel.Size = new System.Drawing.Size(128, 22);
             this.mnuUserDel.Text = "Удалить";
             // 
             // DirectoryUserForm

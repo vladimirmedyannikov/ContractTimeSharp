@@ -136,7 +136,7 @@ namespace ContractTimeSharp.DAO
             return department;
         }
 
-        public Department insert(Department e)
+        public Department insert(Department department)
         {
             throw new NotImplementedException();
         }

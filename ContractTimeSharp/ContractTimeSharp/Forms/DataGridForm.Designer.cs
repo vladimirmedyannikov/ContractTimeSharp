@@ -143,6 +143,7 @@
             this.menuContract.Name = "menuContract";
             this.menuContract.Size = new System.Drawing.Size(78, 20);
             this.menuContract.Text = "Контракты";
+            this.menuContract.Visible = false;
             // 
             // menuMyTask
             // 
@@ -179,14 +180,14 @@
             // mnuResposibleUsers
             // 
             this.mnuResposibleUsers.Name = "mnuResposibleUsers";
-            this.mnuResposibleUsers.Size = new System.Drawing.Size(152, 22);
+            this.mnuResposibleUsers.Size = new System.Drawing.Size(116, 22);
             this.mnuResposibleUsers.Text = "Список";
             this.mnuResposibleUsers.Click += new System.EventHandler(this.mnuResposibleUsers_Click);
             // 
             // mnuDateMonitoring
             // 
             this.mnuDateMonitoring.Name = "mnuDateMonitoring";
-            this.mnuDateMonitoring.Size = new System.Drawing.Size(152, 22);
+            this.mnuDateMonitoring.Size = new System.Drawing.Size(116, 22);
             this.mnuDateMonitoring.Text = "По дате";
             this.mnuDateMonitoring.Click += new System.EventHandler(this.mnuDateMonitoring_Click);
             // 
