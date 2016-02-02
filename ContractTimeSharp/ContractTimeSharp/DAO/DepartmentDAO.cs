@@ -59,11 +59,51 @@ namespace ContractTimeSharp.DAO
             return listResult;
         }
 
+        public List<KeyValuePair> getComboBox(int idFirm)
+        {
+
+            FbConnection connection = null;
+            FbCommand statment = null;
+            String sql = "select DEPT_ID, DEPT_NAME || ' ' || Name_firm as dept_name from Depts " +
+                "left join Firm on Depts.firm_id = Firm.id_firm where depts.firm_id = @id_firm order by DEPT_NAME";
+            List<KeyValuePair> listResult = new List<KeyValuePair>();
+            try
+            {
+                connection = daoFactory.getConnection();
+                statment = new FbCommand(sql, connection);
+                statment.Parameters.Add("@id_firm", idFirm);
+                FbDataAdapter da = new FbDataAdapter(statment);
+                DataSet result = new DataSet();
+                da.Fill(result);
+                foreach (DataRow row in result.Tables[0].Rows)
+                {
+                    KeyValuePair keyValuePair = new KeyValuePair(row["dept_id"].ToString(), row["dept_name"].ToString());
+                    listResult.Add(keyValuePair);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("Department getCombo ", e);
+            }
+            finally
+            {
+                try
+                {
+                    if (connection != null) connection.Close();
+                }
+                catch (System.Data.DataException e)
+                {
+
+                }
+            }
+            return listResult;
+        }
+
         public List<Department> getAll()
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "select DEPT_ID, DEPT_NAME from Depts order by DEPT_NAME";
+            String sql = "select DEPT_ID, DEPT_NAME, firm_id from Depts order by DEPT_NAME";
             
             try
             {
@@ -72,11 +112,13 @@ namespace ContractTimeSharp.DAO
                 FbDataAdapter da = new FbDataAdapter(statment);
                 DataSet result = new DataSet();
                 da.Fill(result);
+                FirmDAO firmDao = new FirmDAO();
                 foreach (DataRow row in result.Tables[0].Rows)
                 {
                     Department department = new Department();
                     department.idDepartment = int.Parse(row["dept_id"].ToString());
                     department.nameDepartment = row["dept_name"].ToString();
+                    department.firmDepartment = firmDao.getById(Convert.ToInt32(row["firm_id"].ToString()));
                     departmentList.Add(department);
                 }
             }

@@ -34,5 +34,10 @@ namespace ContractTime.Model
             this.idFirm = id;
             this.nameFirm = name;
         }
+
+        public override string ToString()
+        {
+            return NameFirm;
+        }
     }
 }

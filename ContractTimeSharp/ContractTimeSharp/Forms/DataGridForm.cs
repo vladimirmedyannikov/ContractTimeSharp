@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
+using ContractTimeSharp.Forms.Directory;
 
 namespace ContractTimeSharp
 {
@@ -518,6 +519,12 @@ namespace ContractTimeSharp
         private void mnuDateMonitoring_Click(object sender, EventArgs e)
         {
             MonitoringStage form = new MonitoringStage();
+            form.Show();
+        }
+
+        private void mnuDepartment_Click(object sender, EventArgs e)
+        {
+            DirectoryDepartment form = new DirectoryDepartment();
             form.Show();
         }
     }

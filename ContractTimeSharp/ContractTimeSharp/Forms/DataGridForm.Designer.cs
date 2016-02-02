@@ -55,6 +55,7 @@
             this.mnuDeleteStage = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.mnuDepartment = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -200,7 +201,8 @@
             // mnuLib
             // 
             this.mnuLib.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuUser});
+            this.mnuUser,
+            this.mnuDepartment});
             this.mnuLib.Name = "mnuLib";
             this.mnuLib.Size = new System.Drawing.Size(94, 20);
             this.mnuLib.Text = "Справочники";
@@ -208,7 +210,7 @@
             // mnuUser
             // 
             this.mnuUser.Name = "mnuUser";
-            this.mnuUser.Size = new System.Drawing.Size(152, 22);
+            this.mnuUser.Size = new System.Drawing.Size(159, 22);
             this.mnuUser.Text = "Пользователи";
             this.mnuUser.Click += new System.EventHandler(this.mnuUser_Click);
             // 
@@ -297,6 +299,13 @@
             this.notifyIcon1.Text = "Инвестиционные проекты\r\n";
             this.notifyIcon1.Visible = true;
             // 
+            // mnuDepartment
+            // 
+            this.mnuDepartment.Name = "mnuDepartment";
+            this.mnuDepartment.Size = new System.Drawing.Size(159, 22);
+            this.mnuDepartment.Text = "Подразделения";
+            this.mnuDepartment.Click += new System.EventHandler(this.mnuDepartment_Click);
+            // 
             // DialogGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -348,6 +357,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuUser;
         private System.Windows.Forms.ToolStripMenuItem mnuResposibleUsers;
         private System.Windows.Forms.ToolStripMenuItem mnuDateMonitoring;
+        private System.Windows.Forms.ToolStripMenuItem mnuDepartment;
     }
 }
 

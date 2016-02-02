@@ -34,7 +34,7 @@
             this.mnuUserEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.panelGrid = new System.Windows.Forms.Panel();
-            this.gridUsers = new System.Windows.Forms.DataGridView();
+            this.gridDepartment = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
@@ -43,13 +43,13 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelFirstName = new System.Windows.Forms.Label();
             this.tbFirstName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbFirm = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbDepartment = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.panelGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDepartment)).BeginInit();
             this.panel1.SuspendLayout();
             this.panelParam.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -58,13 +58,13 @@
             // mnuUserDel
             // 
             this.mnuUserDel.Name = "mnuUserDel";
-            this.mnuUserDel.Size = new System.Drawing.Size(128, 22);
+            this.mnuUserDel.Size = new System.Drawing.Size(152, 22);
             this.mnuUserDel.Text = "Удалить";
             // 
             // mnuUserAdd
             // 
             this.mnuUserAdd.Name = "mnuUserAdd";
-            this.mnuUserAdd.Size = new System.Drawing.Size(128, 22);
+            this.mnuUserAdd.Size = new System.Drawing.Size(152, 22);
             this.mnuUserAdd.Text = "Добавить";
             // 
             // mnuDepartment
@@ -74,13 +74,13 @@
             this.mnuUserEdit,
             this.mnuUserDel});
             this.mnuDepartment.Name = "mnuDepartment";
-            this.mnuDepartment.Size = new System.Drawing.Size(96, 20);
-            this.mnuDepartment.Text = "Пользователь";
+            this.mnuDepartment.Size = new System.Drawing.Size(104, 20);
+            this.mnuDepartment.Text = "Подразделение";
             // 
             // mnuUserEdit
             // 
             this.mnuUserEdit.Name = "mnuUserEdit";
-            this.mnuUserEdit.Size = new System.Drawing.Size(128, 22);
+            this.mnuUserEdit.Size = new System.Drawing.Size(152, 22);
             this.mnuUserEdit.Text = "Изменить";
             // 
             // menuStrip1
@@ -92,10 +92,11 @@
             this.menuStrip1.Size = new System.Drawing.Size(772, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // panelGrid
             // 
-            this.panelGrid.Controls.Add(this.gridUsers);
+            this.panelGrid.Controls.Add(this.gridDepartment);
             this.panelGrid.Controls.Add(this.menuStrip1);
             this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGrid.Location = new System.Drawing.Point(0, 0);
@@ -103,26 +104,26 @@
             this.panelGrid.Size = new System.Drawing.Size(772, 559);
             this.panelGrid.TabIndex = 3;
             // 
-            // gridUsers
+            // gridDepartment
             // 
-            this.gridUsers.AllowUserToAddRows = false;
-            this.gridUsers.AllowUserToDeleteRows = false;
-            this.gridUsers.AllowUserToOrderColumns = true;
-            this.gridUsers.AllowUserToResizeRows = false;
-            this.gridUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridUsers.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridUsers.Location = new System.Drawing.Point(0, 24);
-            this.gridUsers.MultiSelect = false;
-            this.gridUsers.Name = "gridUsers";
-            this.gridUsers.ReadOnly = true;
-            this.gridUsers.RowHeadersVisible = false;
-            this.gridUsers.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.gridUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUsers.ShowEditingIcon = false;
-            this.gridUsers.Size = new System.Drawing.Size(772, 535);
-            this.gridUsers.TabIndex = 1;
+            this.gridDepartment.AllowUserToAddRows = false;
+            this.gridDepartment.AllowUserToDeleteRows = false;
+            this.gridDepartment.AllowUserToOrderColumns = true;
+            this.gridDepartment.AllowUserToResizeRows = false;
+            this.gridDepartment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridDepartment.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gridDepartment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridDepartment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridDepartment.Location = new System.Drawing.Point(0, 24);
+            this.gridDepartment.MultiSelect = false;
+            this.gridDepartment.Name = "gridDepartment";
+            this.gridDepartment.ReadOnly = true;
+            this.gridDepartment.RowHeadersVisible = false;
+            this.gridDepartment.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gridDepartment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridDepartment.ShowEditingIcon = false;
+            this.gridDepartment.Size = new System.Drawing.Size(772, 535);
+            this.gridDepartment.TabIndex = 1;
             // 
             // btnClose
             // 
@@ -178,7 +179,7 @@
             this.flowLayoutPanel1.Controls.Add(this.labelFirstName);
             this.flowLayoutPanel1.Controls.Add(this.tbFirstName);
             this.flowLayoutPanel1.Controls.Add(this.label2);
-            this.flowLayoutPanel1.Controls.Add(this.comboBox1);
+            this.flowLayoutPanel1.Controls.Add(this.cbFirm);
             this.flowLayoutPanel1.Controls.Add(this.label1);
             this.flowLayoutPanel1.Controls.Add(this.cbDepartment);
             this.flowLayoutPanel1.Controls.Add(this.btnSave);
@@ -206,14 +207,32 @@
             this.tbFirstName.Size = new System.Drawing.Size(231, 20);
             this.tbFirstName.TabIndex = 1;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Организация";
+            // 
+            // cbFirm
+            // 
+            this.cbFirm.FormattingEnabled = true;
+            this.cbFirm.Location = new System.Drawing.Point(3, 55);
+            this.cbFirm.Name = "cbFirm";
+            this.cbFirm.Size = new System.Drawing.Size(231, 21);
+            this.cbFirm.TabIndex = 17;
+            this.cbFirm.SelectedIndexChanged += new System.EventHandler(this.cbFirm_SelectedIndexChanged);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 79);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.Size = new System.Drawing.Size(137, 13);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Подразделение";
+            this.label1.Text = "Подразделение родитель";
             // 
             // cbDepartment
             // 
@@ -223,23 +242,6 @@
             this.cbDepartment.Size = new System.Drawing.Size(231, 21);
             this.cbDepartment.TabIndex = 11;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Подразделение";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 55);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(231, 21);
-            this.comboBox1.TabIndex = 17;
-            // 
             // DirectoryDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,12 +250,12 @@
             this.Controls.Add(this.panelGrid);
             this.Controls.Add(this.panelParam);
             this.Name = "DirectoryDepartment";
-            this.Text = "DirectoryDepartment";
+            this.Text = "Справочник подразделений";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panelGrid.ResumeLayout(false);
             this.panelGrid.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDepartment)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panelParam.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -275,13 +277,13 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.DataGridView gridUsers;
+        private System.Windows.Forms.DataGridView gridDepartment;
         private System.Windows.Forms.Panel panelGrid;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mnuUserEdit;
         private System.Windows.Forms.ToolStripMenuItem mnuUserAdd;
         private System.Windows.Forms.ToolStripMenuItem mnuUserDel;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbFirm;
         private System.Windows.Forms.Label label2;
     }
 }
