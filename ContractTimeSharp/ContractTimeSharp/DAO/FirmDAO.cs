@@ -14,6 +14,17 @@ namespace ContractTimeSharp.DAO
     {
         private DAOFactory daoFactory = new FirebirdDAO();
         private static List<Firm> departmentList = new List<Firm>();
+        private FbConnection connection;
+
+        public FirmDAO(FbConnection connection)
+        {
+            this.connection = connection;
+        }
+        public FirmDAO()
+        {
+
+        }
+
         public List<KeyValuePair> getComboBox()
         {
 
@@ -104,7 +115,7 @@ namespace ContractTimeSharp.DAO
             Firm firm = new Firm();
             try
             {
-                connection = daoFactory.getConnection();
+                if (connection == null) connection = daoFactory.getConnection();
                 statment = new FbCommand(sql, connection);
                 statment.Parameters.Add("@id_firm", id);
                 FbDataAdapter da = new FbDataAdapter(statment);

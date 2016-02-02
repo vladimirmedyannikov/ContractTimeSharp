@@ -18,6 +18,7 @@ namespace ContractTimeSharp.Forms.Directory
         private int scrollIndex { get; set; }
         private List<Department> departmentList = new List<Department>();
         private DepartmentDAO dao = new DepartmentDAO();
+        private bool addDept;
         private BindingSource bindingSource = new BindingSource();
 
         public DirectoryDepartment()
@@ -45,6 +46,16 @@ namespace ContractTimeSharp.Forms.Directory
             }
         }
 
+        private void InitializePanelEdit(Department department)
+        {
+            tbNameDept.Text = department.nameDepartment;
+            cbFirm.SelectedItem = new KeyValuePair(department.firmDepartment.IdFirm.ToString(), department.firmDepartment.NameFirm);
+            if (department.parentDepartment.idDepartment != 0)
+            {
+                cbDepartment.SelectedItem = new KeyValuePair(department.parentDepartment.idDepartment.ToString(), department.parentDepartment.nameDepartment);
+            }
+        }
+
         private void BindingSource_CurrentItemChanged(object sender, EventArgs e)
         {
             
@@ -66,8 +77,48 @@ namespace ContractTimeSharp.Forms.Directory
         private void cbFirm_SelectedIndexChanged(object sender, EventArgs e)
         {
             DepartmentDAO daoDepartment = new DepartmentDAO();
-            cbDepartment.Items.AddRange(daoDepartment.getComboBox(Convert.ToInt32(((KeyValuePair)cbFirm.SelectedItem).Key)).ToArray());
-            cbDepartment.Enabled = true;
+            if (cbFirm.SelectedIndex >= 0)
+            {
+                cbDepartment.Items.Clear();
+                cbDepartment.Items.AddRange(daoDepartment.getComboBox(Convert.ToInt32(((KeyValuePair)cbFirm.SelectedItem).Key)).ToArray());
+                cbDepartment.Enabled = true;
+            }
+        }
+
+        private void mnuDeptEdit_Click(object sender, EventArgs e)
+        {
+            Department department = (Department)((BindingSource)(gridDepartment.DataSource)).Current;
+            InitializePanelEdit(department);
+            addDept = false;
+            panelParam.Show();
+        }
+
+        private void mnuDeptAdd_Click(object sender, EventArgs e)
+        {
+            tbNameDept.Text = "";
+            cbFirm.SelectedIndex = -1;
+            cbDepartment.SelectedIndex = -1;
+            cbDepartment.Enabled = false;
+            addDept = true;
+            panelParam.Show();
+        }
+
+        private void cbFirm_SelectedValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Department department = null;
+            if (!addDept) {
+                department = (Department)((BindingSource)gridDepartment.DataSource).Current;
+            }
+            else
+            {
+                department = new Department();
+            }
+
         }
     }
 }

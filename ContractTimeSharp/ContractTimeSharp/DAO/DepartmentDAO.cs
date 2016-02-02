@@ -103,7 +103,9 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "select DEPT_ID, DEPT_NAME, firm_id from Depts order by DEPT_NAME";
+            String sql = "select Depts.DEPT_ID, Depts.DEPT_NAME, Firm.id_firm, name_firm, coalesce(Depts.parent_dept, 0) parent_dept, D2.dept_name name2 from Depts " +
+                " left join Firm on Firm.id_firm = Depts.firm_id "+
+                " left join Depts D2 on D2.dept_id = Depts.parent_dept order by Depts.DEPT_NAME";
             
             try
             {
@@ -112,13 +114,19 @@ namespace ContractTimeSharp.DAO
                 FbDataAdapter da = new FbDataAdapter(statment);
                 DataSet result = new DataSet();
                 da.Fill(result);
-                FirmDAO firmDao = new FirmDAO();
                 foreach (DataRow row in result.Tables[0].Rows)
                 {
                     Department department = new Department();
                     department.idDepartment = int.Parse(row["dept_id"].ToString());
                     department.nameDepartment = row["dept_name"].ToString();
-                    department.firmDepartment = firmDao.getById(Convert.ToInt32(row["firm_id"].ToString()));
+                    Firm firm = new Firm();
+                    firm.IdFirm = Convert.ToInt32(row["id_firm"].ToString());
+                    firm.NameFirm = row["name_firm"].ToString();
+                    department.firmDepartment = firm;
+                    Department parent = new Department();
+                    parent.idDepartment = Convert.ToInt32(row["parent_dept"].ToString());
+                    parent.nameDepartment = row["name2"].ToString();
+                    department.parentDepartment = parent; 
                     departmentList.Add(department);
                 }
             }

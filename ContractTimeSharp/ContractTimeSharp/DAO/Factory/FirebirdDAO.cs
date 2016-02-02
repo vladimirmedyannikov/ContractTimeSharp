@@ -14,10 +14,10 @@ namespace ContractTimeSharp.DAO.Factory
             //fbSb.Charset = "WIN1251";
             fbSb.UserID = Properties.Settings.Default.login;
             fbSb.Password = Properties.Settings.Default.password;
-            //fbSb.Port = 3050;
+            fbSb.Port = 3050;
             fbSb.DataSource = Properties.Settings.Default.host;
             fbSb.Database = Properties.Settings.Default.dbname;
-            //fbSb.ServerType = 0;
+            fbSb.ServerType = 0;
             //fbSb.ConnectionTimeout = 30;
             //MessageBox.Show(fbSb.ToString());
             FbConnection fb = new FbConnection(fbSb.ToString());

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.mnuUserDel = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuUserAdd = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDeptAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDepartment = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuUserEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDeptEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.panelGrid = new System.Windows.Forms.Panel();
             this.gridDepartment = new System.Windows.Forms.DataGridView();
@@ -42,7 +42,7 @@
             this.panelParam = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelFirstName = new System.Windows.Forms.Label();
-            this.tbFirstName = new System.Windows.Forms.TextBox();
+            this.tbNameDept = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cbFirm = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,27 +61,29 @@
             this.mnuUserDel.Size = new System.Drawing.Size(152, 22);
             this.mnuUserDel.Text = "Удалить";
             // 
-            // mnuUserAdd
+            // mnuDeptAdd
             // 
-            this.mnuUserAdd.Name = "mnuUserAdd";
-            this.mnuUserAdd.Size = new System.Drawing.Size(152, 22);
-            this.mnuUserAdd.Text = "Добавить";
+            this.mnuDeptAdd.Name = "mnuDeptAdd";
+            this.mnuDeptAdd.Size = new System.Drawing.Size(152, 22);
+            this.mnuDeptAdd.Text = "Добавить";
+            this.mnuDeptAdd.Click += new System.EventHandler(this.mnuDeptAdd_Click);
             // 
             // mnuDepartment
             // 
             this.mnuDepartment.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuUserAdd,
-            this.mnuUserEdit,
+            this.mnuDeptAdd,
+            this.mnuDeptEdit,
             this.mnuUserDel});
             this.mnuDepartment.Name = "mnuDepartment";
             this.mnuDepartment.Size = new System.Drawing.Size(104, 20);
             this.mnuDepartment.Text = "Подразделение";
             // 
-            // mnuUserEdit
+            // mnuDeptEdit
             // 
-            this.mnuUserEdit.Name = "mnuUserEdit";
-            this.mnuUserEdit.Size = new System.Drawing.Size(152, 22);
-            this.mnuUserEdit.Text = "Изменить";
+            this.mnuDeptEdit.Name = "mnuDeptEdit";
+            this.mnuDeptEdit.Size = new System.Drawing.Size(152, 22);
+            this.mnuDeptEdit.Text = "Изменить";
+            this.mnuDeptEdit.Click += new System.EventHandler(this.mnuDeptEdit_Click);
             // 
             // menuStrip1
             // 
@@ -152,6 +154,7 @@
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Сохранить";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -177,7 +180,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.labelFirstName);
-            this.flowLayoutPanel1.Controls.Add(this.tbFirstName);
+            this.flowLayoutPanel1.Controls.Add(this.tbNameDept);
             this.flowLayoutPanel1.Controls.Add(this.label2);
             this.flowLayoutPanel1.Controls.Add(this.cbFirm);
             this.flowLayoutPanel1.Controls.Add(this.label1);
@@ -196,16 +199,16 @@
             this.labelFirstName.AutoSize = true;
             this.labelFirstName.Location = new System.Drawing.Point(3, 0);
             this.labelFirstName.Name = "labelFirstName";
-            this.labelFirstName.Size = new System.Drawing.Size(56, 13);
+            this.labelFirstName.Size = new System.Drawing.Size(57, 13);
             this.labelFirstName.TabIndex = 0;
-            this.labelFirstName.Text = "Фамилия";
+            this.labelFirstName.Text = "Название";
             // 
-            // tbFirstName
+            // tbNameDept
             // 
-            this.tbFirstName.Location = new System.Drawing.Point(3, 16);
-            this.tbFirstName.Name = "tbFirstName";
-            this.tbFirstName.Size = new System.Drawing.Size(231, 20);
-            this.tbFirstName.TabIndex = 1;
+            this.tbNameDept.Location = new System.Drawing.Point(3, 16);
+            this.tbNameDept.Name = "tbNameDept";
+            this.tbNameDept.Size = new System.Drawing.Size(231, 20);
+            this.tbNameDept.TabIndex = 1;
             // 
             // label2
             // 
@@ -224,6 +227,7 @@
             this.cbFirm.Size = new System.Drawing.Size(231, 21);
             this.cbFirm.TabIndex = 17;
             this.cbFirm.SelectedIndexChanged += new System.EventHandler(this.cbFirm_SelectedIndexChanged);
+            this.cbFirm.SelectedValueChanged += new System.EventHandler(this.cbFirm_SelectedValueChanged);
             // 
             // label1
             // 
@@ -269,7 +273,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuDepartment;
         private System.Windows.Forms.ComboBox cbDepartment;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbFirstName;
+        private System.Windows.Forms.TextBox tbNameDept;
         private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panelParam;
@@ -280,8 +284,8 @@
         private System.Windows.Forms.DataGridView gridDepartment;
         private System.Windows.Forms.Panel panelGrid;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem mnuUserEdit;
-        private System.Windows.Forms.ToolStripMenuItem mnuUserAdd;
+        private System.Windows.Forms.ToolStripMenuItem mnuDeptEdit;
+        private System.Windows.Forms.ToolStripMenuItem mnuDeptAdd;
         private System.Windows.Forms.ToolStripMenuItem mnuUserDel;
         private System.Windows.Forms.ComboBox cbFirm;
         private System.Windows.Forms.Label label2;
