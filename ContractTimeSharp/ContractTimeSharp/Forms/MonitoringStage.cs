@@ -22,6 +22,7 @@ namespace ContractTimeSharp.Forms
         public MonitoringStage()
         {
             InitializeComponent();
+            InitializeColumn();
             updateProjectTreeView();
         }
 
@@ -188,7 +189,7 @@ namespace ContractTimeSharp.Forms
         public void initializeData()
         {
 
-            InitializeColumn();
+
             StageProjectDAO dao = new StageProjectDAO();
             BindingSource source = new BindingSource();
             List<StageProject> listStage = dao.getByDate(dateTimePicker1.Value);

@@ -105,7 +105,7 @@ namespace ContractTimeSharp.DAO
             FbCommand statment = null;
             String sql = "select Depts.DEPT_ID, Depts.DEPT_NAME, Firm.id_firm, name_firm, coalesce(Depts.parent_dept, 0) parent_dept, D2.dept_name name2 from Depts " +
                 " left join Firm on Firm.id_firm = Depts.firm_id "+
-                " left join Depts D2 on D2.dept_id = Depts.parent_dept order by Depts.DEPT_NAME";
+                " left join Depts D2 on D2.dept_id = Depts.parent_dept order by Name_firm, Depts.DEPT_NAME";
             
             try
             {
@@ -188,12 +188,77 @@ namespace ContractTimeSharp.DAO
 
         public Department insert(Department department)
         {
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statement = null;
+            FbTransaction transaction = null;
+            string sql = "execute procedure insert_dept(@dept_name, @parent_dept, @firm_id)";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                transaction = connection.BeginTransaction();
+                statement = new FbCommand(sql, connection,transaction);
+
+                statement.Parameters.Add("@dept_name", department.nameDepartment);
+                statement.Parameters.Add("@firm_id", department.firmDepartment.IdFirm);
+                if (department.parentDepartment != null)
+                {
+                    statement.Parameters.Add("@parent_dept", department.parentDepartment.idDepartment);
+                }
+                else
+                {
+                    statement.Parameters.Add("@parent_dept", null);
+                }
+
+                int id = Convert.ToInt32(statement.ExecuteScalar());
+                transaction.Commit();
+                if (id != 0)
+                {
+                    department.idDepartment = (int)id;
+                }
+
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+                throw new DAOException("Insert Department error ", e);
+            }
+            finally
+            {
+                if (connection != null) connection.Close();
+            }
+            return department;
         }
 
-        public void update(Department e)
+        public void update(Department department)
         {
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statement = null;
+            string sql = "execute procedure update_dept(@id_dept,@dept_name, @parent_dept, @firm_id)";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                //transaction = connection.BeginTransaction();
+                statement = new FbCommand(sql, connection);
+
+                statement.Parameters.Add("@id_dept", department.idDepartment);
+                statement.Parameters.Add("@dept_name", department.nameDepartment);
+                statement.Parameters.Add("@parent_dept", department.parentDepartment.idDepartment);
+                statement.Parameters.Add("@firm_id", department.firmDepartment.IdFirm);
+
+                statement.ExecuteNonQuery();
+                //transaction.Commit();
+            }
+            catch (Exception e)
+            {
+                //transaction.Rollback();
+                throw new DAOException("Update Department error ", e);
+            }
+            finally
+            {
+                if (connection != null) connection.Close();
+            }
         }
     }
 }

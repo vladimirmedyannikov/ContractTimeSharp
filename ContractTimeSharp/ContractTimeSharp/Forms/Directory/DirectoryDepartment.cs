@@ -24,12 +24,33 @@ namespace ContractTimeSharp.Forms.Directory
         public DirectoryDepartment()
         {
             InitializeComponent();
+            InitializeColumn();
             initializationData();
             InitializationDataBox();
         }
 
+        public void InitializeColumn()
+        {
+            DataGridViewColumn columnName = new DataGridViewTextBoxColumn();
+            columnName.DataPropertyName = "nameDepartment";
+            columnName.HeaderText = "Название подразделения";
+
+            DataGridViewColumn columnFirm = new DataGridViewTextBoxColumn();
+            columnFirm.DataPropertyName = "firmDepartment";
+            columnFirm.HeaderText = "Организация";
+
+            DataGridViewColumn columnParent = new DataGridViewTextBoxColumn();
+            columnParent.DataPropertyName = "parentDepartment";
+            columnParent.HeaderText = "Родитель";
+
+            gridDepartment.AutoGenerateColumns = false;
+            gridDepartment.Columns.AddRange(new DataGridViewColumn[] { columnName, columnFirm,columnParent});
+
+        }
+
         public void initializationData()
         {
+            panelParam.Hide();
             departmentList = dao.getAll();
             bindingSource.DataSource = departmentList;
             gridDepartment.DataSource = bindingSource;
@@ -108,17 +129,69 @@ namespace ContractTimeSharp.Forms.Directory
             
         }
 
+        private void generateBookMark()
+        {
+            bookMark = gridDepartment.CurrentRow.Index;
+            scrollIndex = gridDepartment.FirstDisplayedScrollingRowIndex;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
+            generateBookMark();
             Department department = null;
-            if (!addDept) {
-                department = (Department)((BindingSource)gridDepartment.DataSource).Current;
-            }
-            else
+            if (isValid())
             {
-                department = new Department();
+                if (!addDept)
+                {
+                    department = (Department)((BindingSource)gridDepartment.DataSource).Current;
+                }
+                else
+                {
+                    department = new Department();
+                }
+                department.nameDepartment = tbNameDept.Text;
+                FirmDAO daoFirm = new FirmDAO();
+                department.firmDepartment = daoFirm.getById(Convert.ToInt32(((KeyValuePair)cbFirm.SelectedItem).Key));
+                if (cbDepartment.SelectedIndex >= 0) department.parentDepartment = dao.getById(Convert.ToInt32(((KeyValuePair)cbDepartment.SelectedItem).Key));
+
+                if (department.idDepartment != 0)
+                {
+                    dao.update(department);
+                }
+                else
+                {
+                    department = dao.insert(department);
+                }
+                initializationData();
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            panelParam.Hide();
+        }
+
+        public bool isValid()
+        {
+            bool valid = true;
+            String error = "";
+            if (tbNameDept.Text == null || tbNameDept.Text.Length <= 2)
+            {
+                error += "Название должно быть более 2х символов\n";
+                valid = false;
+            }
+            if (cbFirm.SelectedIndex < 0)
+            {
+                error += "Необходимо выбрать организацию\n";
+                valid = false;
+            }
+            
+            if (!valid)
+            {
+                MessageBox.Show("Ошибки:\n" + error, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            return valid;
         }
     }
 }

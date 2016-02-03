@@ -58,13 +58,13 @@
             // mnuUserDel
             // 
             this.mnuUserDel.Name = "mnuUserDel";
-            this.mnuUserDel.Size = new System.Drawing.Size(152, 22);
+            this.mnuUserDel.Size = new System.Drawing.Size(128, 22);
             this.mnuUserDel.Text = "Удалить";
             // 
             // mnuDeptAdd
             // 
             this.mnuDeptAdd.Name = "mnuDeptAdd";
-            this.mnuDeptAdd.Size = new System.Drawing.Size(152, 22);
+            this.mnuDeptAdd.Size = new System.Drawing.Size(128, 22);
             this.mnuDeptAdd.Text = "Добавить";
             this.mnuDeptAdd.Click += new System.EventHandler(this.mnuDeptAdd_Click);
             // 
@@ -81,7 +81,7 @@
             // mnuDeptEdit
             // 
             this.mnuDeptEdit.Name = "mnuDeptEdit";
-            this.mnuDeptEdit.Size = new System.Drawing.Size(152, 22);
+            this.mnuDeptEdit.Size = new System.Drawing.Size(128, 22);
             this.mnuDeptEdit.Text = "Изменить";
             this.mnuDeptEdit.Click += new System.EventHandler(this.mnuDeptEdit_Click);
             // 
@@ -135,6 +135,7 @@
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "Закрыть панель";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panel1
             // 

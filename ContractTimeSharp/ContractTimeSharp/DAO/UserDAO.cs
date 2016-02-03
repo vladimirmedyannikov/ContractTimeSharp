@@ -302,7 +302,6 @@ namespace ContractTimeSharp.DAO
             }
             catch (Exception e)
             {
-                transaction.Rollback();
                 throw new DAOException("Update User error ", e);
             }
             finally

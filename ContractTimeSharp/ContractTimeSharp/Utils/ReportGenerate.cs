@@ -120,6 +120,7 @@ namespace ContractTimeSharp.Utils
 
             }
 
+            index--;
             xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[index, 14]].Font.Size = 8;
             xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[index, 14]].WrapText = true;
             xlWorkSheet.Range[xlWorkSheet.Cells[6, 9], xlWorkSheet.Cells[index, 11]].Interior.Color = System.Drawing.ColorTranslator.ToOle(Color.FromArgb(252, 228, 214));
