@@ -22,6 +22,13 @@ namespace ContractTimeSharp.Model
         private int statusStage { get; set; }
         private String commentUser {get;set;}
         private InvestProject project;
+        private DateTime dateSend { get; set; }
+
+        public DateTime DateSend
+        {
+            get { return dateSend; }
+            set { dateSend = value; }
+        }
 
         public InvestProject Project {
             get { return project; }
@@ -103,6 +110,15 @@ namespace ContractTimeSharp.Model
         {
             get { return subStage; }
             set { subStage = value; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj.GetType() == typeof(StageProject))
+            {
+                return (((StageProject)obj).idStage == this.idStage) ? true : false;
+            }
+            else return false;
         }
     }
 }

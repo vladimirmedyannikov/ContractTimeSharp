@@ -427,6 +427,7 @@ namespace ContractTimeSharp
         {
             UserStageForm form = new UserStageForm();
             form.ShowDialog();
+            initializationInvestProject();
         }
 
         private void mnuDeleteStage_Click(object sender, EventArgs e)

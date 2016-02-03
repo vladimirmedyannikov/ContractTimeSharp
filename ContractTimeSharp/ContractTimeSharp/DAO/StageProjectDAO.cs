@@ -43,7 +43,7 @@ namespace ContractTimeSharp.DAO
             FbCommand statement = null;
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                "status_stage, comment_user, id_stage_parent from stage_project " +
+                "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user where date_begin_plan = @date";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
@@ -85,7 +85,7 @@ namespace ContractTimeSharp.DAO
             FbCommand statment = null;
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                "status_stage, comment_user, id_stage_parent from stage_project " +
+                "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
@@ -126,7 +126,7 @@ namespace ContractTimeSharp.DAO
             FbCommand statment = null;
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                "status_stage, comment_user, id_stage_parent from stage_project " +
+                "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user where stage_project.id_user = @idUser;";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
@@ -248,7 +248,7 @@ namespace ContractTimeSharp.DAO
             FbCommand statment = null;
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                "status_stage, comment_user, id_stage_parent from stage_project " +
+                "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user where stage_project.id_stage_parent <> 0 and id_project = @idProject order by id_inner_index;";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
@@ -291,7 +291,7 @@ namespace ContractTimeSharp.DAO
             FbCommand statment = null;
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                "status_stage, comment_user, id_stage_parent from stage_project " +
+                "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user where id_project = @idProject and stage_project.id_stage_parent = 0 order by id_inner_index;";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
@@ -354,6 +354,10 @@ namespace ContractTimeSharp.DAO
             DateTime.TryParse(row["date_end_plan"].ToString(),out dateEndPlan);
             stageProject.DateEndPlan = dateEndPlan;
 
+            DateTime dateSend;
+            DateTime.TryParse(row["send_message"].ToString(), out dateSend);
+            stageProject.DateSend = dateSend;
+
             if (row["date_begin_user"] != null)
             {
                 DateTime dateBeginProg;
@@ -379,6 +383,37 @@ namespace ContractTimeSharp.DAO
             stageProject.CommentUser = row["comment_user"].ToString();
             stageProject.IdParentStage = Convert.ToInt32(row["id_stage_parent"].ToString());
             return stageProject;
+        }
+
+        internal void sendMessage(List<StageProject> listSend)
+        {
+            FbConnection connection = null;
+            FbCommand statement = null;
+            FbTransaction transaction = null;
+            string sql = @"update stage_project set send_message = @date where id_stage = @id_stage ";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                foreach (StageProject stage in listSend)
+                {
+                    transaction = connection.BeginTransaction();
+                    statement = new FbCommand(sql, connection, transaction);
+                    statement.Parameters.Add("@id_stage", stage.IdStage);
+                    statement.Parameters.Add("@date", DateTime.Now.ToShortDateString());
+                    statement.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+                throw new DAOException("Update send message Stage Project", e);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }

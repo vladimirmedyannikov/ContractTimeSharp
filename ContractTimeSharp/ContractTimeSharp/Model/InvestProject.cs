@@ -33,7 +33,7 @@ namespace ContractTime.Model
         {
             if (obj != null && obj.GetType() == typeof(InvestProject))
             {
-                return idProject.Equals(((InvestProject)obj).idProject) ? true : false;
+                return (this.idProject == ((InvestProject)obj).idProject) ? true : false;
             }
             return false;
         }

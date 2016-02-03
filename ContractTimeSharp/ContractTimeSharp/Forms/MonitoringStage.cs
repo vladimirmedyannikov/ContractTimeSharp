@@ -263,12 +263,12 @@ namespace ContractTimeSharp.Forms
                 }
                 treeViewProject.Nodes.Add(nodeProject);
             }
-
             treeProject.EndUpdate();
         }
 
         private void sendMessage_Click(object sender, EventArgs e)
         {
+            StageProjectDAO dao = new StageProjectDAO();
             List<TreeNode> nodeList = new List<TreeNode>();
             foreach (TreeNode node in treeViewProject.Nodes)
             {
@@ -279,15 +279,53 @@ namespace ContractTimeSharp.Forms
             List<User> listUser = listStage.Select(u => u.User).GroupBy(user=>user.Id).Select(group => group.First()).ToList();
             foreach (User user in listUser)
             {
-                List<StageProject> listSend = listStage.Where(u => u.User.Id == user.Id).ToList();
-                StringBuilder message = new StringBuilder();
-                message.Append("<H1>Добрый день<br>У Вас имеются задачи для заполения в системе: </H1><br><ul>");
-                foreach (StageProject stage in listSend)
+                List<StageProject> listSend = listStage.Where(u => u.User.Id == user.Id && u.DateSend.Date.CompareTo(DateTime.Now.Date) != 0).ToList();
+                if (listSend.Count > 0)
                 {
-                    message.AppendFormat("<li>Проект: {0}, Этап: {1}, Плановая дата начала: {2}, Плановая дата завершения: {3} </li>",stage.Project.nameProject, stage.NameStage, stage.DateBeginPlan.ToShortDateString(), stage.DateEndPlan.ToShortDateString());
+                    StringBuilder message = new StringBuilder();
+                    message.Append("<H1>Добрый день<br>У Вас имеются задачи для заполения в системе: </H1><br><ul>");
+                    foreach (StageProject stage in listSend)
+                    {
+                        message.AppendFormat("<li>Проект: {0}, Этап: {1}, Плановая дата начала: {2}, Плановая дата завершения: {3} </li>", stage.Project.nameProject, stage.NameStage, stage.DateBeginPlan.ToShortDateString(), stage.DateEndPlan.ToShortDateString());
+                    }
+                    message.Append("</li>");
+                    AdvanceUtil.SendMessage(user.Email, message.ToString());
+                    dao.sendMessage(listSend);
                 }
-                message.Append("</li>");
-                AdvanceUtil.SendMessage(user.Email, message.ToString());
+            }
+            updateProjectTreeView();
+            setCheckedItems(nodeList);
+        }
+
+        private void setCheckedItems(List<TreeNode> nodeList)
+        {
+            List<TreeNode> nodes = new List<TreeNode>();
+            foreach (TreeNode node in treeViewProject.Nodes)
+            {
+                nodes.AddRange(getParentAll(node));
+            }
+
+            foreach (TreeNode node in nodes)
+            {
+                foreach (TreeNode nodeCheck in nodeList)
+                {
+                    if (node.Tag.GetType() == typeof(StageProject))
+                    {
+                        if (((StageProject)node.Tag).Equals(nodeCheck.Tag)) {
+                            node.Checked = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (((InvestProject)node.Tag).Equals(nodeCheck.Tag)) {
+                            node.Checked = true;
+                            break;
+                        }
+                    }
+
+                    
+                }
             }
         }
 
@@ -301,6 +339,23 @@ namespace ContractTimeSharp.Forms
                     if (subNode.Checked && subNode.Tag != null)
                         list.Add(subNode);
                     list.AddRange(getParent(subNode));
+                }
+                return list;
+            }
+            else
+                return new List<TreeNode>();
+        }
+
+        private List<TreeNode> getParentAll(TreeNode node)
+        {
+            List<TreeNode> list = new List<TreeNode>();
+            if (node.Nodes.Count > 0)
+            {
+                foreach (TreeNode subNode in node.Nodes)
+                {
+                    if (subNode.Tag != null)
+                        list.Add(subNode);
+                    list.AddRange(getParentAll(subNode));
                 }
                 return list;
             }

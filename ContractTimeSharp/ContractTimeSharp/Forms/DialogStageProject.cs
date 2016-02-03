@@ -106,9 +106,17 @@ namespace ContractTimeSharp.Forms
                 {
                     stageProject.DateBeginUser = dateBeginUser.Value;
                 }
+                else
+                {
+                    stageProject.DateBeginUser = new DateTime(1,1,1);
+                }
                 if (dateEndUser.Checked)
                 {
                     stageProject.DateEndUser = dateEndUser.Value;
+                }
+                else
+                {
+                    stageProject.DateEndUser = new DateTime(1, 1, 1);
                 }
 
                 stageProject.CommentUser = textBoxAbout.Text;

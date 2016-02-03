@@ -70,5 +70,65 @@ namespace ContractTimeSharp.Properties {
                 this["password"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("smtp.mail.ru")]
+        public string smtpHost {
+            get {
+                return ((string)(this["smtpHost"]));
+            }
+            set {
+                this["smtpHost"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("25")]
+        public int smtpPort {
+            get {
+                return ((int)(this["smtpPort"]));
+            }
+            set {
+                this["smtpPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("mr.betchit@mail.ru")]
+        public string smtpUserName {
+            get {
+                return ((string)(this["smtpUserName"]));
+            }
+            set {
+                this["smtpUserName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MAngysT<>Shadum123")]
+        public string smtpUserPass {
+            get {
+                return ((string)(this["smtpUserPass"]));
+            }
+            set {
+                this["smtpUserPass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("mr.betchit@mail.ru")]
+        public string msgFrom {
+            get {
+                return ((string)(this["msgFrom"]));
+            }
+            set {
+                this["msgFrom"] = value;
+            }
+        }
     }
 }
