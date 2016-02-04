@@ -89,17 +89,14 @@ namespace ContractTimeSharp.Forms
 
         private void gridNotComplete_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
         }
 
         private void gridComplete_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
         }
 
         private void gridAll_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
- 
         }
 
         private void gridNotComplete_DoubleClick(object sender, EventArgs e)
