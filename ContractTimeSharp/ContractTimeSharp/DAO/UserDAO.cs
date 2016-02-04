@@ -60,7 +60,7 @@ namespace ContractTimeSharp.DAO
         {
             FbConnection connection = null;
             FbCommand statment = null;
-            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user, post from user_info u " +
+            String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user, post, password from user_info u " +
                 " left join depts on depts.dept_id = u.id_dept order by f_name, l_name, p_name";
             List<User> userList = new List<User>();
             try
@@ -82,6 +82,7 @@ namespace ContractTimeSharp.DAO
                     user.Email = row["e_mail"].ToString();
                     user.HashPass = row["e_mail"].ToString();
                     user.Appointment = row["post"].ToString();
+                    user.Password = row["password"].ToString();
 
                     Department department = new Department();
                     department.idDepartment = Convert.ToInt32(row["id_dept"].ToString());
@@ -313,18 +314,19 @@ namespace ContractTimeSharp.DAO
         public User auth(string login, string hashPass)
         {
             FbConnection connection = null;
-            FbCommand statment = null;
+            FbCommand statement = null;
             String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user, post from user_info u " +
                 " left join depts on depts.dept_id = u.id_dept where login = @login and password = @password";
+            String sqlLog = "execute procedure insert_log(@type, @id_user, @date)";
             User user = null;
             try
             {
                 connection = daoFactory.getConnection();
                 connection.Open();
-                statment = new FbCommand(sql, connection);
-                statment.Parameters.Add("@login", login);
-                statment.Parameters.Add("@password", hashPass);
-                FbDataAdapter da = new FbDataAdapter(statment);
+                statement = new FbCommand(sql, connection);
+                statement.Parameters.Add("@login", login);
+                statement.Parameters.Add("@password", hashPass);
+                FbDataAdapter da = new FbDataAdapter(statement);
                 DataSet result = new DataSet();
                 da.Fill(result);
                 foreach (DataRow row in result.Tables[0].Rows)
@@ -345,6 +347,14 @@ namespace ContractTimeSharp.DAO
                     department.nameDepartment = row["dept_name"].ToString();
                     user.Department = department;
                 }
+
+                /*statement = new FbCommand(sqlLog, connection);
+                statement.Parameters.Add("@type", 1);
+                statement.Parameters.Add("@id_user", user.Id);
+                statement.Parameters.Add("@date", DateTime.Now);
+                statement.ExecuteNonQuery();*/
+                if (user != null) insertLogInfo(1, user);
+
             }
             catch (Exception e)
             {
@@ -363,5 +373,40 @@ namespace ContractTimeSharp.DAO
             }
             return user;
         }
+
+        public void insertLogInfo(int typeLog, User user)
+        {
+            FbConnection connection = null;
+            FbCommand statement = null;
+
+            String sqlLog = "execute procedure insert_log(@type, @id_user, @date)";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                statement = new FbCommand(sqlLog, connection);
+                statement.Parameters.Add("@type", typeLog);
+                statement.Parameters.Add("@id_user", user.Id);
+                statement.Parameters.Add("@date", DateTime.Now);
+                statement.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("Insert LOg info " + user.Id.ToString(), e);
+            }
+            finally
+            {
+                try
+                {
+                    if (connection != null) connection.Close();
+                }
+                catch (System.Data.DataException e)
+                {
+
+                }
+            }
+        }
+
     }
 }

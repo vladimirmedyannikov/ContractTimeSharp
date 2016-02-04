@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace ContractTimeSharp.Forms
 {
     public partial class DirectoryUserForm : Form
@@ -29,8 +30,42 @@ namespace ContractTimeSharp.Forms
 
         private void DirectoryUserForm_Load(object sender, EventArgs e)
         {
+            initializeColumn();
             initializationData();
             InitializationDataBox();
+
+        }
+
+        private void initializeColumn()
+        {
+            gridUsers.AutoGenerateColumns = false;
+            DataGridViewColumn columnName = new DataGridViewTextBoxColumn();
+            columnName.DataPropertyName = "FullName";
+            columnName.HeaderText = "ФИО";
+
+            DataGridViewColumn columnDepartment= new DataGridViewTextBoxColumn();
+            columnDepartment.DataPropertyName = "Department";
+            columnDepartment.HeaderText = "Подраздеоелние";
+
+            DataGridViewColumn columnApp = new DataGridViewTextBoxColumn();
+            columnApp.DataPropertyName = "Appointment";
+            columnApp.HeaderText = "Должность";
+
+            DataGridViewColumn columnEmail = new DataGridViewTextBoxColumn();
+            columnEmail.DataPropertyName = "Email";
+            columnEmail.HeaderText = "Email";
+
+            DataGridViewColumn columnLogin = new DataGridViewTextBoxColumn();
+            columnLogin.DataPropertyName = "Login";
+            columnLogin.HeaderText = "Login";
+
+            DataGridViewColumn columnType = new DataGridViewTextBoxColumn();
+            columnType.DataPropertyName = "TypeUserStr";
+            columnType.HeaderText = "Тип УЗ";
+
+
+            gridUsers.AutoGenerateColumns = false;
+            gridUsers.Columns.AddRange(new DataGridViewColumn[] { columnName, columnApp, columnDepartment, columnEmail, columnLogin, columnType });
         }
 
         public void initializationData()
@@ -79,6 +114,7 @@ namespace ContractTimeSharp.Forms
             tbAppointment.Text = user.Appointment;
             tbEmail.Text = user.Email;
             tbLogin.Text = user.Login;
+            tbPassword.Text = user.Password;
             if (user.TypeUser == (int)AdvanceUtil.typeUser.USER)
             {
                 rbUser.Checked = true;
@@ -177,6 +213,11 @@ namespace ContractTimeSharp.Forms
             if (cbDepartment.SelectedIndex == -1)
             {
                 error += "Выберите подразделение сотрудника за проект\n";
+                valid = false;
+            }
+            if (AdvanceUtil.IsValidEmail(tbEmail.Text))
+            {
+                error += "Почтовый адрес должен быть формата email@domen.com\n";
                 valid = false;
             }
 

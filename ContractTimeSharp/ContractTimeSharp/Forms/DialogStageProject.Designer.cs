@@ -394,7 +394,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "DialogStageProject";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Этап";
+            this.Text = "Система \"Букля\" - Этап";
             this.Load += new System.EventHandler(this.DialogStageProject_Load);
             this.panelLabel.ResumeLayout(false);
             this.panelLabel.PerformLayout();

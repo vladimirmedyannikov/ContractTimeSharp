@@ -163,7 +163,7 @@
             this.ClientSize = new System.Drawing.Size(617, 441);
             this.Controls.Add(this.tabControl);
             this.Name = "ResposibleUsers";
-            this.Text = "Мониторинг задач пользователей";
+            this.Text = "Система \"Букля\" - Мониторинг задач пользователей";
             this.tabControl.ResumeLayout(false);
             this.tabNotComplete.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridNotComplete)).EndInit();

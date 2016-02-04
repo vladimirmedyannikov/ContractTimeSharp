@@ -58,11 +58,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(52, 9);
+            this.label3.Location = new System.Drawing.Point(76, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(163, 17);
+            this.label3.Size = new System.Drawing.Size(117, 17);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Управление проектами";
+            this.label3.Text = "Система \"Букля\"";
             // 
             // btnCancel
             // 

@@ -149,7 +149,6 @@ namespace ContractTimeSharp.Forms
         public bool isValid()
         {
             bool valid = true;
-            MessageBox alert = null;
             String error = "";
             if (textBoxNameStage.Text == null || textBoxNameStage.Text.Length <= 2)
             {
@@ -167,7 +166,7 @@ namespace ContractTimeSharp.Forms
                 valid = false;
             }
 
-            if (dateEndUser.Value.CompareTo(dateBeginUser.Value) < 0)
+            if ((dateEndUser.Checked) && (dateEndUser.Value.CompareTo(dateBeginUser.Value) < 0))
             {
                 error += "Дата окончания(ответств.) не должна быть меньше даты начала\n";
                 valid = false;

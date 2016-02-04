@@ -46,6 +46,7 @@
             this.mnuLog = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLib = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDepartment = new System.Windows.Forms.ToolStripMenuItem();
             this.treeViewAdv1 = new Aga.Controls.Tree.TreeViewAdv();
             this.treeColumn1 = new Aga.Controls.Tree.TreeColumn();
             this.menuStageProject = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -55,7 +56,6 @@
             this.mnuDeleteStage = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.mnuDepartment = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -168,6 +168,7 @@
             this.mnuSendMessage.Name = "mnuSendMessage";
             this.mnuSendMessage.Size = new System.Drawing.Size(184, 22);
             this.mnuSendMessage.Text = "Отправка писем";
+            this.mnuSendMessage.Visible = false;
             // 
             // mnuMonStage
             // 
@@ -213,6 +214,13 @@
             this.mnuUser.Size = new System.Drawing.Size(159, 22);
             this.mnuUser.Text = "Пользователи";
             this.mnuUser.Click += new System.EventHandler(this.mnuUser_Click);
+            // 
+            // mnuDepartment
+            // 
+            this.mnuDepartment.Name = "mnuDepartment";
+            this.mnuDepartment.Size = new System.Drawing.Size(159, 22);
+            this.mnuDepartment.Text = "Подразделения";
+            this.mnuDepartment.Click += new System.EventHandler(this.mnuDepartment_Click);
             // 
             // treeViewAdv1
             // 
@@ -299,13 +307,6 @@
             this.notifyIcon1.Text = "Инвестиционные проекты\r\n";
             this.notifyIcon1.Visible = true;
             // 
-            // mnuDepartment
-            // 
-            this.mnuDepartment.Name = "mnuDepartment";
-            this.mnuDepartment.Size = new System.Drawing.Size(159, 22);
-            this.mnuDepartment.Text = "Подразделения";
-            this.mnuDepartment.Click += new System.EventHandler(this.mnuDepartment_Click);
-            // 
             // DialogGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,7 +319,7 @@
             this.MinimumSize = new System.Drawing.Size(261, 65);
             this.Name = "DialogGridForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Проекты";
+            this.Text = "Система \"Букля\" - Проекты";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).EndInit();
             this.menuInvestProject.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);

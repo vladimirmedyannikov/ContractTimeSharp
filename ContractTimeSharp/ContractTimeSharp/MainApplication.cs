@@ -1,4 +1,5 @@
 ﻿using ContractTime.Model;
+using ContractTimeSharp.DAO;
 using ContractTimeSharp.Forms;
 using ContractTimeSharp.Utils;
 using System;
@@ -42,7 +43,10 @@ namespace ContractTimeSharp
                 {
                     Application.Run(new UserStageForm());
                 }
+                UserDAO dao = new UserDAO();
+                dao.insertLogInfo(2, User);
             }
+            
         }
     }
 }

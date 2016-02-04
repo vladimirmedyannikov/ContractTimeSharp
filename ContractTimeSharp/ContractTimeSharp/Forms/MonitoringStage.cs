@@ -19,6 +19,7 @@ namespace ContractTimeSharp.Forms
 {
     public partial class MonitoringStage : Form
     {
+        private List<StageProject> listDay;
         public MonitoringStage()
         {
             InitializeComponent();
@@ -188,12 +189,10 @@ namespace ContractTimeSharp.Forms
 
         public void initializeData()
         {
-
-
             StageProjectDAO dao = new StageProjectDAO();
             BindingSource source = new BindingSource();
-            List<StageProject> listStage = dao.getByDate(dateTimePicker1.Value);
-            source.DataSource = listStage;
+            listDay = dao.getByDate(dateTimePicker1.Value);
+            source.DataSource = listDay;
             gridProject.DataSource = source;
         }
 
@@ -239,6 +238,8 @@ namespace ContractTimeSharp.Forms
             List<InvestProject> listProject = daoProject.getAll();
             List<StageProject> listStage = null;
             List<StageProject> listSubStage = null;
+            TreeNode nodeRoot = new TreeNode("Проекты");
+            nodeRoot.Tag = new InvestProject();
             foreach (InvestProject project in listProject)
             {
                 listStage = dao.getByProject(project.idProject);
@@ -261,8 +262,10 @@ namespace ContractTimeSharp.Forms
                         node.Nodes.Add(childNode);
                     }
                 }
-                treeViewProject.Nodes.Add(nodeProject);
+                nodeRoot.Nodes.Add(nodeProject);
+                
             }
+            treeViewProject.Nodes.Add(nodeRoot);
             treeProject.EndUpdate();
         }
 
@@ -275,7 +278,7 @@ namespace ContractTimeSharp.Forms
                 nodeList.AddRange(getParent(node));
             }
 
-            List<StageProject> listStage = nodeList.Select(s => (StageProject)s.Tag).ToList();
+            List<StageProject> listStage = nodeList.Where(a => a.Tag.GetType() == typeof(StageProject)).Select(s => (StageProject)s.Tag).ToList();
             List<User> listUser = listStage.Select(u => u.User).GroupBy(user=>user.Id).Select(group => group.First()).ToList();
             foreach (User user in listUser)
             {
@@ -283,12 +286,18 @@ namespace ContractTimeSharp.Forms
                 if (listSend.Count > 0)
                 {
                     StringBuilder message = new StringBuilder();
-                    message.Append("<H1>Добрый день<br>У Вас имеются задачи для заполения в системе: </H1><br><ul>");
+                    message.Append("Добрый день!<br><br>");
+                    message.Append("Вам необходимо отчитаться об исполнении вверенного этапа инвестиционного проекта в системе «Букля»<br>");
+                    message.Append(String.Format("Вы можете внести необходимую информацию пройдя по ссылке: <a href=\"{0}\">ссылка</a><br>",Properties.Settings.Default.filePath));
+                    message.Append("Если Вы не помните логин и пароль для входа в систему или у Вас их нет – пишите <span style='font - size:7.5pt; font - family:Wingdings; color: blue'>*</span><a href = 'mailto: YaryginIM@TLTK.ru'>YaryginIM@TLTK.ru</a><br><br>");
+                    message.Append("ПРИМЕЧАНИЕ.Данное сообщение сформировано автоматически без участия человека.<br>");
+                    message.Append("При возникновении технических проблем, Вы можете обратиться по телефону: 32 - 55(Иван Ярыгин)<br><br>");
+                    message.Append("Список необходимых для заполнения этапов: <br><ul>");
                     foreach (StageProject stage in listSend)
                     {
                         message.AppendFormat("<li>Проект: {0}, Этап: {1}, Плановая дата начала: {2}, Плановая дата завершения: {3} </li>", stage.Project.nameProject, stage.NameStage, stage.DateBeginPlan.ToShortDateString(), stage.DateEndPlan.ToShortDateString());
                     }
-                    message.Append("</li>");
+                    message.Append("</ul>");
                     AdvanceUtil.SendMessage(user.Email, message.ToString());
                     dao.sendMessage(listSend);
                 }
@@ -377,6 +386,35 @@ namespace ContractTimeSharp.Forms
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             updateProjectTreeView();
+        }
+
+        private void btnSendDay_Click(object sender, EventArgs e)
+        {
+            StageProjectDAO dao = new StageProjectDAO();
+
+            List<User> listUser = listDay.Select(u => u.User).GroupBy(user => user.Id).Select(group => group.First()).ToList();
+            foreach (User user in listUser)
+            {
+                List<StageProject> listSend = listDay.Where(u => u.User.Id == user.Id && u.DateSend.Date.CompareTo(DateTime.Now.Date) != 0).ToList();
+                if (listSend.Count > 0)
+                {
+                    StringBuilder message = new StringBuilder();
+                    message.Append("Добрый день!<br><br>");
+                    message.Append("Вам необходимо отчитаться об исполнении вверенного этапа инвестиционного проекта в системе «Букля»<br>");
+                    message.Append(String.Format("Вы можете внести необходимую информацию пройдя по ссылке: <a href=\"{0}\">ссылка</a><br>", Properties.Settings.Default.filePath));
+                    message.Append("Если Вы не помните логин и пароль для входа в систему или у Вас их нет – пишите <span style='font - size:7.5pt; font - family:Wingdings; color: blue'>*</span><a href = 'mailto: YaryginIM@TLTK.ru'>YaryginIM@TLTK.ru</a><br><br>");
+                    message.Append("ПРИМЕЧАНИЕ.Данное сообщение сформировано автоматически без участия человека.<br>");
+                    message.Append("При возникновении технических проблем, Вы можете обратиться по телефону: 32 - 55(Иван Ярыгин)<br><br>");
+                    message.Append("Список необходимых для заполнения этапов: <br><ul>");
+                    foreach (StageProject stage in listSend)
+                    {
+                        message.AppendFormat("<li>Проект: {0}, Этап: {1}, Плановая дата начала: {2}, Плановая дата завершения: {3} </li>", stage.Project.nameProject, stage.NameStage, stage.DateBeginPlan.ToShortDateString(), stage.DateEndPlan.ToShortDateString());
+                    }
+                    message.Append("</ul>");
+                    AdvanceUtil.SendMessage(user.Email, message.ToString());
+                    dao.sendMessage(listSend);
+                }
+            }
         }
     }
 }

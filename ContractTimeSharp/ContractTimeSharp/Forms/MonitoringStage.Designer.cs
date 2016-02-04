@@ -40,8 +40,9 @@
             this.treeViewProject = new System.Windows.Forms.TreeView();
             this.treeProject = new Aga.Controls.Tree.TreeViewAdv();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.sendMessage = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.sendMessage = new System.Windows.Forms.Button();
+            this.btnSendDay = new System.Windows.Forms.Button();
             this.tabMonitor.SuspendLayout();
             this.tabDate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProject)).BeginInit();
@@ -113,6 +114,7 @@
             this.tableLayoutPanel1.Controls.Add(this.labelFilter, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.butnShow, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnSendDay, 2, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -142,7 +144,7 @@
             // 
             this.butnShow.Location = new System.Drawing.Point(709, 3);
             this.butnShow.Name = "butnShow";
-            this.butnShow.Size = new System.Drawing.Size(75, 22);
+            this.butnShow.Size = new System.Drawing.Size(145, 22);
             this.butnShow.TabIndex = 2;
             this.butnShow.Text = "Показать";
             this.butnShow.UseVisualStyleBackColor = true;
@@ -201,17 +203,6 @@
             this.panel2.Size = new System.Drawing.Size(1061, 42);
             this.panel2.TabIndex = 1;
             // 
-            // sendMessage
-            // 
-            this.sendMessage.Dock = System.Windows.Forms.DockStyle.Right;
-            this.sendMessage.Location = new System.Drawing.Point(986, 0);
-            this.sendMessage.Name = "sendMessage";
-            this.sendMessage.Size = new System.Drawing.Size(75, 42);
-            this.sendMessage.TabIndex = 0;
-            this.sendMessage.Text = "Отправить письма";
-            this.sendMessage.UseVisualStyleBackColor = true;
-            this.sendMessage.Click += new System.EventHandler(this.sendMessage_Click);
-            // 
             // btnRefresh
             // 
             this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Right;
@@ -223,6 +214,27 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // sendMessage
+            // 
+            this.sendMessage.Dock = System.Windows.Forms.DockStyle.Right;
+            this.sendMessage.Location = new System.Drawing.Point(986, 0);
+            this.sendMessage.Name = "sendMessage";
+            this.sendMessage.Size = new System.Drawing.Size(75, 42);
+            this.sendMessage.TabIndex = 0;
+            this.sendMessage.Text = "Отправить письма";
+            this.sendMessage.UseVisualStyleBackColor = true;
+            this.sendMessage.Click += new System.EventHandler(this.sendMessage_Click);
+            // 
+            // btnSendDay
+            // 
+            this.btnSendDay.Location = new System.Drawing.Point(709, 31);
+            this.btnSendDay.Name = "btnSendDay";
+            this.btnSendDay.Size = new System.Drawing.Size(145, 22);
+            this.btnSendDay.TabIndex = 3;
+            this.btnSendDay.Text = "Отправить уведомления";
+            this.btnSendDay.UseVisualStyleBackColor = true;
+            this.btnSendDay.Click += new System.EventHandler(this.btnSendDay_Click);
+            // 
             // MonitoringStage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,7 +243,7 @@
             this.Controls.Add(this.tabMonitor);
             this.Name = "MonitoringStage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Этапы проекта по дате";
+            this.Text = "Система \"Букля\" - Этапы проекта по дате";
             this.tabMonitor.ResumeLayout(false);
             this.tabDate.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridProject)).EndInit();
@@ -260,5 +272,6 @@
         private System.Windows.Forms.TreeView treeViewProject;
         private System.Windows.Forms.Button sendMessage;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnSendDay;
     }
 }

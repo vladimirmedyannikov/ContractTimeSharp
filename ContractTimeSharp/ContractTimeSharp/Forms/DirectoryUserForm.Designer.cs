@@ -414,7 +414,7 @@
             this.Controls.Add(this.panelParam);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "DirectoryUserForm";
-            this.Text = "Пользователи";
+            this.Text = "Система \"Букля\" - Пользователи";
             this.Load += new System.EventHandler(this.DirectoryUserForm_Load);
             this.panelParam.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);

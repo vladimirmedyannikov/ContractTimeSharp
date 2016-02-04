@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ContractTimeSharp.Utils
 {
-    static class AdvanceUtil
+    public static class AdvanceUtil
     {
         public enum paramStagInsert { SUB, NOSUB };
         public enum typeUser { ADMIN = 1, USER = 0};
@@ -24,7 +24,7 @@ namespace ContractTimeSharp.Utils
 
         private static String msgFrom = Properties.Settings.Default.msgFrom;
 
-        static bool IsValidEmail(string strIn)
+        public static bool IsValidEmail(string strIn)
         {
             // Return true if strIn is in valid e-mail format.
             return Regex.IsMatch(strIn, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
@@ -47,7 +47,7 @@ namespace ContractTimeSharp.Utils
                 String msgTo = email;
 
                 //Тема письма
-                String msgSubject = "Заполнение информации о состоянии проектов";
+                String msgSubject = "Заполнение информации в системе «Букля»";
                 //Текст письма, можно использовать html
                 String msgBody = messageMail;
                 //Вложение для письма

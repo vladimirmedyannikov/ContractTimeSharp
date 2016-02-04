@@ -29,5 +29,8 @@
     <Setting Name="msgFrom" Type="System.String" Scope="User">
       <Value Profile="(Default)">mr.betchit@mail.ru</Value>
     </Setting>
+    <Setting Name="filePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">file://C:\\Upload\\Audio\\1.txt</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

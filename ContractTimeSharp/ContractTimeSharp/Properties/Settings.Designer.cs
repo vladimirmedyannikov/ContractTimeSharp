@@ -130,5 +130,17 @@ namespace ContractTimeSharp.Properties {
                 this["msgFrom"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("file://C:\\\\Upload\\\\Audio\\\\1.txt")]
+        public string filePath {
+            get {
+                return ((string)(this["filePath"]));
+            }
+            set {
+                this["filePath"] = value;
+            }
+        }
     }
 }

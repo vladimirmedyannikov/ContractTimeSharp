@@ -37,6 +37,11 @@ namespace ContractTime.Model
         {
             get { return secondName + " " + firstName + " " + thirdName; }
         }
+
+        public string TypeUserStr
+        {
+            get { return (TypeUser == 0) ? "Пользователь" : "Администратор"; }
+        }
         private String firstName { get; set; }
         public String FirstName
         {

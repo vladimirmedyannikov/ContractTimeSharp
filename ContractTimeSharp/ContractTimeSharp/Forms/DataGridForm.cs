@@ -211,6 +211,15 @@ namespace ContractTimeSharp
                 dataGridInvestProject.Rows[BookMarkInvestProject].Selected = true;
                 bindingSource.Position = BookMarkInvestProject;
             }
+            else
+            {
+                if (bindingSource.Count > 0)
+                {
+                    bindingSource.MoveNext();
+                    bindingSource.MoveFirst();
+                }
+                //dataGridInvestProject.Rows[1].Selected = true;
+            }
         }
 
 
