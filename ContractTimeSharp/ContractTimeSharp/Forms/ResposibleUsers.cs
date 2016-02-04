@@ -17,7 +17,41 @@ namespace ContractTimeSharp.Forms
         public ResposibleUsers()
         {
             InitializeComponent();
+            initializeColumn(gridNotComplete);
+            initializeColumn(gridAll);
+            initializeColumn(gridComplete);
             initializateData();
+        }
+
+        private void initializeColumn(DataGridView grid)
+        {
+            DataGridViewColumn columnName = new DataGridViewTextBoxColumn();
+            columnName.DataPropertyName = "FullName";
+            columnName.HeaderText = "ФИО";
+
+            DataGridViewColumn columnDepartment = new DataGridViewTextBoxColumn();
+            columnDepartment.DataPropertyName = "Department";
+            columnDepartment.HeaderText = "Подраздеоелние";
+
+            DataGridViewColumn columnApp = new DataGridViewTextBoxColumn();
+            columnApp.DataPropertyName = "Appointment";
+            columnApp.HeaderText = "Должность";
+
+            DataGridViewColumn columnEmail = new DataGridViewTextBoxColumn();
+            columnEmail.DataPropertyName = "Email";
+            columnEmail.HeaderText = "Email";
+
+            DataGridViewColumn columnLogin = new DataGridViewTextBoxColumn();
+            columnLogin.DataPropertyName = "Login";
+            columnLogin.HeaderText = "Login";
+
+            DataGridViewColumn columnType = new DataGridViewTextBoxColumn();
+            columnType.DataPropertyName = "TypeUserStr";
+            columnType.HeaderText = "Тип УЗ";
+
+
+            grid.AutoGenerateColumns = false;
+            grid.Columns.AddRange(new DataGridViewColumn[] { columnName, columnApp, columnDepartment, columnEmail, columnLogin, columnType });
         }
 
         private void initializateData()
@@ -45,37 +79,42 @@ namespace ContractTimeSharp.Forms
     private void showDialog(DataGridView grid)
     {
         DialogStageProject dialog = new DialogStageProject();
-        StageProject stage;
-        if (grid.CurrentRow.DataBoundItem != null && grid.CurrentRow.DataBoundItem.GetType() == typeof(StageProject))
+        if (grid.CurrentRow.DataBoundItem != null && grid.CurrentRow.DataBoundItem.GetType() == typeof(User))
         {
-            stage = (StageProject)grid.CurrentRow.DataBoundItem;
-            dialog.setStageProject(stage);
-            dialog.setUserMode(true);
-            dialog.ShowDialog();
-        }
+                User user = (User)((BindingSource)grid.DataSource).Current;
+                UserStageForm form = new UserStageForm(user);
+                form.ShowDialog();
+            }
     }
 
         private void gridNotComplete_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            showDialog(gridNotComplete);
+            
         }
 
         private void gridComplete_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            showDialog(gridComplete);
+            
         }
 
         private void gridAll_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            showDialog(gridAll);
+ 
         }
 
         private void gridNotComplete_DoubleClick(object sender, EventArgs e)
         {
-            User user = (User)((BindingSource)gridNotComplete.DataSource).Current;
-            UserStageForm form = new UserStageForm(user);
-            form.ShowDialog();
-            
+            showDialog(gridNotComplete);
+        }
+
+        private void gridComplete_DoubleClick(object sender, EventArgs e)
+        {
+            showDialog(gridComplete);
+        }
+
+        private void gridAll_DoubleClick(object sender, EventArgs e)
+        {
+            showDialog(gridAll);
         }
     }
 }

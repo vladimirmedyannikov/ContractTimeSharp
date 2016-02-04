@@ -122,6 +122,7 @@
             this.gridComplete.Size = new System.Drawing.Size(603, 409);
             this.gridComplete.TabIndex = 2;
             this.gridComplete.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridComplete_CellDoubleClick);
+            this.gridComplete.DoubleClick += new System.EventHandler(this.gridComplete_DoubleClick);
             // 
             // tabAll
             // 
@@ -155,6 +156,7 @@
             this.gridAll.Size = new System.Drawing.Size(603, 409);
             this.gridAll.TabIndex = 3;
             this.gridAll.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAll_CellDoubleClick);
+            this.gridAll.DoubleClick += new System.EventHandler(this.gridAll_DoubleClick);
             // 
             // ResposibleUsers
             // 
