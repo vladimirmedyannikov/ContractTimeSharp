@@ -215,7 +215,7 @@ namespace ContractTimeSharp.Forms
                 error += "Выберите подразделение сотрудника за проект\n";
                 valid = false;
             }
-            if (AdvanceUtil.IsValidEmail(tbEmail.Text))
+            if (!AdvanceUtil.IsValidEmail(tbEmail.Text))
             {
                 error += "Почтовый адрес должен быть формата email@domen.com\n";
                 valid = false;

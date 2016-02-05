@@ -537,5 +537,11 @@ namespace ContractTimeSharp
             DirectoryDepartment form = new DirectoryDepartment();
             form.Show();
         }
+
+        private void mnuPrintAll_Click(object sender, EventArgs e)
+        {
+
+            ReportGenerate.PrintExcelProjects();
+        }
     }
 }

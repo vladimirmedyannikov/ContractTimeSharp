@@ -56,6 +56,7 @@
             this.mnuDeleteStage = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.mnuPrintAll = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -93,36 +94,37 @@
             this.создатьПроектToolStripMenuItem,
             this.редактироватьПроектToolStripMenuItem,
             this.mnuInvestPrint,
-            this.удалитьПоектToolStripMenuItem});
+            this.удалитьПоектToolStripMenuItem,
+            this.mnuPrintAll});
             this.menuInvestProject.Name = "menuInvestProject";
-            this.menuInvestProject.Size = new System.Drawing.Size(196, 92);
+            this.menuInvestProject.Size = new System.Drawing.Size(213, 136);
             this.menuInvestProject.Opening += new System.ComponentModel.CancelEventHandler(this.menuInvestProject_Opening);
             // 
             // создатьПроектToolStripMenuItem
             // 
             this.создатьПроектToolStripMenuItem.Name = "создатьПроектToolStripMenuItem";
-            this.создатьПроектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.создатьПроектToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.создатьПроектToolStripMenuItem.Text = "Создать проект";
             this.создатьПроектToolStripMenuItem.Click += new System.EventHandler(this.insertInvestProjectMenu);
             // 
             // редактироватьПроектToolStripMenuItem
             // 
             this.редактироватьПроектToolStripMenuItem.Name = "редактироватьПроектToolStripMenuItem";
-            this.редактироватьПроектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.редактироватьПроектToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.редактироватьПроектToolStripMenuItem.Text = "Редактировать проект";
             this.редактироватьПроектToolStripMenuItem.Click += new System.EventHandler(this.editInvestProjectMenu);
             // 
             // mnuInvestPrint
             // 
             this.mnuInvestPrint.Name = "mnuInvestPrint";
-            this.mnuInvestPrint.Size = new System.Drawing.Size(195, 22);
+            this.mnuInvestPrint.Size = new System.Drawing.Size(212, 22);
             this.mnuInvestPrint.Text = "Печать проекта";
             this.mnuInvestPrint.Click += new System.EventHandler(this.mnuInvestPrint_Click);
             // 
             // удалитьПоектToolStripMenuItem
             // 
             this.удалитьПоектToolStripMenuItem.Name = "удалитьПоектToolStripMenuItem";
-            this.удалитьПоектToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.удалитьПоектToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.удалитьПоектToolStripMenuItem.Text = "Удалить поект";
             this.удалитьПоектToolStripMenuItem.Click += new System.EventHandler(this.deleteInvestProjectMenu);
             // 
@@ -307,6 +309,13 @@
             this.notifyIcon1.Text = "Инвестиционные проекты\r\n";
             this.notifyIcon1.Visible = true;
             // 
+            // mnuPrintAll
+            // 
+            this.mnuPrintAll.Name = "mnuPrintAll";
+            this.mnuPrintAll.Size = new System.Drawing.Size(212, 22);
+            this.mnuPrintAll.Text = "Распечатать все проекты";
+            this.mnuPrintAll.Click += new System.EventHandler(this.mnuPrintAll_Click);
+            // 
             // DialogGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,6 +368,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuResposibleUsers;
         private System.Windows.Forms.ToolStripMenuItem mnuDateMonitoring;
         private System.Windows.Forms.ToolStripMenuItem mnuDepartment;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintAll;
     }
 }
 
