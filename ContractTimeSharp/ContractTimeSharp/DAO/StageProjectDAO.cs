@@ -1,6 +1,7 @@
 ﻿using ContractTime.Model;
 using ContractTimeSharp.DAO.Factory;
 using ContractTimeSharp.Model;
+using ContractTimeSharp.Utils;
 using FirebirdSql.Data.FirebirdClient;
 using System;
 using System.Collections.Generic;
@@ -37,14 +38,25 @@ namespace ContractTimeSharp.DAO
             }
         }
 
-        public List<StageProject> getByDate(DateTime date)
+        public List<StageProject> getByDate(DateTime date, AdvanceUtil.typeDate typeDate)
         {
             FbConnection connection = null;
             FbCommand statement = null;
-            String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
-                "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
-                "left join user_info u on u.id_user = stage_project.id_user where date_begin_plan = @date";
+            String sql = "";
+            if (typeDate == AdvanceUtil.typeDate.PLAN)
+            {
+                sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
+                    "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
+                    "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
+                    "left join user_info u on u.id_user = stage_project.id_user where date_begin_plan = @date";
+            }
+            else
+            {
+                sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
+                    "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
+                    "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
+                    "left join user_info u on u.id_user = stage_project.id_user where date_begin_prog = @date";
+            }
             List<StageProject> stageProjectList = new List<StageProject>();
             try
             {

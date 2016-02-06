@@ -540,7 +540,6 @@ namespace ContractTimeSharp
 
         private void mnuPrintAll_Click(object sender, EventArgs e)
         {
-
             ReportGenerate.PrintExcelProjects();
         }
     }

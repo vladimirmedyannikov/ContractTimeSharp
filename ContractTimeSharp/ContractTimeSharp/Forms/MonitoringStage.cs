@@ -191,7 +191,11 @@ namespace ContractTimeSharp.Forms
         {
             StageProjectDAO dao = new StageProjectDAO();
             BindingSource source = new BindingSource();
-            listDay = dao.getByDate(dateTimePicker1.Value);
+            if (rbPlan.Checked)
+            {
+                listDay = dao.getByDate(dateTimePicker1.Value, AdvanceUtil.typeDate.PLAN);
+            }
+            else listDay = dao.getByDate(dateTimePicker1.Value, AdvanceUtil.typeDate.PROG);
             source.DataSource = listDay;
             gridProject.DataSource = source;
         }

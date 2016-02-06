@@ -13,6 +13,7 @@ namespace ContractTimeSharp.Utils
         public enum paramStagInsert { SUB, NOSUB };
         public enum typeUser { ADMIN = 1, USER = 0};
         public enum stageStatus {FACT = 1, PLAN = 0, ALL = 3 };
+        public enum typeDate { PLAN = 0, PROG = 1};
 
         private static String smtpHost = Properties.Settings.Default.smtpHost;
         //Порт SMTP-сервера

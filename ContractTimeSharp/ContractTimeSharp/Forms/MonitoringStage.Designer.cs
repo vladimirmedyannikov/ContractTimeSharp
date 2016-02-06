@@ -36,13 +36,16 @@
             this.labelFilter = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.butnShow = new System.Windows.Forms.Button();
+            this.btnSendDay = new System.Windows.Forms.Button();
             this.tabTree = new System.Windows.Forms.TabPage();
             this.treeViewProject = new System.Windows.Forms.TreeView();
             this.treeProject = new Aga.Controls.Tree.TreeViewAdv();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.sendMessage = new System.Windows.Forms.Button();
-            this.btnSendDay = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.rbPlan = new System.Windows.Forms.RadioButton();
+            this.rbProg = new System.Windows.Forms.RadioButton();
             this.tabMonitor.SuspendLayout();
             this.tabDate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProject)).BeginInit();
@@ -50,6 +53,7 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.tabTree.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMonitor
@@ -85,7 +89,7 @@
             this.gridProject.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.gridProject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridProject.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridProject.Location = new System.Drawing.Point(3, 59);
+            this.gridProject.Location = new System.Drawing.Point(3, 68);
             this.gridProject.MultiSelect = false;
             this.gridProject.Name = "gridProject";
             this.gridProject.ReadOnly = true;
@@ -93,7 +97,7 @@
             this.gridProject.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.gridProject.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridProject.ShowEditingIcon = false;
-            this.gridProject.Size = new System.Drawing.Size(1061, 559);
+            this.gridProject.Size = new System.Drawing.Size(1061, 550);
             this.gridProject.TabIndex = 3;
             // 
             // panel1
@@ -102,7 +106,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1061, 56);
+            this.panel1.Size = new System.Drawing.Size(1061, 65);
             this.panel1.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -115,13 +119,14 @@
             this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.butnShow, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnSendDay, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1061, 56);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1061, 65);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // labelFilter
@@ -149,6 +154,16 @@
             this.butnShow.Text = "Показать";
             this.butnShow.UseVisualStyleBackColor = true;
             this.butnShow.Click += new System.EventHandler(this.butnShow_Click);
+            // 
+            // btnSendDay
+            // 
+            this.btnSendDay.Location = new System.Drawing.Point(709, 35);
+            this.btnSendDay.Name = "btnSendDay";
+            this.btnSendDay.Size = new System.Drawing.Size(145, 22);
+            this.btnSendDay.TabIndex = 3;
+            this.btnSendDay.Text = "Отправить уведомления";
+            this.btnSendDay.UseVisualStyleBackColor = true;
+            this.btnSendDay.Click += new System.EventHandler(this.btnSendDay_Click);
             // 
             // tabTree
             // 
@@ -225,15 +240,37 @@
             this.sendMessage.UseVisualStyleBackColor = true;
             this.sendMessage.Click += new System.EventHandler(this.sendMessage_Click);
             // 
-            // btnSendDay
+            // flowLayoutPanel1
             // 
-            this.btnSendDay.Location = new System.Drawing.Point(709, 31);
-            this.btnSendDay.Name = "btnSendDay";
-            this.btnSendDay.Size = new System.Drawing.Size(145, 22);
-            this.btnSendDay.TabIndex = 3;
-            this.btnSendDay.Text = "Отправить уведомления";
-            this.btnSendDay.UseVisualStyleBackColor = true;
-            this.btnSendDay.Click += new System.EventHandler(this.btnSendDay_Click);
+            this.flowLayoutPanel1.Controls.Add(this.rbPlan);
+            this.flowLayoutPanel1.Controls.Add(this.rbProg);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(356, 35);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(347, 27);
+            this.flowLayoutPanel1.TabIndex = 4;
+            // 
+            // rbPlan
+            // 
+            this.rbPlan.AutoSize = true;
+            this.rbPlan.Location = new System.Drawing.Point(3, 3);
+            this.rbPlan.Name = "rbPlan";
+            this.rbPlan.Size = new System.Drawing.Size(51, 17);
+            this.rbPlan.TabIndex = 0;
+            this.rbPlan.TabStop = true;
+            this.rbPlan.Text = "План";
+            this.rbPlan.UseVisualStyleBackColor = true;
+            // 
+            // rbProg
+            // 
+            this.rbProg.AutoSize = true;
+            this.rbProg.Location = new System.Drawing.Point(60, 3);
+            this.rbProg.Name = "rbProg";
+            this.rbProg.Size = new System.Drawing.Size(68, 17);
+            this.rbProg.TabIndex = 1;
+            this.rbProg.TabStop = true;
+            this.rbProg.Text = "Прогноз";
+            this.rbProg.UseVisualStyleBackColor = true;
             // 
             // MonitoringStage
             // 
@@ -252,6 +289,8 @@
             this.tableLayoutPanel1.PerformLayout();
             this.tabTree.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -273,5 +312,8 @@
         private System.Windows.Forms.Button sendMessage;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnSendDay;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.RadioButton rbPlan;
+        private System.Windows.Forms.RadioButton rbProg;
     }
 }
