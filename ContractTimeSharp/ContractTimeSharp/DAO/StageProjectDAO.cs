@@ -48,21 +48,40 @@ namespace ContractTimeSharp.DAO
                 sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                     "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
                     "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
-                    "left join user_info u on u.id_user = stage_project.id_user where date_begin_plan = @date";
+                    "left join user_info u on u.id_user = stage_project.id_user where (date_begin_plan = @date or date_end_plan = @date) and status_stage != @status  ";
             }
-            else
+            else if (typeDate == AdvanceUtil.typeDate.FACT)
             {
                 sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                     "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
                     "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
-                    "left join user_info u on u.id_user = stage_project.id_user where date_begin_prog = @date";
+                    "left join user_info u on u.id_user = stage_project.id_user where (date_begin_prog = @date or date_end_prog = @date) and status_stage != @status";
+            }
+            else if (typeDate == AdvanceUtil.typeDate.DEFAULT)
+            {
+                sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
+                    "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
+                    "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
+                    "left join user_info u on u.id_user = stage_project.id_user where ((date_begin_plan < @date or date_end_plan < @date) or (date_begin_prog < @date or date_end_prog < @date)) and status_stage = @status";
             }
             List<StageProject> stageProjectList = new List<StageProject>();
             try
             {
                 connection = daoFactory.getConnection();
                 statement = new FbCommand(sql, connection);
-                statement.Parameters.Add("@date", date);
+                statement.Parameters.Add("@date", date.ToShortDateString());
+                if (typeDate == AdvanceUtil.typeDate.PLAN)
+                {
+                    statement.Parameters.Add("@status", (int)AdvanceUtil.typeDate.FACT);
+                }
+                else if (typeDate == AdvanceUtil.typeDate.FACT)
+                {
+                    statement.Parameters.Add("@status", (int)AdvanceUtil.typeDate.PLAN);
+                }
+                else if (typeDate == AdvanceUtil.typeDate.DEFAULT)
+                {
+                    statement.Parameters.Add("@status", (int)AdvanceUtil.typeDate.DEFAULT);
+                }
                 FbDataAdapter da = new FbDataAdapter(statement);
                 DataSet result = new DataSet();
                 da.Fill(result);

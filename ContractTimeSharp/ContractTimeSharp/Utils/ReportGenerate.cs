@@ -35,8 +35,8 @@ namespace ContractTimeSharp.Utils
             xlWorkSheet.Cells[4, 6] = "Ответственный";
             xlWorkSheet.Cells[4, 7] = "Начало(план)";
             xlWorkSheet.Cells[4, 8] = "Окончание(план)";
-            xlWorkSheet.Cells[4, 9] = "Начало(план/факт)";
-            xlWorkSheet.Cells[4, 10] = "Окончание(план/факт)";
+            xlWorkSheet.Cells[4, 9] = "Начало(прогноз/факт)";
+            xlWorkSheet.Cells[4, 10] = "Окончание(прогноз/факт)";
             xlWorkSheet.Cells[4, 11] = "Статус";
             xlWorkSheet.Cells[4, 12] = "Начало(прогноз)";
             xlWorkSheet.Cells[4, 13] = "Окончание(прогноз)";
@@ -80,6 +80,8 @@ namespace ContractTimeSharp.Utils
                 xlWorkSheet.Cells[index, 4] = project.nameProject;
                 xlWorkSheet.Cells[index, 12] = project.dateBeginProg;
                 xlWorkSheet.Cells[index, 13] = project.dateEndProg;
+                xlWorkSheet.Cells[index, 7] = project.dateBegin;
+                xlWorkSheet.Cells[index, 8] = project.dateEnd;
                 index++;
                 foreach (StageProject s in project.getProjectList())
                 {
@@ -169,8 +171,8 @@ namespace ContractTimeSharp.Utils
             xlWorkSheet.Cells[4, 6] = "Ответственный";
             xlWorkSheet.Cells[4, 7] = "Начало(план)";
             xlWorkSheet.Cells[4, 8] = "Окончание(план)";
-            xlWorkSheet.Cells[4, 9] = "Начало(план/факт)";
-            xlWorkSheet.Cells[4, 10] = "Окончание(план/факт)";
+            xlWorkSheet.Cells[4, 9] = "Начало(прогноз/факт)";
+            xlWorkSheet.Cells[4, 10] = "Окончание(прогноз/факт)";
             xlWorkSheet.Cells[4, 11] = "Статус";
             xlWorkSheet.Cells[4, 12] = "Начало(прогноз)";
             xlWorkSheet.Cells[4, 13] = "Окончание(прогноз)";
@@ -201,6 +203,8 @@ namespace ContractTimeSharp.Utils
             xlWorkSheet.Cells[index, 4] = project.nameProject;
             xlWorkSheet.Cells[index, 12] = project.dateBeginProg;
             xlWorkSheet.Cells[index, 13] = project.dateEndProg;
+            xlWorkSheet.Cells[index, 7] = project.dateBegin;
+            xlWorkSheet.Cells[index, 8] = project.dateEnd;
             index++;
             foreach (StageProject s in project.getProjectList())
             {

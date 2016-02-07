@@ -79,7 +79,14 @@ namespace ContractTimeSharp.Forms
                     dateBeginProg.Value = stage.DateBeginProg< dateBeginProg.MinDate ? stage.DateBeginPlan : stage.DateBeginProg;
                     dateEndProg.Value = stage.DateEndProg < dateEndProg.MinDate ? stage.DateEndPlan : stage.DateEndProg;
                     textBoxAbout.Text = stage.CommentUser;
-                    comboBoxStatus.SelectedIndex = stage.StatusStage == 0 ? 0 : 1;
+                    if (stage.StatusStage == (int)AdvanceUtil.stageStatus.FACT)
+                    {
+                        comboBoxStatus.SelectedIndex = 1;
+                    }
+                    else
+                    {
+                        comboBoxStatus.SelectedIndex = 0;
+                    }
                 }
                 else
                 {
@@ -121,7 +128,19 @@ namespace ContractTimeSharp.Forms
 
                 stageProject.CommentUser = textBoxAbout.Text;
                 stageProject.IdProject = idProject;
-                stageProject.StatusStage = comboBoxStatus.SelectedIndex;
+
+                if (comboBoxStatus.SelectedIndex == 0 && userMode)
+                {
+                    stageProject.StatusStage = (int)AdvanceUtil.stageStatus.PLAN;
+                }
+                else if (comboBoxStatus.SelectedIndex == 1 && userMode)
+                {
+                    stageProject.StatusStage = (int)AdvanceUtil.stageStatus.FACT;
+                }
+                else if (comboBoxStatus.SelectedIndex == -1)
+                {
+                    stageProject.StatusStage = (int)AdvanceUtil.stageStatus.DEFAULT;
+                }
 
                 if (paramInsert == AdvanceUtil.paramStagInsert.SUB)
                 {
@@ -131,10 +150,12 @@ namespace ContractTimeSharp.Forms
                 
                 if (stageProject.IdStage != 0 && paramInsert != AdvanceUtil.paramStagInsert.SUB)
                 {
+                    //if (!userMode) stageProject.StatusStage = (int)AdvanceUtil.stageStatus.DEFAULT;
                     dao.update(stageProject);
                 }
                 else
                 {
+                    stageProject.StatusStage = (int)AdvanceUtil.stageStatus.DEFAULT;
                     dao.insert(stageProject);
                 }
                 this.Close();
@@ -174,11 +195,15 @@ namespace ContractTimeSharp.Forms
 
             if (userMode)
             {
-                if (textBoxAbout.Text.Trim().Length < 5 && comboBoxStatus.SelectedIndex == 0)
+                if ((dateBeginUser.Checked && dateBegin.Value.CompareTo(dateBeginUser.Value) < 0) || (dateEndUser.Checked && dateEnd.Value.CompareTo(dateEndUser.Value) < 0))
                 {
-                    error += "Необходимо ввести комментарий\n";
-                    valid = false;
+                    if (textBoxAbout.Text.Trim().Length < 5)
+                    {
+                        error += "Необходимо ввести комментарий\n";
+                        valid = false;
+                    }
                 }
+
                 if (!dateBeginUser.Checked && !dateEndUser.Checked)
                 {
                     error += "Необходимо ввести минимум одну дату\n";

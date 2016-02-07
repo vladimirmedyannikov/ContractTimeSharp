@@ -37,23 +37,24 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.butnShow = new System.Windows.Forms.Button();
             this.btnSendDay = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.rbPlan = new System.Windows.Forms.RadioButton();
+            this.rbProg = new System.Windows.Forms.RadioButton();
             this.tabTree = new System.Windows.Forms.TabPage();
             this.treeViewProject = new System.Windows.Forms.TreeView();
             this.treeProject = new Aga.Controls.Tree.TreeViewAdv();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.sendMessage = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.rbPlan = new System.Windows.Forms.RadioButton();
-            this.rbProg = new System.Windows.Forms.RadioButton();
+            this.rbNot = new System.Windows.Forms.RadioButton();
             this.tabMonitor.SuspendLayout();
             this.tabDate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProject)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.tabTree.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMonitor
@@ -165,6 +166,39 @@
             this.btnSendDay.UseVisualStyleBackColor = true;
             this.btnSendDay.Click += new System.EventHandler(this.btnSendDay_Click);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.rbPlan);
+            this.flowLayoutPanel1.Controls.Add(this.rbProg);
+            this.flowLayoutPanel1.Controls.Add(this.rbNot);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(356, 35);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(347, 27);
+            this.flowLayoutPanel1.TabIndex = 4;
+            // 
+            // rbPlan
+            // 
+            this.rbPlan.AutoSize = true;
+            this.rbPlan.Checked = true;
+            this.rbPlan.Location = new System.Drawing.Point(3, 3);
+            this.rbPlan.Name = "rbPlan";
+            this.rbPlan.Size = new System.Drawing.Size(51, 17);
+            this.rbPlan.TabIndex = 0;
+            this.rbPlan.TabStop = true;
+            this.rbPlan.Text = "План";
+            this.rbPlan.UseVisualStyleBackColor = true;
+            // 
+            // rbProg
+            // 
+            this.rbProg.AutoSize = true;
+            this.rbProg.Location = new System.Drawing.Point(60, 3);
+            this.rbProg.Name = "rbProg";
+            this.rbProg.Size = new System.Drawing.Size(68, 17);
+            this.rbProg.TabIndex = 1;
+            this.rbProg.Text = "Прогноз";
+            this.rbProg.UseVisualStyleBackColor = true;
+            // 
             // tabTree
             // 
             this.tabTree.Controls.Add(this.treeViewProject);
@@ -240,37 +274,16 @@
             this.sendMessage.UseVisualStyleBackColor = true;
             this.sendMessage.Click += new System.EventHandler(this.sendMessage_Click);
             // 
-            // flowLayoutPanel1
+            // rbNot
             // 
-            this.flowLayoutPanel1.Controls.Add(this.rbPlan);
-            this.flowLayoutPanel1.Controls.Add(this.rbProg);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(356, 35);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(347, 27);
-            this.flowLayoutPanel1.TabIndex = 4;
-            // 
-            // rbPlan
-            // 
-            this.rbPlan.AutoSize = true;
-            this.rbPlan.Location = new System.Drawing.Point(3, 3);
-            this.rbPlan.Name = "rbPlan";
-            this.rbPlan.Size = new System.Drawing.Size(51, 17);
-            this.rbPlan.TabIndex = 0;
-            this.rbPlan.TabStop = true;
-            this.rbPlan.Text = "План";
-            this.rbPlan.UseVisualStyleBackColor = true;
-            // 
-            // rbProg
-            // 
-            this.rbProg.AutoSize = true;
-            this.rbProg.Location = new System.Drawing.Point(60, 3);
-            this.rbProg.Name = "rbProg";
-            this.rbProg.Size = new System.Drawing.Size(68, 17);
-            this.rbProg.TabIndex = 1;
-            this.rbProg.TabStop = true;
-            this.rbProg.Text = "Прогноз";
-            this.rbProg.UseVisualStyleBackColor = true;
+            this.rbNot.AutoSize = true;
+            this.rbNot.Location = new System.Drawing.Point(134, 3);
+            this.rbNot.Name = "rbNot";
+            this.rbNot.Size = new System.Drawing.Size(100, 17);
+            this.rbNot.TabIndex = 2;
+            this.rbNot.TabStop = true;
+            this.rbNot.Text = "Просроченные";
+            this.rbNot.UseVisualStyleBackColor = true;
             // 
             // MonitoringStage
             // 
@@ -287,10 +300,10 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.tabTree.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            this.tabTree.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -315,5 +328,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.RadioButton rbPlan;
         private System.Windows.Forms.RadioButton rbProg;
+        private System.Windows.Forms.RadioButton rbNot;
     }
 }

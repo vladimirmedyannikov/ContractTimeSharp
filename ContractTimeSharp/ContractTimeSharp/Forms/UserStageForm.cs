@@ -1,6 +1,7 @@
 ﻿using ContractTime.Model;
 using ContractTimeSharp.DAO;
 using ContractTimeSharp.Model;
+using ContractTimeSharp.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,11 +53,11 @@ namespace ContractTimeSharp.Forms
             gridPrepare(gridNotComplete);
             BindingSource sourceNotComplete = new BindingSource();
             List<StageProject> stageList = new StageProjectDAO().getByUser(u);
-            sourceNotComplete.DataSource = stageList.Where(x => x.StatusStage == 0).ToList();
+            sourceNotComplete.DataSource = stageList.Where(x => (x.StatusStage == (int)AdvanceUtil.stageStatus.PLAN) || (x.StatusStage == (int)AdvanceUtil.stageStatus.DEFAULT)).ToList();
             gridNotComplete.DataSource = sourceNotComplete;
             
             BindingSource sourceComplete = new BindingSource();
-            sourceComplete.DataSource = stageList.Where(x => x.StatusStage == 1).ToList();
+            sourceComplete.DataSource = stageList.Where(x => x.StatusStage == (int)AdvanceUtil.stageStatus.FACT).ToList();
             gridComplete.DataSource = sourceComplete;
         }
 

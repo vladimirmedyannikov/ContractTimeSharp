@@ -195,7 +195,13 @@ namespace ContractTimeSharp.Forms
             {
                 listDay = dao.getByDate(dateTimePicker1.Value, AdvanceUtil.typeDate.PLAN);
             }
-            else listDay = dao.getByDate(dateTimePicker1.Value, AdvanceUtil.typeDate.PROG);
+            else if (rbProg.Checked)
+            {
+                listDay = dao.getByDate(dateTimePicker1.Value, AdvanceUtil.typeDate.FACT);
+            }
+            else if (rbNot.Checked){
+                listDay = dao.getByDate(dateTimePicker1.Value, AdvanceUtil.typeDate.DEFAULT);
+            }
             source.DataSource = listDay;
             gridProject.DataSource = source;
         }

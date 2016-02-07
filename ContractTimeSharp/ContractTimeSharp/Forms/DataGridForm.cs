@@ -218,6 +218,10 @@ namespace ContractTimeSharp
                     bindingSource.MoveNext();
                     bindingSource.MoveFirst();
                 }
+                if (bindingSource.Count == 1)
+                {
+                    updateStageProject();
+                }
                 //dataGridInvestProject.Rows[1].Selected = true;
             }
         }

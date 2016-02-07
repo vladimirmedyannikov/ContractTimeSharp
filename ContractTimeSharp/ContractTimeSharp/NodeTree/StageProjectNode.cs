@@ -1,5 +1,6 @@
 ﻿using Aga.Controls.Tree;
 using ContractTimeSharp.Model;
+using ContractTimeSharp.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace ContractTimeSharp.NodeTree
             DateBeginUser =  (dateBeginUser.Equals("01.01.0001")) ? "" : dateBeginUser;
             DateEndUser = (dateEndUser.Equals("01.01.0001")) ? "" : dateEndUser;
             User = user;
-            Status = (status.Equals("1") == true) ? "Факт" : "План" ;
+            Status = (status.Equals(((int)AdvanceUtil.stageStatus.FACT).ToString()) == true) ? "Факт" : "Прогноз" ;
             
         }
 

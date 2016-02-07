@@ -316,7 +316,7 @@ namespace ContractTimeSharp.DAO
             FbConnection connection = null;
             FbCommand statement = null;
             String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user, post from user_info u " +
-                " left join depts on depts.dept_id = u.id_dept where login = @login and password = @password";
+                " left join depts on depts.dept_id = u.id_dept where lower(login) = lower(@login) and password = @password";
             String sqlLog = "execute procedure insert_log(@type, @id_user, @date)";
             User user = null;
             try

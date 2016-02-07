@@ -1,4 +1,5 @@
 ﻿using ContractTime.Model;
+using ContractTimeSharp.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,8 +97,17 @@ namespace ContractTimeSharp.Model
 
         public String StatusStageStr
         {
-            get { if (statusStage == 1) return "Факт"; else return "Прогнозируемая"; }
+            get
+            {
+                if (statusStage == (int)AdvanceUtil.stageStatus.FACT)
+                {
+                    return "Факт";
+                }
+                else
+                    return "Прогноз";
+            }
         }
+   
         public String CommentUser {
             get { return commentUser; }
             set { commentUser = value; }
