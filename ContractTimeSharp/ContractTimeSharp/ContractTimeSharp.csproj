@@ -118,6 +118,12 @@
     <Compile Include="Forms\Directory\DirectoryDepartment.Designer.cs">
       <DependentUpon>DirectoryDepartment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LogForm.Designer.cs">
+      <DependentUpon>LogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MonitoringStage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,12 @@
     <Compile Include="Utils\KeyValuePair.cs" />
     <Compile Include="Utils\ParametersApp.cs" />
     <Compile Include="Utils\ReportGenerate.cs" />
+    <Compile Include="Utils\SearchGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\SearchGrid.Designer.cs">
+      <DependentUpon>SearchGrid.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Directory\DirectoryDepartment.resx">
       <DependentUpon>DirectoryDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogForm.resx">
+      <DependentUpon>LogForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MonitoringStage.resx">
       <DependentUpon>MonitoringStage.cs</DependentUpon>
@@ -201,6 +216,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Utils\SearchGrid.resx">
+      <DependentUpon>SearchGrid.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

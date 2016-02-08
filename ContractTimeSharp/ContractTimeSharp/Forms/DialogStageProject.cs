@@ -70,22 +70,37 @@ namespace ContractTimeSharp.Forms
                     dateBegin.Value = stage.DateBeginPlan;
                     dateEnd.Value = stage.DateEndPlan;
 
-                    dateBeginUser.Checked = true;
-                    dateEndUser.Checked = true;
+                    
 
-                    dateBeginUser.Value = stage.DateBeginUser < dateBeginUser.MinDate ?  stage.DateBeginPlan : stage.DateBeginUser;
+                    dateBeginUser.Value = stage.DateBeginUser < dateBeginUser.MinDate ? stage.DateBeginPlan : stage.DateBeginUser;
                     dateEndUser.Value = stage.DateEndUser < dateEndUser.MinDate ? stage.DateEndPlan : stage.DateEndUser;
 
-                    dateBeginProg.Value = stage.DateBeginProg< dateBeginProg.MinDate ? stage.DateBeginPlan : stage.DateBeginProg;
+                    dateBeginProg.Value = stage.DateBeginProg < dateBeginProg.MinDate ? stage.DateBeginPlan : stage.DateBeginProg;
                     dateEndProg.Value = stage.DateEndProg < dateEndProg.MinDate ? stage.DateEndPlan : stage.DateEndProg;
                     textBoxAbout.Text = stage.CommentUser;
+
                     if (stage.StatusStage == (int)AdvanceUtil.stageStatus.FACT)
                     {
                         comboBoxStatus.SelectedIndex = 1;
                     }
-                    else
+                    else if (stage.StatusStage == (int)AdvanceUtil.stageStatus.PLAN)
                     {
                         comboBoxStatus.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        comboBoxStatus.SelectedIndex = -1;
+                    }
+                    if (userMode)
+                    {
+                        dateBeginUser.Checked = true;
+                        dateEndUser.Checked = true;
+
+                    }
+                    else
+                    {
+                        dateBeginUser.Checked = false;
+                        dateEndUser.Checked = false;
                     }
                 }
                 else

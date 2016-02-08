@@ -126,9 +126,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.Location = new System.Drawing.Point(13, 232);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(101, 37);
+            this.label5.Size = new System.Drawing.Size(119, 37);
             this.label5.TabIndex = 8;
             this.label5.Text = "Начало (ответств.)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -167,9 +168,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(13, 269);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 37);
+            this.label6.Size = new System.Drawing.Size(84, 37);
             this.label6.TabIndex = 10;
             this.label6.Text = "Завершение (ответств.)";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -223,9 +225,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label9.Location = new System.Drawing.Point(13, 380);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(77, 37);
+            this.label9.Size = new System.Drawing.Size(88, 37);
             this.label9.TabIndex = 16;
             this.label9.Text = "Комментарий";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

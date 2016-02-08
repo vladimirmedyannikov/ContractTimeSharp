@@ -261,5 +261,14 @@ namespace ContractTimeSharp.Forms
             bookMark = gridUsers.CurrentRow.Index;
             scrollIndex = gridUsers.FirstDisplayedScrollingRowIndex;
         }
+
+        private void gridUsers_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F && e.Modifiers == Keys.Control)
+            {
+                SearchGrid form = new SearchGrid(gridUsers);
+                form.ShowDialog();
+            }
+        }
     }
 }

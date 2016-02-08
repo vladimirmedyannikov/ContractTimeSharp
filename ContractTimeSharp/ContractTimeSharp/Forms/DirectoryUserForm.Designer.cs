@@ -364,6 +364,7 @@
             this.gridUsers.Size = new System.Drawing.Size(645, 615);
             this.gridUsers.TabIndex = 1;
             this.gridUsers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsers_CellDoubleClick);
+            this.gridUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridUsers_KeyDown);
             // 
             // menuStrip1
             // 

@@ -193,5 +193,14 @@ namespace ContractTimeSharp.Forms.Directory
 
             return valid;
         }
+
+        private void gridDepartment_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F && e.Modifiers == Keys.Control)
+            {
+                SearchGrid form = new SearchGrid(gridDepartment);
+                form.ShowDialog();
+            }
+        }
     }
 }

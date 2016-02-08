@@ -426,5 +426,14 @@ namespace ContractTimeSharp.Forms
                 }
             }
         }
+
+        private void gridProject_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F && e.Modifiers == Keys.Control)
+            {
+                SearchGrid form = new SearchGrid(gridProject);
+                form.ShowDialog();
+            }
+        }
     }
 }

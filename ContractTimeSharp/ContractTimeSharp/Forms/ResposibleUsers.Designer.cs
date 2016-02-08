@@ -89,6 +89,7 @@
             this.gridNotComplete.TabIndex = 1;
             this.gridNotComplete.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotComplete_CellDoubleClick);
             this.gridNotComplete.DoubleClick += new System.EventHandler(this.gridNotComplete_DoubleClick);
+            this.gridNotComplete.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridNotComplete_KeyDown);
             // 
             // tabComplete
             // 
@@ -123,6 +124,7 @@
             this.gridComplete.TabIndex = 2;
             this.gridComplete.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridComplete_CellDoubleClick);
             this.gridComplete.DoubleClick += new System.EventHandler(this.gridComplete_DoubleClick);
+            this.gridComplete.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridComplete_KeyDown);
             // 
             // tabAll
             // 
@@ -157,6 +159,7 @@
             this.gridAll.TabIndex = 3;
             this.gridAll.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAll_CellDoubleClick);
             this.gridAll.DoubleClick += new System.EventHandler(this.gridAll_DoubleClick);
+            this.gridAll.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridAll_KeyDown);
             // 
             // ResposibleUsers
             // 

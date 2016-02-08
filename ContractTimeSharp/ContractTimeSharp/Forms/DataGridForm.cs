@@ -525,7 +525,7 @@ namespace ContractTimeSharp
         private void mnuResposibleUsers_Click(object sender, EventArgs e)
         {
             ResposibleUsers usersForm = new ResposibleUsers();
-            usersForm.Show();
+            usersForm.ShowDialog();
         }
 
 
@@ -533,18 +533,28 @@ namespace ContractTimeSharp
         private void mnuDateMonitoring_Click(object sender, EventArgs e)
         {
             MonitoringStage form = new MonitoringStage();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void mnuDepartment_Click(object sender, EventArgs e)
         {
             DirectoryDepartment form = new DirectoryDepartment();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void mnuPrintAll_Click(object sender, EventArgs e)
         {
             ReportGenerate.PrintExcelProjects();
+        }
+
+        private void dataGridInvestProject_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F && e.Modifiers == Keys.Control)
+            {
+                SearchGrid form = new SearchGrid(dataGridInvestProject);
+                form.ShowDialog();
+            }
+
         }
     }
 }

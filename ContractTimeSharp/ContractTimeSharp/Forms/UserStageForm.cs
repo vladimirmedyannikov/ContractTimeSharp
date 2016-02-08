@@ -104,5 +104,23 @@ namespace ContractTimeSharp.Forms
                 dialog.ShowDialog();
             }
         }
+
+        private void gridNotComplete_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F && e.Modifiers == Keys.Control)
+            {
+                SearchGrid form = new SearchGrid(gridNotComplete);
+                form.ShowDialog();
+            }
+        }
+
+        private void gridComplete_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F && e.Modifiers == Keys.Control)
+            {
+                SearchGrid form = new SearchGrid(gridComplete);
+                form.ShowDialog();
+            }
+        }
     }
 }

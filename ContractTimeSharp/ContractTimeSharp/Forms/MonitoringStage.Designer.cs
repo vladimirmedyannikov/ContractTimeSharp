@@ -40,13 +40,13 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.rbPlan = new System.Windows.Forms.RadioButton();
             this.rbProg = new System.Windows.Forms.RadioButton();
+            this.rbNot = new System.Windows.Forms.RadioButton();
             this.tabTree = new System.Windows.Forms.TabPage();
             this.treeViewProject = new System.Windows.Forms.TreeView();
             this.treeProject = new Aga.Controls.Tree.TreeViewAdv();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.sendMessage = new System.Windows.Forms.Button();
-            this.rbNot = new System.Windows.Forms.RadioButton();
             this.tabMonitor.SuspendLayout();
             this.tabDate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProject)).BeginInit();
@@ -100,6 +100,7 @@
             this.gridProject.ShowEditingIcon = false;
             this.gridProject.Size = new System.Drawing.Size(1061, 550);
             this.gridProject.TabIndex = 3;
+            this.gridProject.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridProject_KeyDown);
             // 
             // panel1
             // 
@@ -199,6 +200,17 @@
             this.rbProg.Text = "Прогноз";
             this.rbProg.UseVisualStyleBackColor = true;
             // 
+            // rbNot
+            // 
+            this.rbNot.AutoSize = true;
+            this.rbNot.Location = new System.Drawing.Point(134, 3);
+            this.rbNot.Name = "rbNot";
+            this.rbNot.Size = new System.Drawing.Size(100, 17);
+            this.rbNot.TabIndex = 2;
+            this.rbNot.TabStop = true;
+            this.rbNot.Text = "Просроченные";
+            this.rbNot.UseVisualStyleBackColor = true;
+            // 
             // tabTree
             // 
             this.tabTree.Controls.Add(this.treeViewProject);
@@ -273,17 +285,6 @@
             this.sendMessage.Text = "Отправить письма";
             this.sendMessage.UseVisualStyleBackColor = true;
             this.sendMessage.Click += new System.EventHandler(this.sendMessage_Click);
-            // 
-            // rbNot
-            // 
-            this.rbNot.AutoSize = true;
-            this.rbNot.Location = new System.Drawing.Point(134, 3);
-            this.rbNot.Name = "rbNot";
-            this.rbNot.Size = new System.Drawing.Size(100, 17);
-            this.rbNot.TabIndex = 2;
-            this.rbNot.TabStop = true;
-            this.rbNot.Text = "Просроченные";
-            this.rbNot.UseVisualStyleBackColor = true;
             // 
             // MonitoringStage
             // 

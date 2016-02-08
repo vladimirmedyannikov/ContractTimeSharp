@@ -1,6 +1,7 @@
 ﻿using ContractTime.Model;
 using ContractTimeSharp.DAO;
 using ContractTimeSharp.Model;
+using ContractTimeSharp.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -112,6 +113,33 @@ namespace ContractTimeSharp.Forms
         private void gridAll_DoubleClick(object sender, EventArgs e)
         {
             showDialog(gridAll);
+        }
+
+        private void gridNotComplete_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F && e.Modifiers == Keys.Control)
+            {
+                SearchGrid form = new SearchGrid(gridNotComplete);
+                form.ShowDialog();
+            }
+        }
+
+        private void gridComplete_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F && e.Modifiers == Keys.Control)
+            {
+                SearchGrid form = new SearchGrid(gridComplete);
+                form.ShowDialog();
+            }
+        }
+
+        private void gridAll_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F && e.Modifiers == Keys.Control)
+            {
+                SearchGrid form = new SearchGrid(gridAll);
+                form.ShowDialog();
+            }
         }
     }
 }

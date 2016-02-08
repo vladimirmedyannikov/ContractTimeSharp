@@ -187,6 +187,7 @@
             this.gridNotComplete.Size = new System.Drawing.Size(628, 333);
             this.gridNotComplete.TabIndex = 1;
             this.gridNotComplete.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridNotComplete_CellDoubleClick);
+            this.gridNotComplete.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridNotComplete_KeyDown);
             // 
             // tabComplete
             // 
@@ -220,6 +221,7 @@
             this.gridComplete.Size = new System.Drawing.Size(628, 333);
             this.gridComplete.TabIndex = 2;
             this.gridComplete.DoubleClick += new System.EventHandler(this.gridComplete_DoubleClick);
+            this.gridComplete.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridComplete_KeyDown);
             // 
             // UserStageForm
             // 

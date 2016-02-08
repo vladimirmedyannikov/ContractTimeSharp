@@ -35,6 +35,7 @@
             this.редактироватьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInvestPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьПоектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintAll = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuContract = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMyTask = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,6 @@
             this.mnuDeleteStage = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.mnuPrintAll = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -87,6 +87,7 @@
             this.dataGridInvestProject.Size = new System.Drawing.Size(870, 227);
             this.dataGridInvestProject.TabIndex = 0;
             this.dataGridInvestProject.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInvestProject_CellContentClick);
+            this.dataGridInvestProject.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridInvestProject_KeyDown);
             // 
             // menuInvestProject
             // 
@@ -97,7 +98,7 @@
             this.удалитьПоектToolStripMenuItem,
             this.mnuPrintAll});
             this.menuInvestProject.Name = "menuInvestProject";
-            this.menuInvestProject.Size = new System.Drawing.Size(213, 136);
+            this.menuInvestProject.Size = new System.Drawing.Size(213, 114);
             this.menuInvestProject.Opening += new System.ComponentModel.CancelEventHandler(this.menuInvestProject_Opening);
             // 
             // создатьПроектToolStripMenuItem
@@ -127,6 +128,13 @@
             this.удалитьПоектToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.удалитьПоектToolStripMenuItem.Text = "Удалить поект";
             this.удалитьПоектToolStripMenuItem.Click += new System.EventHandler(this.deleteInvestProjectMenu);
+            // 
+            // mnuPrintAll
+            // 
+            this.mnuPrintAll.Name = "mnuPrintAll";
+            this.mnuPrintAll.Size = new System.Drawing.Size(212, 22);
+            this.mnuPrintAll.Text = "Распечатать все проекты";
+            this.mnuPrintAll.Click += new System.EventHandler(this.mnuPrintAll_Click);
             // 
             // menuStrip1
             // 
@@ -308,13 +316,6 @@
             this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon1.Text = "Инвестиционные проекты\r\n";
             this.notifyIcon1.Visible = true;
-            // 
-            // mnuPrintAll
-            // 
-            this.mnuPrintAll.Name = "mnuPrintAll";
-            this.mnuPrintAll.Size = new System.Drawing.Size(212, 22);
-            this.mnuPrintAll.Text = "Распечатать все проекты";
-            this.mnuPrintAll.Click += new System.EventHandler(this.mnuPrintAll_Click);
             // 
             // DialogGridForm
             // 

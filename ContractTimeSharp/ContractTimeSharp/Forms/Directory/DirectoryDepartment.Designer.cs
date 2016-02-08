@@ -126,6 +126,7 @@
             this.gridDepartment.ShowEditingIcon = false;
             this.gridDepartment.Size = new System.Drawing.Size(772, 535);
             this.gridDepartment.TabIndex = 1;
+            this.gridDepartment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridDepartment_KeyDown);
             // 
             // btnClose
             // 

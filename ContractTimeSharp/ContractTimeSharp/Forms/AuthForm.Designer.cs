@@ -76,7 +76,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(55, 117);
+            this.btnOk.Location = new System.Drawing.Point(64, 117);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 4;
@@ -86,35 +86,37 @@
             // 
             // textPassword
             // 
-            this.textPassword.Location = new System.Drawing.Point(55, 79);
+            this.textPassword.Location = new System.Drawing.Point(64, 79);
             this.textPassword.Name = "textPassword";
-            this.textPassword.Size = new System.Drawing.Size(205, 20);
+            this.textPassword.Size = new System.Drawing.Size(196, 20);
             this.textPassword.TabIndex = 3;
             this.textPassword.UseSystemPasswordChar = true;
             this.textPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textPassword_KeyDown);
             // 
             // textLogin
             // 
-            this.textLogin.Location = new System.Drawing.Point(55, 53);
+            this.textLogin.Location = new System.Drawing.Point(64, 53);
             this.textLogin.Name = "textLogin";
-            this.textLogin.Size = new System.Drawing.Size(205, 20);
+            this.textLogin.Size = new System.Drawing.Size(196, 20);
             this.textLogin.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(7, 86);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Пароль";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(7, 56);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Логин";
             // 

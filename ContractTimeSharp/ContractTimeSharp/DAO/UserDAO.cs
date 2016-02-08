@@ -61,7 +61,7 @@ namespace ContractTimeSharp.DAO
             FbConnection connection = null;
             FbCommand statment = null;
             String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user, post, password from user_info u " +
-                " left join depts on depts.dept_id = u.id_dept order by f_name, l_name, p_name";
+                " left join depts on depts.dept_id = u.id_dept order by l_name, f_name, p_name";
             List<User> userList = new List<User>();
             try
             {
@@ -239,7 +239,7 @@ namespace ContractTimeSharp.DAO
                 connection = daoFactory.getConnection();
                 connection.Open();
                 transaction = connection.BeginTransaction();
-                statement = new FbCommand(sql, connection);
+                statement = new FbCommand(sql, connection, transaction);
 
                 statement.Parameters.Add("@first_name", user.FirstName);
                 statement.Parameters.Add("@second_name", user.SecondName);
@@ -282,8 +282,8 @@ namespace ContractTimeSharp.DAO
             {
                 connection = daoFactory.getConnection();
                 connection.Open();
-                //transaction = connection.BeginTransaction();
-                statement = new FbCommand(sql, connection);
+                transaction = connection.BeginTransaction();
+                statement = new FbCommand(sql, connection, transaction);
 
                 statement.Parameters.Add("@id_user", user.Id);
                 statement.Parameters.Add("@first_name", user.FirstName);
@@ -303,6 +303,7 @@ namespace ContractTimeSharp.DAO
             }
             catch (Exception e)
             {
+                transaction.Rollback();
                 throw new DAOException("Update User error ", e);
             }
             finally
@@ -316,7 +317,7 @@ namespace ContractTimeSharp.DAO
             FbConnection connection = null;
             FbCommand statement = null;
             String sql = "Select id_user, id_dept, u.date_in, u.date_out, l_name, f_name, p_name, login, e_mail, sent_message, sent_date, dept_name, dept_id, type_user, post from user_info u " +
-                " left join depts on depts.dept_id = u.id_dept where lower(login) = lower(@login) and password = @password";
+                " left join depts on depts.dept_id = u.id_dept where lower(login) = @login and password = @password";
             String sqlLog = "execute procedure insert_log(@type, @id_user, @date)";
             User user = null;
             try
@@ -324,7 +325,7 @@ namespace ContractTimeSharp.DAO
                 connection = daoFactory.getConnection();
                 connection.Open();
                 statement = new FbCommand(sql, connection);
-                statement.Parameters.Add("@login", login);
+                statement.Parameters.Add("@login", login.ToLower());
                 statement.Parameters.Add("@password", hashPass);
                 FbDataAdapter da = new FbDataAdapter(statement);
                 DataSet result = new DataSet();

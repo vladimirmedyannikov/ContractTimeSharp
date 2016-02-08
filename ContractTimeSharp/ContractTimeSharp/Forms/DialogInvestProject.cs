@@ -51,6 +51,7 @@ namespace ContractTimeSharp.Forms
                 Project.dateBegin = dateBeginPlan.Value;
                 Project.dateEnd = dateEndPlan.Value;
                 Project.dateBeginProg = dateBeginProg.Value;
+                Project.aboutProject = textBoxAbout.Text;
                 Project.dateEndProg = dateEndProg.Value;
                 UserDAO daoUser = new UserDAO();
                 DepartmentDAO daoDepartment = new DepartmentDAO();

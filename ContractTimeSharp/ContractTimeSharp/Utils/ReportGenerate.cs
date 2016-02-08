@@ -82,6 +82,7 @@ namespace ContractTimeSharp.Utils
                 xlWorkSheet.Cells[index, 13] = project.dateEndProg;
                 xlWorkSheet.Cells[index, 7] = project.dateBegin;
                 xlWorkSheet.Cells[index, 8] = project.dateEnd;
+                xlWorkSheet.Range[xlWorkSheet.Cells[index, 2], xlWorkSheet.Cells[index, 14]].Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Gray);
                 index++;
                 foreach (StageProject s in project.getProjectList())
                 {
@@ -205,6 +206,7 @@ namespace ContractTimeSharp.Utils
             xlWorkSheet.Cells[index, 13] = project.dateEndProg;
             xlWorkSheet.Cells[index, 7] = project.dateBegin;
             xlWorkSheet.Cells[index, 8] = project.dateEnd;
+            
             index++;
             foreach (StageProject s in project.getProjectList())
             {
