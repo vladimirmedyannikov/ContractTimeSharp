@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ContractTime.Model
 {
-    class InvestProject
+    public class InvestProject
     {
         public int idProject {get;set;}
         public String nameProject { get; set; }

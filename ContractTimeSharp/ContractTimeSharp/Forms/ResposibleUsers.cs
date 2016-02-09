@@ -21,6 +21,7 @@ namespace ContractTimeSharp.Forms
             initializeColumn(gridNotComplete);
             initializeColumn(gridAll);
             initializeColumn(gridComplete);
+            initializeColumn(gridDefault);
             initializateData();
         }
 
@@ -72,6 +73,11 @@ namespace ContractTimeSharp.Forms
             BindingSource sourceFact = new BindingSource();
             sourceFact.DataSource = listFact;
             gridComplete.DataSource = sourceFact;
+
+            List<User> listDefault = dao.getUsersResponsible(Utils.AdvanceUtil.stageStatus.DEFAULT);
+            BindingSource sourceDefault = new BindingSource();
+            sourceDefault.DataSource = listDefault;
+            gridDefault.DataSource = sourceDefault;
 
             //listStage.Select(user => user.User).ToList(); 
         }
@@ -140,6 +146,11 @@ namespace ContractTimeSharp.Forms
                 SearchGrid form = new SearchGrid(gridAll);
                 form.ShowDialog();
             }
+        }
+
+        private void gridDefault_DoubleClick(object sender, EventArgs e)
+        {
+            showDialog(gridDefault);
         }
     }
 }

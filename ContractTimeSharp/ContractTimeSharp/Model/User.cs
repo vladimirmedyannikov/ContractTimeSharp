@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ContractTime.Model
 {
-    public class User
+    public class User : IEquatable<User>
     {
         private int id;
         private int typeUser;
@@ -102,6 +102,11 @@ namespace ContractTime.Model
                 return this.id == ((User)obj).id;
             }
             else return false;
+        }
+
+        public bool Equals(User other)
+        {
+            return this.id == other.id;
         }
     }
 }

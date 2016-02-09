@@ -556,5 +556,39 @@ namespace ContractTimeSharp
             }
 
         }
+
+        private List<StageProject> getCurrentStageList()
+        {
+            List<StageProject> stageList = new List<StageProject>();
+            TreeModel model = (TreeModel)treeViewAdv1.Model;
+            if (model != null && treeViewAdv1.SelectedNode != null)
+            {
+                if (treeViewAdv1.SelectedNode.Parent.Index >= 0)
+                {
+                    foreach (StageProjectNode node in model.Nodes[treeViewAdv1.SelectedNode.Parent.Index].Nodes)
+                    {
+                        stageList.Add(node.stage);
+                    }
+                    //stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Parent.Index].Nodes[treeViewAdv1.SelectedNode.Index]).stage;
+                }
+                else
+                {
+                    foreach (StageProjectNode node in model.Nodes)
+                    {
+                        stageList.Add(node.stage);
+                    }
+                    //stage = ((StageProjectNode)model.Nodes[treeViewAdv1.SelectedNode.Index]).stage;
+                }
+            }
+            return stageList;
+        }
+
+        private void mnuChangeIndex_Click(object sender, EventArgs e)
+        {
+            generateBookMark();
+            ChangeInnerIndexStage form = new ChangeInnerIndexStage(getCurrentStageList());
+            form.ShowDialog();
+            initializationInvestProject();
+        }
     }
 }

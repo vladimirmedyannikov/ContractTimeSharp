@@ -87,9 +87,9 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.labelFirstName);
-            this.flowLayoutPanel1.Controls.Add(this.tbFirstName);
-            this.flowLayoutPanel1.Controls.Add(this.label2);
             this.flowLayoutPanel1.Controls.Add(this.tbSecondName);
+            this.flowLayoutPanel1.Controls.Add(this.label2);
+            this.flowLayoutPanel1.Controls.Add(this.tbFirstName);
             this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.Controls.Add(this.tbThirdName);
             this.flowLayoutPanel1.Controls.Add(this.label4);
@@ -120,10 +120,10 @@
             // 
             // tbFirstName
             // 
-            this.tbFirstName.Location = new System.Drawing.Point(3, 16);
+            this.tbFirstName.Location = new System.Drawing.Point(3, 55);
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.Size = new System.Drawing.Size(231, 20);
-            this.tbFirstName.TabIndex = 1;
+            this.tbFirstName.TabIndex = 2;
             // 
             // label2
             // 
@@ -136,10 +136,10 @@
             // 
             // tbSecondName
             // 
-            this.tbSecondName.Location = new System.Drawing.Point(3, 55);
+            this.tbSecondName.Location = new System.Drawing.Point(3, 16);
             this.tbSecondName.Name = "tbSecondName";
             this.tbSecondName.Size = new System.Drawing.Size(231, 20);
-            this.tbSecondName.TabIndex = 3;
+            this.tbSecondName.TabIndex = 1;
             // 
             // label3
             // 
@@ -155,7 +155,7 @@
             this.tbThirdName.Location = new System.Drawing.Point(3, 94);
             this.tbThirdName.Name = "tbThirdName";
             this.tbThirdName.Size = new System.Drawing.Size(231, 20);
-            this.tbThirdName.TabIndex = 5;
+            this.tbThirdName.TabIndex = 3;
             // 
             // label4
             // 
@@ -171,7 +171,7 @@
             this.tbAppointment.Location = new System.Drawing.Point(3, 133);
             this.tbAppointment.Name = "tbAppointment";
             this.tbAppointment.Size = new System.Drawing.Size(231, 20);
-            this.tbAppointment.TabIndex = 7;
+            this.tbAppointment.TabIndex = 4;
             // 
             // label5
             // 
@@ -187,7 +187,7 @@
             this.tbEmail.Location = new System.Drawing.Point(3, 172);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(231, 20);
-            this.tbEmail.TabIndex = 9;
+            this.tbEmail.TabIndex = 5;
             // 
             // label1
             // 
@@ -204,7 +204,8 @@
             this.cbDepartment.Location = new System.Drawing.Point(3, 211);
             this.cbDepartment.Name = "cbDepartment";
             this.cbDepartment.Size = new System.Drawing.Size(231, 21);
-            this.cbDepartment.TabIndex = 11;
+            this.cbDepartment.TabIndex = 6;
+            this.cbDepartment.MouseHover += new System.EventHandler(this.cbDepartment_MouseHover);
             // 
             // groupBox1
             // 
@@ -242,7 +243,7 @@
             this.tbLogin.Location = new System.Drawing.Point(3, 16);
             this.tbLogin.Name = "tbLogin";
             this.tbLogin.Size = new System.Drawing.Size(219, 20);
-            this.tbLogin.TabIndex = 5;
+            this.tbLogin.TabIndex = 7;
             // 
             // label7
             // 
@@ -258,7 +259,7 @@
             this.tbPassword.Location = new System.Drawing.Point(3, 55);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(219, 20);
-            this.tbPassword.TabIndex = 7;
+            this.tbPassword.TabIndex = 8;
             // 
             // groupBox2
             // 
@@ -267,7 +268,7 @@
             this.groupBox2.Location = new System.Drawing.Point(3, 349);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(231, 88);
-            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Тип учетной записи";
             // 
@@ -403,8 +404,9 @@
             // mnuUserDel
             // 
             this.mnuUserDel.Name = "mnuUserDel";
-            this.mnuUserDel.Size = new System.Drawing.Size(128, 22);
+            this.mnuUserDel.Size = new System.Drawing.Size(152, 22);
             this.mnuUserDel.Text = "Удалить";
+            this.mnuUserDel.Click += new System.EventHandler(this.mnuUserDel_Click);
             // 
             // DirectoryUserForm
             // 

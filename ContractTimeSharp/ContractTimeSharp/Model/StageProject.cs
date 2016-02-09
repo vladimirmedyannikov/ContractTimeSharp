@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ContractTimeSharp.Model
 {
-    class StageProject
+    public class StageProject
     {
         private int idStage { get; set; }
         private int idProject { get; set; }
@@ -24,6 +24,13 @@ namespace ContractTimeSharp.Model
         private String commentUser {get;set;}
         private InvestProject project;
         private DateTime dateSend { get; set; }
+        private int innerIndex;
+
+        public int InnerIndex
+        {
+            get { return innerIndex; }
+            set { innerIndex = value; }
+        }
 
         public DateTime DateSend
         {

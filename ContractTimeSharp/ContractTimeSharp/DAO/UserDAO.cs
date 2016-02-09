@@ -7,15 +7,46 @@ using ContractTimeSharp.DAO.Factory;
 using FirebirdSql.Data.FirebirdClient;
 using System.Data;
 using ContractTimeSharp.Utils;
+using System.Windows.Forms;
 
 namespace ContractTimeSharp.DAO
 {
     class UserDAO : DAO<User>
     {
         private DAOFactory daoFactory = new FirebirdDAO();
-        public void delete(User e)
+        public void delete(User user)
         {
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statement = null;
+            String sql = "execute procedure delete_user(@id_user);";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                statement = new FbCommand(sql, connection);
+                statement.Parameters.Add("@id_user", user.Id);
+
+                int result = Convert.ToInt32(statement.ExecuteScalar());
+                if (result == 0)
+                {
+                    MessageBox.Show("Удалить пользователя нельзя. Участвует в процессе прогнозирования");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("User delete ", e);
+            }
+            finally
+            {
+                try
+                {
+                    if (connection != null) connection.Close();
+                }
+                catch (System.Data.DataException e)
+                {
+
+                }
+            }
         }
 
         public List<KeyValuePair> getUserComboBox()

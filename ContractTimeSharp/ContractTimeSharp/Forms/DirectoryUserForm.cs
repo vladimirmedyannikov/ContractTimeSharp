@@ -22,11 +22,28 @@ namespace ContractTimeSharp.Forms
         private BindingSource bindingSource = new BindingSource();
         private List<User> userList = new List<User>();
         private bool addUser = false;
+        ToolTip buttonToolTip = new ToolTip();
 
         public DirectoryUserForm()
         {
             InitializeComponent();
+            ToolTip toolTip = new ToolTip() { AutoPopDelay = 0, InitialDelay = 0, ReshowDelay = 0, ShowAlways = true, };
+            cbDepartment.DrawMode = DrawMode.OwnerDrawFixed;
+            cbDepartment.DrawItem += (s, e) =>
+            {
+                e.DrawBackground();
+                string text = cbDepartment.GetItemText(cbDepartment.Items[e.Index]);
+                using (SolidBrush br = new SolidBrush(e.ForeColor))
+                    e.Graphics.DrawString(text, e.Font, br, e.Bounds);
+                if ((e.State & DrawItemState.Selected) == DrawItemState.Selected && cbDepartment.DroppedDown)
+                    toolTip.Show(text, cbDepartment, e.Bounds.Right, e.Bounds.Bottom + 4);
+                e.DrawFocusRectangle();
+            };
+            cbDepartment.DropDownClosed += (s, e) =>
+                toolTip.Hide(cbDepartment);
         }
+ 
+        //ToolTip buttonToolTip = new ToolTip();
 
         private void DirectoryUserForm_Load(object sender, EventArgs e)
         {
@@ -154,6 +171,10 @@ namespace ContractTimeSharp.Forms
                     {
                         MessageBox.Show("Пользователь не добавлен");
                     }
+                    int index = userList.FindIndex(x => x.FullName == user.FullName);
+                    if (index >= 0) gridUsers.CurrentCell = gridUsers.Rows[index].Cells[0];
+                    panelParam.Hide();
+                    
                 }
                 else
                 {
@@ -269,6 +290,30 @@ namespace ContractTimeSharp.Forms
                 SearchGrid form = new SearchGrid(gridUsers);
                 form.ShowDialog();
             }
+        }
+
+        private void mnuUserDel_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this,"Вы действительно хотите удалить пользователя ?","Удаление",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                User user = (User)bindingSource.Current;
+                dao.delete(user);
+                initializationData();
+            }
+        }
+
+        private void cbDepartment_MouseHover(object sender, EventArgs e)
+        {
+            buttonToolTip.ToolTipTitle = "Value";
+            buttonToolTip.UseFading = true;
+            buttonToolTip.UseAnimation = true;
+            buttonToolTip.IsBalloon = true;
+            buttonToolTip.ShowAlways = true;
+            buttonToolTip.AutoPopDelay = 5000;
+            buttonToolTip.InitialDelay = 1000;
+            buttonToolTip.ReshowDelay = 0;
+
+            buttonToolTip.SetToolTip(cbDepartment, cbDepartment.SelectedText);
         }
     }
 }

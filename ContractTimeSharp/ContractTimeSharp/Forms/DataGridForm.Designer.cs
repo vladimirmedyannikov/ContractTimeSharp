@@ -57,6 +57,7 @@
             this.mnuDeleteStage = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.mnuChangeIndex = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -271,36 +272,37 @@
             this.mnuAddStage,
             this.mnuAddSubStage,
             this.mnuEditStage,
-            this.mnuDeleteStage});
+            this.mnuDeleteStage,
+            this.mnuChangeIndex});
             this.menuStageProject.Name = "menuStageProject";
-            this.menuStageProject.Size = new System.Drawing.Size(174, 92);
+            this.menuStageProject.Size = new System.Drawing.Size(222, 136);
             this.menuStageProject.Opening += new System.ComponentModel.CancelEventHandler(this.menuStageProject_Opening);
             // 
             // mnuAddStage
             // 
             this.mnuAddStage.Name = "mnuAddStage";
-            this.mnuAddStage.Size = new System.Drawing.Size(173, 22);
+            this.mnuAddStage.Size = new System.Drawing.Size(221, 22);
             this.mnuAddStage.Text = "Добавить этап";
             this.mnuAddStage.Click += new System.EventHandler(this.mnuAddStage_Click);
             // 
             // mnuAddSubStage
             // 
             this.mnuAddSubStage.Name = "mnuAddSubStage";
-            this.mnuAddSubStage.Size = new System.Drawing.Size(173, 22);
+            this.mnuAddSubStage.Size = new System.Drawing.Size(221, 22);
             this.mnuAddSubStage.Text = "Добавить подэтап";
             this.mnuAddSubStage.Click += new System.EventHandler(this.mnuAddSubStage_Click);
             // 
             // mnuEditStage
             // 
             this.mnuEditStage.Name = "mnuEditStage";
-            this.mnuEditStage.Size = new System.Drawing.Size(173, 22);
+            this.mnuEditStage.Size = new System.Drawing.Size(221, 22);
             this.mnuEditStage.Text = "Редактировать";
             this.mnuEditStage.Click += new System.EventHandler(this.mnuEditStage_Click);
             // 
             // mnuDeleteStage
             // 
             this.mnuDeleteStage.Name = "mnuDeleteStage";
-            this.mnuDeleteStage.Size = new System.Drawing.Size(173, 22);
+            this.mnuDeleteStage.Size = new System.Drawing.Size(221, 22);
             this.mnuDeleteStage.Text = "Удалить";
             this.mnuDeleteStage.Click += new System.EventHandler(this.mnuDeleteStage_Click);
             // 
@@ -316,6 +318,13 @@
             this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon1.Text = "Инвестиционные проекты\r\n";
             this.notifyIcon1.Visible = true;
+            // 
+            // mnuChangeIndex
+            // 
+            this.mnuChangeIndex.Name = "mnuChangeIndex";
+            this.mnuChangeIndex.Size = new System.Drawing.Size(221, 22);
+            this.mnuChangeIndex.Text = "Изменить позицию этапов";
+            this.mnuChangeIndex.Click += new System.EventHandler(this.mnuChangeIndex_Click);
             // 
             // DialogGridForm
             // 
@@ -370,6 +379,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuDateMonitoring;
         private System.Windows.Forms.ToolStripMenuItem mnuDepartment;
         private System.Windows.Forms.ToolStripMenuItem mnuPrintAll;
+        private System.Windows.Forms.ToolStripMenuItem mnuChangeIndex;
     }
 }
 

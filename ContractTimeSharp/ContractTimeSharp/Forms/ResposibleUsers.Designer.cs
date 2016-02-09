@@ -35,6 +35,8 @@
             this.gridComplete = new System.Windows.Forms.DataGridView();
             this.tabAll = new System.Windows.Forms.TabPage();
             this.gridAll = new System.Windows.Forms.DataGridView();
+            this.tabDefault = new System.Windows.Forms.TabPage();
+            this.gridDefault = new System.Windows.Forms.DataGridView();
             this.tabControl.SuspendLayout();
             this.tabNotComplete.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridNotComplete)).BeginInit();
@@ -42,12 +44,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridComplete)).BeginInit();
             this.tabAll.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridAll)).BeginInit();
+            this.tabDefault.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDefault)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.tabNotComplete);
             this.tabControl.Controls.Add(this.tabComplete);
+            this.tabControl.Controls.Add(this.tabDefault);
             this.tabControl.Controls.Add(this.tabAll);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
@@ -161,6 +166,39 @@
             this.gridAll.DoubleClick += new System.EventHandler(this.gridAll_DoubleClick);
             this.gridAll.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridAll_KeyDown);
             // 
+            // tabDefault
+            // 
+            this.tabDefault.Controls.Add(this.gridDefault);
+            this.tabDefault.Location = new System.Drawing.Point(4, 22);
+            this.tabDefault.Name = "tabDefault";
+            this.tabDefault.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDefault.Size = new System.Drawing.Size(609, 415);
+            this.tabDefault.TabIndex = 3;
+            this.tabDefault.Text = "Без статуса";
+            this.tabDefault.UseVisualStyleBackColor = true;
+            // 
+            // gridDefault
+            // 
+            this.gridDefault.AllowUserToAddRows = false;
+            this.gridDefault.AllowUserToDeleteRows = false;
+            this.gridDefault.AllowUserToOrderColumns = true;
+            this.gridDefault.AllowUserToResizeRows = false;
+            this.gridDefault.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridDefault.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gridDefault.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridDefault.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridDefault.Location = new System.Drawing.Point(3, 3);
+            this.gridDefault.MultiSelect = false;
+            this.gridDefault.Name = "gridDefault";
+            this.gridDefault.ReadOnly = true;
+            this.gridDefault.RowHeadersVisible = false;
+            this.gridDefault.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.gridDefault.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridDefault.ShowEditingIcon = false;
+            this.gridDefault.Size = new System.Drawing.Size(603, 409);
+            this.gridDefault.TabIndex = 3;
+            this.gridDefault.DoubleClick += new System.EventHandler(this.gridDefault_DoubleClick);
+            // 
             // ResposibleUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +214,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridComplete)).EndInit();
             this.tabAll.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridAll)).EndInit();
+            this.tabDefault.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridDefault)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -189,5 +229,7 @@
         private System.Windows.Forms.DataGridView gridComplete;
         private System.Windows.Forms.TabPage tabAll;
         private System.Windows.Forms.DataGridView gridAll;
+        private System.Windows.Forms.TabPage tabDefault;
+        private System.Windows.Forms.DataGridView gridDefault;
     }
 }

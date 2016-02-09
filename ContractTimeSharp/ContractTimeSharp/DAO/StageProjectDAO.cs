@@ -47,21 +47,21 @@ namespace ContractTimeSharp.DAO
             {
                 sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                     "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                    "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
+                    "status_stage, comment_user, id_stage_parent, send_message, id_inner_index from stage_project " +
                     "left join user_info u on u.id_user = stage_project.id_user where (date_begin_plan = @date or date_end_plan = @date) and status_stage != @status  ";
             }
             else if (typeDate == AdvanceUtil.typeDate.FACT)
             {
                 sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                     "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                    "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
+                    "status_stage, comment_user, id_stage_parent, send_message, id_inner_index from stage_project " +
                     "left join user_info u on u.id_user = stage_project.id_user where (date_begin_prog = @date or date_end_prog = @date) and status_stage != @status";
             }
             else if (typeDate == AdvanceUtil.typeDate.DEFAULT)
             {
                 sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                     "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                    "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
+                    "status_stage, comment_user, id_stage_parent, send_message, id_inner_index from stage_project " +
                     "left join user_info u on u.id_user = stage_project.id_user where ((date_begin_plan < @date or date_end_plan < @date) or (date_begin_prog < @date or date_end_prog < @date)) and status_stage = @status";
             }
             List<StageProject> stageProjectList = new List<StageProject>();
@@ -88,7 +88,7 @@ namespace ContractTimeSharp.DAO
                 foreach (DataRow row in result.Tables[0].Rows)
                 {
                     StageProject stageProject = generateStageProject(row);
-                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject);
+                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject, connection);
                     stageProjectList.Add(stageProject);
                 }
             }
@@ -116,12 +116,13 @@ namespace ContractTimeSharp.DAO
             FbCommand statment = null;
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
+                "status_stage, comment_user, id_stage_parent, send_message, id_inner_index from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
             {
                 connection = daoFactory.getConnection();
+                connection.Open();
                 statment = new FbCommand(sql, connection);
                 FbDataAdapter da = new FbDataAdapter(statment);
                 DataSet result = new DataSet();
@@ -129,7 +130,7 @@ namespace ContractTimeSharp.DAO
                 foreach (DataRow row in result.Tables[0].Rows)
                 {
                     StageProject stageProject = generateStageProject(row);
-                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject);
+                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject, connection);
                     stageProjectList.Add(stageProject);
                 }
             }
@@ -151,18 +152,57 @@ namespace ContractTimeSharp.DAO
             return stageProjectList;
         }
 
+        internal void saveInnerIndex(List<StageProject> listStage)
+        {
+            FbConnection connection = null;
+            FbCommand statement = null;
+            FbTransaction transaction = null;
+            string sql = "update stage_project set id_inner_index = @index where id_stage = @stage";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                transaction = connection.BeginTransaction();
+                statement = new FbCommand(sql, connection, transaction);
+
+                foreach(StageProject stage in listStage)
+                {
+                    statement.Parameters.Clear();
+                    statement.Parameters.Add("@index", stage.InnerIndex);
+                    statement.Parameters.Add("@stage", stage.IdStage);
+                    statement.ExecuteNonQuery();
+                }
+                
+
+                sql = "execute procedure calculate_project_period(@project)";
+                statement = new FbCommand(sql, connection, transaction);
+                statement.Parameters.Clear();
+                statement.Parameters.Add("@project", listStage.First().IdProject);
+                statement.ExecuteNonQuery();
+
+                transaction.Commit();
+
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+                new DAOException("Update inner index ", e);
+            }
+        }
+
         public List<StageProject> getByUser(User user)
         {
             FbConnection connection = null;
             FbCommand statment = null;
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
+                "status_stage, comment_user, id_stage_parent, send_message, id_inner_index from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user where stage_project.id_user = @idUser;";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
             {
                 connection = daoFactory.getConnection();
+                connection.Open();
                 statment = new FbCommand(sql, connection);
                 statment.Parameters.Add("@idUser", user.Id);
                 FbDataAdapter da = new FbDataAdapter(statment);
@@ -171,7 +211,7 @@ namespace ContractTimeSharp.DAO
                 foreach (DataRow row in result.Tables[0].Rows)
                 {
                     StageProject stageProject = generateStageProject(row);
-                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject);
+                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject, connection);
                     stageProjectList.Add(stageProject);
                 }
             }
@@ -279,12 +319,13 @@ namespace ContractTimeSharp.DAO
             FbCommand statment = null;
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
+                "status_stage, comment_user, id_stage_parent, send_message, id_inner_index from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user where stage_project.id_stage_parent <> 0 and id_project = @idProject order by id_inner_index;";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
             {
                 connection = daoFactory.getConnection();
+                connection.Open();
                 statment = new FbCommand(sql, connection);
                 statment.Parameters.Add("@idProject", idProject);
                 FbDataAdapter da = new FbDataAdapter(statment);
@@ -293,7 +334,7 @@ namespace ContractTimeSharp.DAO
                 foreach (DataRow row in result.Tables[0].Rows)
                 {
                     StageProject stageProject = generateStageProject(row);
-                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject);
+                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject, connection);
                     stageProjectList.Add(stageProject);
                 }
             }
@@ -322,12 +363,13 @@ namespace ContractTimeSharp.DAO
             FbCommand statment = null;
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
-                "status_stage, comment_user, id_stage_parent, send_message from stage_project " +
+                "status_stage, comment_user, id_stage_parent, send_message, id_inner_index from stage_project " +
                 "left join user_info u on u.id_user = stage_project.id_user where id_project = @idProject and stage_project.id_stage_parent = 0 order by id_inner_index;";
             List<StageProject> stageProjectList = new List<StageProject>();
             try
             {
                 connection = daoFactory.getConnection();
+                connection.Open();
                 statment = new FbCommand(sql, connection);
                 statment.Parameters.Add("@idProject", idProject);
                 FbDataAdapter da = new FbDataAdapter(statment);
@@ -337,7 +379,7 @@ namespace ContractTimeSharp.DAO
                 foreach (DataRow row in result.Tables[0].Rows)
                 {
                     StageProject stageProject = generateStageProject(row);
-                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject);
+                    stageProject.Project = new InvestProjectDAO().getById(stageProject.IdProject, connection);
                     stageProject.SubStage = subStage.Where(s=>s.IdParentStage == stageProject.IdStage).ToList();
                     stageProjectList.Add(stageProject);
                 }
@@ -366,6 +408,7 @@ namespace ContractTimeSharp.DAO
             stageProject.IdStage = Convert.ToInt32(row["id_stage"].ToString());
             stageProject.IdProject = Convert.ToInt32(row["id_project"].ToString());
             stageProject.NameStage = row["name_stage"].ToString();
+            stageProject.InnerIndex = Convert.ToInt32(row["id_inner_index"].ToString());
 
             User user = new User();
             if (row["id_user"].ToString() != "") {

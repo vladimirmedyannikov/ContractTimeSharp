@@ -37,7 +37,7 @@ namespace ContractTimeSharp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ContractTime")]
+        [global::System.Configuration.DefaultSettingValueAttribute("contract_time")]
         public string dbname {
             get {
                 return ((string)(this["dbname"]));
