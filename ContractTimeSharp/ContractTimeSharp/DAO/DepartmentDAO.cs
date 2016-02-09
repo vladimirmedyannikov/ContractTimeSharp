@@ -26,7 +26,7 @@ namespace ContractTimeSharp.DAO
             FbConnection connection = null;
             FbCommand statment = null;
             String sql = "select DEPT_ID, DEPT_NAME || ' ' || Name_firm as dept_name from Depts "+
-                "left join Firm on Depts.firm_id = Firm.id_firm order by DEPT_NAME";
+                "left join Firm on Depts.firm_id = Firm.id_firm where date_dismiss >= cast('Now' as date) order by DEPT_NAME";
             List<KeyValuePair> listResult = new List<KeyValuePair>();
             try
             {
