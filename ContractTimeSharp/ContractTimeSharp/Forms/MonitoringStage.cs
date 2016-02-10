@@ -435,5 +435,10 @@ namespace ContractTimeSharp.Forms
                 form.ShowDialog();
             }
         }
+
+        private void MonitoringStage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

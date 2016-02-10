@@ -329,7 +329,7 @@ namespace ContractTimeSharp.DAO
                 statement.Parameters.Add("@hash_pass", user.HashPass);
 
                 statement.ExecuteNonQuery();
-                //transaction.Commit();
+                transaction.Commit();
 
             }
             catch (Exception e)

@@ -119,7 +119,7 @@ namespace ContractTimeSharp.DAO
 
             try
             {
-                if (connection != null) connection = daoFactory.getConnection();
+                if (connection == null) connection = daoFactory.getConnection();
                 statment = new FbCommand(sql, connection);
                 statment.Parameters.Add("@id_project", id);
                 FbDataAdapter da = new FbDataAdapter(statment);

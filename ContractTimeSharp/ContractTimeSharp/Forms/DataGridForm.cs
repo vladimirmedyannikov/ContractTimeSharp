@@ -590,5 +590,16 @@ namespace ContractTimeSharp
             form.ShowDialog();
             initializationInvestProject();
         }
+
+        private void mnuLog_Click(object sender, EventArgs e)
+        {
+            LogForm form = new LogForm();
+            form.ShowDialog();
+        }
+
+        private void DialogGridForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

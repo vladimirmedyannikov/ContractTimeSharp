@@ -61,7 +61,8 @@
             this.Controls.Add(this.gridLog);
             this.Name = "LogForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Логи входа";
+            this.Text = "Система \"Букля\" - Логи входа";
+            this.Load += new System.EventHandler(this.LogForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridLog)).EndInit();
             this.ResumeLayout(false);
 

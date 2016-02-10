@@ -295,6 +295,7 @@
             this.Name = "MonitoringStage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Система \"Букля\" - Этапы проекта по дате";
+            this.Load += new System.EventHandler(this.MonitoringStage_Load);
             this.tabMonitor.ResumeLayout(false);
             this.tabDate.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridProject)).EndInit();

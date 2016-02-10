@@ -49,15 +49,14 @@
             this.mnuUser = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDepartment = new System.Windows.Forms.ToolStripMenuItem();
             this.treeViewAdv1 = new Aga.Controls.Tree.TreeViewAdv();
-            this.treeColumn1 = new Aga.Controls.Tree.TreeColumn();
             this.menuStageProject = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuAddStage = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAddSubStage = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEditStage = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDeleteStage = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuChangeIndex = new System.Windows.Forms.ToolStripMenuItem();
             this.nodeTextBox1 = new Aga.Controls.Tree.NodeControls.NodeTextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.mnuChangeIndex = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).BeginInit();
             this.menuInvestProject.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -209,6 +208,7 @@
             this.mnuLog.Name = "mnuLog";
             this.mnuLog.Size = new System.Drawing.Size(184, 22);
             this.mnuLog.Text = "Логи входа";
+            this.mnuLog.Click += new System.EventHandler(this.mnuLog_Click);
             // 
             // mnuLib
             // 
@@ -238,7 +238,6 @@
             this.treeViewAdv1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeViewAdv1.BackColor = System.Drawing.SystemColors.Window;
-            this.treeViewAdv1.Columns.Add(this.treeColumn1);
             this.treeViewAdv1.ContextMenuStrip = this.menuStageProject;
             this.treeViewAdv1.DefaultToolTipProvider = null;
             this.treeViewAdv1.DragDropMarkColor = System.Drawing.Color.Black;
@@ -260,12 +259,6 @@
             this.treeViewAdv1.DoubleClick += new System.EventHandler(this.treeViewAdv1_DoubleClick);
             this.treeViewAdv1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeViewAdv1_KeyDown);
             // 
-            // treeColumn1
-            // 
-            this.treeColumn1.Header = "";
-            this.treeColumn1.SortOrder = System.Windows.Forms.SortOrder.None;
-            this.treeColumn1.TooltipText = null;
-            // 
             // menuStageProject
             // 
             this.menuStageProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -275,7 +268,7 @@
             this.mnuDeleteStage,
             this.mnuChangeIndex});
             this.menuStageProject.Name = "menuStageProject";
-            this.menuStageProject.Size = new System.Drawing.Size(222, 136);
+            this.menuStageProject.Size = new System.Drawing.Size(222, 114);
             this.menuStageProject.Opening += new System.ComponentModel.CancelEventHandler(this.menuStageProject_Opening);
             // 
             // mnuAddStage
@@ -306,6 +299,13 @@
             this.mnuDeleteStage.Text = "Удалить";
             this.mnuDeleteStage.Click += new System.EventHandler(this.mnuDeleteStage_Click);
             // 
+            // mnuChangeIndex
+            // 
+            this.mnuChangeIndex.Name = "mnuChangeIndex";
+            this.mnuChangeIndex.Size = new System.Drawing.Size(221, 22);
+            this.mnuChangeIndex.Text = "Изменить позицию этапов";
+            this.mnuChangeIndex.Click += new System.EventHandler(this.mnuChangeIndex_Click);
+            // 
             // nodeTextBox1
             // 
             this.nodeTextBox1.DataPropertyName = "DateEnd";
@@ -318,13 +318,6 @@
             this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon1.Text = "Инвестиционные проекты\r\n";
             this.notifyIcon1.Visible = true;
-            // 
-            // mnuChangeIndex
-            // 
-            this.mnuChangeIndex.Name = "mnuChangeIndex";
-            this.mnuChangeIndex.Size = new System.Drawing.Size(221, 22);
-            this.mnuChangeIndex.Text = "Изменить позицию этапов";
-            this.mnuChangeIndex.Click += new System.EventHandler(this.mnuChangeIndex_Click);
             // 
             // DialogGridForm
             // 
@@ -339,6 +332,7 @@
             this.Name = "DialogGridForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Система \"Букля\" - Проекты";
+            this.Load += new System.EventHandler(this.DialogGridForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).EndInit();
             this.menuInvestProject.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
