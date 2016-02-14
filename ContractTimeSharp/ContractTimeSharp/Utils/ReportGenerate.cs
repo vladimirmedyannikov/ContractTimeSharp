@@ -141,6 +141,10 @@ namespace ContractTimeSharp.Utils
 
             }
             xlApp.Visible = true;
+
+            releaseObject(xlWorkSheet);
+            releaseObject(xlWorkBook);
+            releaseObject(xlApp);
         }
 
         public static void PrintExcelProject(Object objectProject)

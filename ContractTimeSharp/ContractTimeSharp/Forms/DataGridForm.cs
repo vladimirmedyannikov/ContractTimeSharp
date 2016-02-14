@@ -45,6 +45,29 @@ namespace ContractTimeSharp
             InitializeColumnStageProject();
             InitializeColumnInvestProject();
             initializationInvestProject();
+            treeViewAdv1.RowDraw += TreeViewAdv1_RowDraw;
+        }
+
+        private void TreeViewAdv1_RowDraw(object sender, TreeViewRowDrawEventArgs e)
+        {
+            e.Graphics.FillRectangle(Brushes.LightPink, new Rectangle(getPosColumn(4), e.RowRect.Y, treeViewAdv1.Columns[4].Width, e.RowRect.Height));
+            e.Graphics.FillRectangle(Brushes.LightPink, new Rectangle(getPosColumn(5), e.RowRect.Y, treeViewAdv1.Columns[5].Width, e.RowRect.Height));
+
+            e.Graphics.FillRectangle(Brushes.Aquamarine, new Rectangle(getPosColumn(7), e.RowRect.Y, treeViewAdv1.Columns[7].Width, e.RowRect.Height));
+            e.Graphics.FillRectangle(Brushes.Aquamarine, new Rectangle(getPosColumn(8), e.RowRect.Y, treeViewAdv1.Columns[8].Width, e.RowRect.Height));
+        }
+
+        Font tagFont = new Font("Helvetica", 8, FontStyle.Bold);
+
+        private int getPosColumn(int col)
+        {
+            int res = 0;
+            for (int i = 0; i < treeViewAdv1.Columns.Count; i++)
+            {
+                if (i == col) break;
+                res += treeViewAdv1.Columns[i].Width;
+            }
+            return res;
         }
 
         private void InitializeColumnInvestProject()
@@ -99,17 +122,17 @@ namespace ContractTimeSharp
             treeViewAdv1.UseColumns = true;
 
             TreeColumn columnName = new TreeColumn("Этап", 120);
-            TreeColumn columnNameStage = new TreeColumn("Название", 150);
-            TreeColumn columnUser = new TreeColumn("Ответственный", 160);
-            TreeColumn columnDateBegin = new TreeColumn("Начало (план)", 60);
-            TreeColumn columnDateEnd = new TreeColumn("Завершение (план)", 60);
-            TreeColumn columnDateBeginUser = new TreeColumn("Начало (пользв.)", 60);
+            TreeColumn columnNameStage = new TreeColumn("Название", 250);
+            TreeColumn columnUser = new TreeColumn("Ответственный", 130);
+            TreeColumn columnDateBegin = new TreeColumn("Начало (план)", 70);
+            TreeColumn columnDateEnd = new TreeColumn("Завершение (план)", 70);
+            TreeColumn columnDateBeginUser = new TreeColumn("Начало (пользв.)", 70);
 
-            TreeColumn columnDateEndUser = new TreeColumn("Завершение (пользв.)", 60);
+            TreeColumn columnDateEndUser = new TreeColumn("Завершение (пользв.)", 70);
             TreeColumn columnStatus = new TreeColumn("Статус", 60);
-            TreeColumn columnDateBeginProg = new TreeColumn("Начало (прогноз)", 60);
-            TreeColumn columnDateEndProg = new TreeColumn("Завершение (прогноз)", 60);
-            TreeColumn columnComment = new TreeColumn("Комментарий", 200);
+            TreeColumn columnDateBeginProg = new TreeColumn("Начало (прогноз)", 70);
+            TreeColumn columnDateEndProg = new TreeColumn("Завершение (прогноз)", 70);
+            TreeColumn columnComment = new TreeColumn("Комментарий", 150);
 
             //treeViewAdv1.Columns.Add(columnName);
             treeViewAdv1.Columns.Add(columnNameStage);

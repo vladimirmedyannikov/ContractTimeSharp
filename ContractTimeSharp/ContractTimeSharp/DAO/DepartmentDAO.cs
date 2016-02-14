@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using ContractTimeSharp.Utils;
+using System.Windows.Forms;
 
 namespace ContractTimeSharp.DAO
 {
@@ -14,9 +15,39 @@ namespace ContractTimeSharp.DAO
     {
         private DAOFactory daoFactory = new FirebirdDAO();
         private static List<Department> departmentList = new List<Department>();
-        public void delete(Department e)
+        public void delete(Department department)
         {
-            throw new NotImplementedException();
+            FbConnection connection = null;
+            FbCommand statement = null;
+            String sql = "execute procedure delete_dept(@id_dept);";
+            try
+            {
+                connection = daoFactory.getConnection();
+                connection.Open();
+                statement = new FbCommand(sql, connection);
+                statement.Parameters.Add("@id_dept", department.idDepartment);
+
+                int result = Convert.ToInt32(statement.ExecuteScalar());
+                if (result == 0)
+                {
+                    MessageBox.Show("Удалить подразделение нельзя. Участвует в процессе прогнозирования");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new DAOException("Departmnet delete ", e);
+            }
+            finally
+            {
+                try
+                {
+                    if (connection != null) connection.Close();
+                }
+                catch (System.Data.DataException e)
+                {
+
+                }
+            }
         }
 
 
@@ -26,7 +57,7 @@ namespace ContractTimeSharp.DAO
             FbConnection connection = null;
             FbCommand statment = null;
             String sql = "select DEPT_ID, DEPT_NAME || ' ' || Name_firm as dept_name from Depts "+
-                "left join Firm on Depts.firm_id = Firm.id_firm where date_dismiss >= cast('Now' as date) order by DEPT_NAME";
+                "left join Firm on Depts.firm_id = Firm.id_firm where date_dismiss >= cast('Now' as date) order by Depts.firm_id, DEPT_NAME";
             List<KeyValuePair> listResult = new List<KeyValuePair>();
             try
             {
@@ -110,6 +141,7 @@ namespace ContractTimeSharp.DAO
             try
             {
                 connection = daoFactory.getConnection();
+                connection.Open();
                 statment = new FbCommand(sql, connection);
                 FbDataAdapter da = new FbDataAdapter(statment);
                 DataSet result = new DataSet();

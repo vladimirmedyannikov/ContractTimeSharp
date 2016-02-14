@@ -20,6 +20,28 @@ namespace ContractTimeSharp.Forms
             InitializeComponent();
             initializeColumn();
             initializeData();
+            gridLog.CellPainting += GridLog_CellPainting;
+        }
+
+        private void GridLog_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            e.Paint(e.ClipBounds, DataGridViewPaintParts.All);
+            if (e.ColumnIndex == 2 && e.RowIndex >= 0)
+            {
+                if (gridLog.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Contains("Вход"))
+                {
+                    e.Graphics.FillRectangle(Brushes.Green, e.CellBounds);
+                    e.Graphics.DrawString(gridLog.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), new Font(FontFamily.GenericSerif, 10), new SolidBrush(Color.Black), e.CellBounds);
+                    e.Handled = true;
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(Brushes.Red, e.CellBounds);
+                    e.Graphics.DrawString(gridLog.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString(), new Font(FontFamily.GenericSerif, 10), new SolidBrush(Color.Black), e.CellBounds);
+                    e.Handled = true;
+                }
+            }
+            
         }
 
         public void initializeData()
@@ -43,6 +65,8 @@ namespace ContractTimeSharp.Forms
             DataGridViewColumn columnType = new DataGridViewTextBoxColumn();
             columnType.DataPropertyName = "TypeStr";
             columnType.HeaderText = "Тип";
+            columnType.Width = 50;
+            columnType.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
 
             DataGridViewColumn columnUser = new DataGridViewTextBoxColumn();
             columnUser.DataPropertyName = "User";

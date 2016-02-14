@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridStage = new System.Windows.Forms.DataGridView();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.dataGridStage = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridStage)).BeginInit();
             this.SuspendLayout();
@@ -47,6 +47,36 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(114, 368);
             this.panel1.TabIndex = 0;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(6, 70);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.Text = "Сохранить";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Location = new System.Drawing.Point(6, 41);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(75, 23);
+            this.btnDown.TabIndex = 1;
+            this.btnDown.Text = "Вниз";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // btnUp
+            // 
+            this.btnUp.Location = new System.Drawing.Point(6, 12);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(75, 23);
+            this.btnUp.TabIndex = 0;
+            this.btnUp.Text = "Вверх";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // dataGridStage
             // 
@@ -69,36 +99,6 @@
             this.dataGridStage.Size = new System.Drawing.Size(650, 368);
             this.dataGridStage.TabIndex = 1;
             // 
-            // btnUp
-            // 
-            this.btnUp.Location = new System.Drawing.Point(6, 12);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(75, 23);
-            this.btnUp.TabIndex = 0;
-            this.btnUp.Text = "Вверх";
-            this.btnUp.UseVisualStyleBackColor = true;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
-            // 
-            // btnDown
-            // 
-            this.btnDown.Location = new System.Drawing.Point(6, 41);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(75, 23);
-            this.btnDown.TabIndex = 1;
-            this.btnDown.Text = "Вниз";
-            this.btnDown.UseVisualStyleBackColor = true;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(6, 70);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 2;
-            this.btnSave.Text = "Сохранить";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // ChangeInnerIndexStage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -107,7 +107,8 @@
             this.Controls.Add(this.dataGridStage);
             this.Controls.Add(this.panel1);
             this.Name = "ChangeInnerIndexStage";
-            this.Text = "ChangeInnerIndexStage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Система \"Букля\" - Изменение порядка этапов";
             this.Load += new System.EventHandler(this.ChangeInnerIndexStage_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridStage)).EndInit();

@@ -58,13 +58,14 @@
             // mnuUserDel
             // 
             this.mnuUserDel.Name = "mnuUserDel";
-            this.mnuUserDel.Size = new System.Drawing.Size(128, 22);
+            this.mnuUserDel.Size = new System.Drawing.Size(152, 22);
             this.mnuUserDel.Text = "Удалить";
+            this.mnuUserDel.Click += new System.EventHandler(this.mnuUserDel_Click);
             // 
             // mnuDeptAdd
             // 
             this.mnuDeptAdd.Name = "mnuDeptAdd";
-            this.mnuDeptAdd.Size = new System.Drawing.Size(128, 22);
+            this.mnuDeptAdd.Size = new System.Drawing.Size(152, 22);
             this.mnuDeptAdd.Text = "Добавить";
             this.mnuDeptAdd.Click += new System.EventHandler(this.mnuDeptAdd_Click);
             // 
@@ -81,7 +82,7 @@
             // mnuDeptEdit
             // 
             this.mnuDeptEdit.Name = "mnuDeptEdit";
-            this.mnuDeptEdit.Size = new System.Drawing.Size(128, 22);
+            this.mnuDeptEdit.Size = new System.Drawing.Size(152, 22);
             this.mnuDeptEdit.Text = "Изменить";
             this.mnuDeptEdit.Click += new System.EventHandler(this.mnuDeptEdit_Click);
             // 
@@ -167,6 +168,7 @@
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // panelParam
             // 
@@ -256,6 +258,7 @@
             this.Controls.Add(this.panelGrid);
             this.Controls.Add(this.panelParam);
             this.Name = "DirectoryDepartment";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Справочник подразделений";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

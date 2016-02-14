@@ -24,15 +24,12 @@ namespace ContractTimeSharp.Forms
         {
             InitializeComponent();
             InitializeColumn();
-            updateProjectTreeView();
         }
 
         private void butnShow_Click(object sender, EventArgs e)
         {
             initializeData();
-            
         }
-
 
         private void InitializeColumnStageProject()
         {

@@ -61,5 +61,10 @@ namespace ContractTimeSharp.Utils
                 grid.CurrentCell = grid.Rows[0].Cells[1];
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

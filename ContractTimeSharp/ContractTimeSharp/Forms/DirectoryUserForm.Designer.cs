@@ -31,9 +31,9 @@
             this.panelParam = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelFirstName = new System.Windows.Forms.Label();
-            this.tbFirstName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.tbSecondName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbFirstName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbThirdName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -118,12 +118,12 @@
             this.labelFirstName.TabIndex = 0;
             this.labelFirstName.Text = "Фамилия";
             // 
-            // tbFirstName
+            // tbSecondName
             // 
-            this.tbFirstName.Location = new System.Drawing.Point(3, 55);
-            this.tbFirstName.Name = "tbFirstName";
-            this.tbFirstName.Size = new System.Drawing.Size(231, 20);
-            this.tbFirstName.TabIndex = 2;
+            this.tbSecondName.Location = new System.Drawing.Point(3, 16);
+            this.tbSecondName.Name = "tbSecondName";
+            this.tbSecondName.Size = new System.Drawing.Size(231, 20);
+            this.tbSecondName.TabIndex = 1;
             // 
             // label2
             // 
@@ -134,12 +134,12 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Имя";
             // 
-            // tbSecondName
+            // tbFirstName
             // 
-            this.tbSecondName.Location = new System.Drawing.Point(3, 16);
-            this.tbSecondName.Name = "tbSecondName";
-            this.tbSecondName.Size = new System.Drawing.Size(231, 20);
-            this.tbSecondName.TabIndex = 1;
+            this.tbFirstName.Location = new System.Drawing.Point(3, 55);
+            this.tbFirstName.Name = "tbFirstName";
+            this.tbFirstName.Size = new System.Drawing.Size(231, 20);
+            this.tbFirstName.TabIndex = 2;
             // 
             // label3
             // 
@@ -314,6 +314,7 @@
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // panel1
             // 
@@ -390,14 +391,14 @@
             // mnuUserAdd
             // 
             this.mnuUserAdd.Name = "mnuUserAdd";
-            this.mnuUserAdd.Size = new System.Drawing.Size(128, 22);
+            this.mnuUserAdd.Size = new System.Drawing.Size(152, 22);
             this.mnuUserAdd.Text = "Добавить";
             this.mnuUserAdd.Click += new System.EventHandler(this.mnuUserAdd_Click);
             // 
             // mnuUserEdit
             // 
             this.mnuUserEdit.Name = "mnuUserEdit";
-            this.mnuUserEdit.Size = new System.Drawing.Size(128, 22);
+            this.mnuUserEdit.Size = new System.Drawing.Size(152, 22);
             this.mnuUserEdit.Text = "Изменить";
             this.mnuUserEdit.Click += new System.EventHandler(this.mnuUserEdit_Click);
             // 
@@ -417,6 +418,7 @@
             this.Controls.Add(this.panelParam);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "DirectoryUserForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Система \"Букля\" - Пользователи";
             this.Load += new System.EventHandler(this.DirectoryUserForm_Load);
             this.panelParam.ResumeLayout(false);

@@ -87,6 +87,7 @@ namespace ContractTimeSharp.Forms
 
         public void initializationData()
         {
+            panelParam.Hide();
             userList = dao.getAll();
             bindingSource.DataSource = userList;
             gridUsers.DataSource = bindingSource;
@@ -314,6 +315,11 @@ namespace ContractTimeSharp.Forms
             buttonToolTip.ReshowDelay = 0;
 
             buttonToolTip.SetToolTip(cbDepartment, cbDepartment.SelectedText);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            panelParam.Hide();
         }
     }
 }

@@ -202,5 +202,21 @@ namespace ContractTimeSharp.Forms.Directory
                 form.ShowDialog();
             }
         }
+
+        private void mnuUserDel_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(this, "Вы действительно хотите удалить пользователя ?", "Удаление", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                generateBookMark();
+                Department department = (Department)bindingSource.Current;
+                dao.delete(department);
+                initializationData();
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            panelParam.Hide();
+        }
     }
 }
