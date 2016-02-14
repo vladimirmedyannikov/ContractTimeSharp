@@ -313,9 +313,9 @@ namespace ContractTimeSharp.DAO
             }
         }
 
-        public List<StageProject> getSubStageProject(int idProject)
+        public List<StageProject> getSubStageProject(int idProject, FbConnection connection = null)
         {
-            FbConnection connection = null;
+            
             FbCommand statment = null;
             String sql = "select id_stage, id_project, name_stage, u.id_user, l_name, f_name, p_name, date_begin_plan, e_mail, " +
                 "date_end_plan, date_begin_prog, date_end_prog, date_begin_user, date_end_user, " +
@@ -324,8 +324,11 @@ namespace ContractTimeSharp.DAO
             List<StageProject> stageProjectList = new List<StageProject>();
             try
             {
-                connection = daoFactory.getConnection();
-                connection.Open();
+                if (connection == null)
+                {
+                    connection = daoFactory.getConnection();
+                    connection.Open();
+                }
                 statment = new FbCommand(sql, connection);
                 statment.Parameters.Add("@idProject", idProject);
                 FbDataAdapter da = new FbDataAdapter(statment);
@@ -375,7 +378,7 @@ namespace ContractTimeSharp.DAO
                 FbDataAdapter da = new FbDataAdapter(statment);
                 DataSet result = new DataSet();
                 da.Fill(result);
-                List<StageProject> subStage = getSubStageProject(idProject);
+                List<StageProject> subStage = getSubStageProject(idProject, connection);
                 foreach (DataRow row in result.Tables[0].Rows)
                 {
                     StageProject stageProject = generateStageProject(row);
