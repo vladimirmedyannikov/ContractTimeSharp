@@ -108,9 +108,8 @@ namespace ContractTimeSharp.DAO
             throw new NotImplementedException();
         }
 
-        public InvestProject getById(int id, FbConnection connection)
+        public InvestProject getById(int id, FbConnection connection = null)
         {
-            //FbConnection connection = null;
             FbCommand statment = null;
             String sql = "select invest_project.*, l_name, f_name, p_name, dept_name from invest_project " +
                 "left join depts on depts.dept_id = invest_project.id_dept " +
@@ -119,7 +118,11 @@ namespace ContractTimeSharp.DAO
 
             try
             {
-                if (connection == null) connection = daoFactory.getConnection();
+                if (connection == null)
+                {
+                    connection = daoFactory.getConnection();
+                    connection.Open();
+                }
                 statment = new FbCommand(sql, connection);
                 statment.Parameters.Add("@id_project", id);
                 FbDataAdapter da = new FbDataAdapter(statment);

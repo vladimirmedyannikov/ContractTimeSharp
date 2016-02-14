@@ -239,9 +239,8 @@ namespace ContractTimeSharp
                 InvestProject ip = (InvestProject)((BindingSource)dataGridInvestProject.DataSource).Current;
                 StageProjectDAO dao = new StageProjectDAO();
                 List<StageProject> listProject = dao.getByProject(ip.idProject);
-                List<StageProject> listSubStage = dao.getSubStageProject(ip.idProject);
+                //List<StageProject> listSubStage = dao.getSubStageProject(ip.idProject);
                 TreeModel model = new TreeModel();
-                treeViewAdv1.Model = model;
                 treeViewAdv1.BeginUpdate();
                 foreach (StageProject stage in listProject)
                 {
@@ -253,6 +252,7 @@ namespace ContractTimeSharp
                     }
                     model.Nodes.Add(node);
                 }
+                treeViewAdv1.Model = model;
                 treeViewAdv1.EndUpdate();
             }
         }
