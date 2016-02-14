@@ -68,6 +68,7 @@ namespace ContractTimeSharp.DAO
             try
             {
                 connection = daoFactory.getConnection();
+                connection.Open();
                 statement = new FbCommand(sql, connection);
                 statement.Parameters.Add("@date", date.ToShortDateString());
                 if (typeDate == AdvanceUtil.typeDate.PLAN)
