@@ -1,5 +1,6 @@
 ﻿using ContractTimeSharp.DAO;
 using ContractTimeSharp.Model;
+using ContractTimeSharp.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,6 +79,11 @@ namespace ContractTimeSharp.Forms
         private void LogForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void mnuExcel_Click(object sender, EventArgs e)
+        {
+            ReportGenerate.PrintExcelGrid(gridLog);
         }
     }
 }

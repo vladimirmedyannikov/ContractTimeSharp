@@ -321,5 +321,10 @@ namespace ContractTimeSharp.Forms
         {
             panelParam.Hide();
         }
+
+        private void mnuExcel_Click(object sender, EventArgs e)
+        {
+            ReportGenerate.PrintExcelGrid(gridUsers);
+        }
     }
 }

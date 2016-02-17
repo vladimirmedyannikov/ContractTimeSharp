@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabMonitor = new System.Windows.Forms.TabControl();
             this.tabDate = new System.Windows.Forms.TabPage();
             this.gridProject = new System.Windows.Forms.DataGridView();
@@ -47,6 +48,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.sendMessage = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.tabMonitor.SuspendLayout();
             this.tabDate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProject)).BeginInit();
@@ -55,6 +58,7 @@
             this.flowLayoutPanel1.SuspendLayout();
             this.tabTree.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMonitor
@@ -89,6 +93,7 @@
             this.gridProject.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridProject.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.gridProject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridProject.ContextMenuStrip = this.contextMenuStrip1;
             this.gridProject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridProject.Location = new System.Drawing.Point(3, 68);
             this.gridProject.MultiSelect = false;
@@ -286,6 +291,20 @@
             this.sendMessage.UseVisualStyleBackColor = true;
             this.sendMessage.Click += new System.EventHandler(this.sendMessage_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuExcel});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(169, 26);
+            // 
+            // mnuExcel
+            // 
+            this.mnuExcel.Name = "mnuExcel";
+            this.mnuExcel.Size = new System.Drawing.Size(168, 22);
+            this.mnuExcel.Text = "выгрузить в Excel";
+            this.mnuExcel.Click += new System.EventHandler(this.mnuExcel_Click);
+            // 
             // MonitoringStage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,6 +325,7 @@
             this.flowLayoutPanel1.PerformLayout();
             this.tabTree.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -331,5 +351,7 @@
         private System.Windows.Forms.RadioButton rbPlan;
         private System.Windows.Forms.RadioButton rbProg;
         private System.Windows.Forms.RadioButton rbNot;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnuExcel;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelParam = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelFirstName = new System.Windows.Forms.Label();
@@ -62,6 +63,8 @@
             this.mnuUserAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUserEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUserDel = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUser = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.panelParam.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -71,6 +74,7 @@
             this.panelGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.mnuUser.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelParam
@@ -354,6 +358,7 @@
             this.gridUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridUsers.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.gridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridUsers.ContextMenuStrip = this.mnuUser;
             this.gridUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridUsers.Location = new System.Drawing.Point(0, 24);
             this.gridUsers.MultiSelect = false;
@@ -391,23 +396,37 @@
             // mnuUserAdd
             // 
             this.mnuUserAdd.Name = "mnuUserAdd";
-            this.mnuUserAdd.Size = new System.Drawing.Size(152, 22);
+            this.mnuUserAdd.Size = new System.Drawing.Size(128, 22);
             this.mnuUserAdd.Text = "Добавить";
             this.mnuUserAdd.Click += new System.EventHandler(this.mnuUserAdd_Click);
             // 
             // mnuUserEdit
             // 
             this.mnuUserEdit.Name = "mnuUserEdit";
-            this.mnuUserEdit.Size = new System.Drawing.Size(152, 22);
+            this.mnuUserEdit.Size = new System.Drawing.Size(128, 22);
             this.mnuUserEdit.Text = "Изменить";
             this.mnuUserEdit.Click += new System.EventHandler(this.mnuUserEdit_Click);
             // 
             // mnuUserDel
             // 
             this.mnuUserDel.Name = "mnuUserDel";
-            this.mnuUserDel.Size = new System.Drawing.Size(152, 22);
+            this.mnuUserDel.Size = new System.Drawing.Size(128, 22);
             this.mnuUserDel.Text = "Удалить";
             this.mnuUserDel.Click += new System.EventHandler(this.mnuUserDel_Click);
+            // 
+            // mnuUser
+            // 
+            this.mnuUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuExcel});
+            this.mnuUser.Name = "mnuUser";
+            this.mnuUser.Size = new System.Drawing.Size(159, 26);
+            // 
+            // mnuExcel
+            // 
+            this.mnuExcel.Name = "mnuExcel";
+            this.mnuExcel.Size = new System.Drawing.Size(158, 22);
+            this.mnuExcel.Text = "Вырузка в Excel";
+            this.mnuExcel.Click += new System.EventHandler(this.mnuExcel_Click);
             // 
             // DirectoryUserForm
             // 
@@ -435,6 +454,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.mnuUser.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -475,5 +495,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuUserEdit;
         private System.Windows.Forms.ToolStripMenuItem mnuUserDel;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ContextMenuStrip mnuUser;
+        private System.Windows.Forms.ToolStripMenuItem mnuExcel;
     }
 }

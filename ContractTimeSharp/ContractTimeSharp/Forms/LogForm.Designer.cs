@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gridLog = new System.Windows.Forms.DataGridView();
+            this.mnuLog = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridLog)).BeginInit();
+            this.mnuLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridLog
@@ -41,6 +45,7 @@
             this.gridLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridLog.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.gridLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridLog.ContextMenuStrip = this.mnuLog;
             this.gridLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridLog.Location = new System.Drawing.Point(0, 0);
             this.gridLog.MultiSelect = false;
@@ -53,6 +58,20 @@
             this.gridLog.Size = new System.Drawing.Size(692, 378);
             this.gridLog.TabIndex = 2;
             // 
+            // mnuLog
+            // 
+            this.mnuLog.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuExcel});
+            this.mnuLog.Name = "mnuLog";
+            this.mnuLog.Size = new System.Drawing.Size(111, 26);
+            // 
+            // mnuExcel
+            // 
+            this.mnuExcel.Name = "mnuExcel";
+            this.mnuExcel.Size = new System.Drawing.Size(152, 22);
+            this.mnuExcel.Text = "В Excel";
+            this.mnuExcel.Click += new System.EventHandler(this.mnuExcel_Click);
+            // 
             // LogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -64,6 +83,7 @@
             this.Text = "Система \"Букля\" - Логи входа";
             this.Load += new System.EventHandler(this.LogForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridLog)).EndInit();
+            this.mnuLog.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -71,5 +91,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView gridLog;
+        private System.Windows.Forms.ContextMenuStrip mnuLog;
+        private System.Windows.Forms.ToolStripMenuItem mnuExcel;
     }
 }

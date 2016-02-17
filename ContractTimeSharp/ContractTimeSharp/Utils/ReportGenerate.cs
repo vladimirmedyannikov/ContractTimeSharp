@@ -21,6 +21,12 @@ namespace ContractTimeSharp.Utils
                 MessageBox.Show("Не удалось создать Excel документ");
                 return;
             }
+            xlApp.ScreenUpdating = false;
+            xlApp.Interactive = false;
+            xlApp.EnableEvents = false;
+            xlApp.AlertBeforeOverwriting = false;
+            xlApp.AskToUpdateLinks = false;
+
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
             object misValue = System.Reflection.Missing.Value;
@@ -140,11 +146,69 @@ namespace ContractTimeSharp.Utils
                 index++;
 
             }
+            xlApp.ScreenUpdating = true;
+            xlApp.Interactive = true;
+            xlApp.EnableEvents = true;
+            xlApp.AlertBeforeOverwriting = true;
+            xlApp.AskToUpdateLinks = true;
             xlApp.Visible = true;
 
             releaseObject(xlWorkSheet);
             releaseObject(xlWorkBook);
             releaseObject(xlApp);
+        }
+
+        public static void PrintExcelGrid(DataGridView grid)
+        {
+            Excel.Application xlApp = new Excel.Application();
+            if (xlApp == null)
+            {
+                MessageBox.Show("Не удалось создать Excel документ");
+                return;
+            }
+            xlApp.ScreenUpdating = false;
+            //xlApp.Calculation = Excel.XlCalculation.xlCalculationManual;
+            xlApp.Interactive = false;
+            xlApp.EnableEvents = false;
+            xlApp.AlertBeforeOverwriting = false;
+            xlApp.AskToUpdateLinks = false;
+
+
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+
+            xlWorkBook = xlApp.Workbooks.Add(misValue);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Item[1];
+
+            int index = 1;
+            foreach (DataGridViewColumn column in grid.Columns)
+            {
+                xlWorkSheet.Cells[index, column.Index + 1 ] = column.HeaderText.ToString();
+                ((Excel.Range)(xlWorkSheet.Columns[column.Index + 1])).EntireRow.ColumnWidth = 20;
+            }
+            index++;
+
+            foreach (DataGridViewRow row in grid.Rows)
+            {
+                foreach (DataGridViewColumn column in grid.Columns)
+                {
+                    xlWorkSheet.Cells[index, column.Index +1 ] = row.Cells[column.Index].Value.ToString();
+                }
+                index++;
+            }
+
+            xlApp.ScreenUpdating = true;
+            xlApp.Interactive = true;
+            xlApp.EnableEvents = true;
+            xlApp.AlertBeforeOverwriting = true;
+            xlApp.AskToUpdateLinks = true;
+            xlApp.Visible = true;
+
+            releaseObject(xlWorkSheet);
+            releaseObject(xlWorkBook);
+            releaseObject(xlApp);
+
         }
 
         public static void PrintExcelProject(Object objectProject)
@@ -162,6 +226,12 @@ namespace ContractTimeSharp.Utils
                 MessageBox.Show("Не удалось создать Excel документ");
                 return;
             }
+            xlApp.ScreenUpdating = false;
+            xlApp.Interactive = false;
+            xlApp.EnableEvents = false;
+            xlApp.AlertBeforeOverwriting = false;
+            xlApp.AskToUpdateLinks = true;
+
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
             object misValue = System.Reflection.Missing.Value;
@@ -266,6 +336,11 @@ namespace ContractTimeSharp.Utils
             xlWorkSheet.Range[xlWorkSheet.Cells[6, 12], xlWorkSheet.Cells[index, 13]].Interior.Color = System.Drawing.ColorTranslator.ToOle(Color.FromArgb(218, 238, 243));
             //xlWorkSheet.Range[xlWorkSheet.Cells[4, 2], xlWorkSheet.Cells[index, 14]].AutoFit();
 
+            xlApp.ScreenUpdating = true;
+            xlApp.Interactive = true;
+            xlApp.EnableEvents = true;
+            xlApp.AlertBeforeOverwriting = true;
+            xlApp.AskToUpdateLinks = true;
             xlApp.Visible = true;
 
             //xlWorkBook.SaveAs("d:\\csharp-Excel.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);

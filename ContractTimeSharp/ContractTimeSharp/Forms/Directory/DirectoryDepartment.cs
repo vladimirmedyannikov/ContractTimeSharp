@@ -218,5 +218,10 @@ namespace ContractTimeSharp.Forms.Directory
         {
             panelParam.Hide();
         }
+
+        private void mnuExcel_Click(object sender, EventArgs e)
+        {
+            ReportGenerate.PrintExcelGrid(gridDepartment);
+        }
     }
 }

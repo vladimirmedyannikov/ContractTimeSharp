@@ -437,5 +437,10 @@ namespace ContractTimeSharp.Forms
         {
 
         }
+
+        private void mnuExcel_Click(object sender, EventArgs e)
+        {
+            ReportGenerate.PrintExcelGrid(gridProject);
+        }
     }
 }

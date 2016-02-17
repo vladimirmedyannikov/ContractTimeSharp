@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mnuUserDel = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDeptAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDepartment = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,25 +48,28 @@
             this.cbFirm = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbDepartment = new System.Windows.Forms.ComboBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDepartment)).BeginInit();
             this.panel1.SuspendLayout();
             this.panelParam.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnuUserDel
             // 
             this.mnuUserDel.Name = "mnuUserDel";
-            this.mnuUserDel.Size = new System.Drawing.Size(152, 22);
+            this.mnuUserDel.Size = new System.Drawing.Size(128, 22);
             this.mnuUserDel.Text = "Удалить";
             this.mnuUserDel.Click += new System.EventHandler(this.mnuUserDel_Click);
             // 
             // mnuDeptAdd
             // 
             this.mnuDeptAdd.Name = "mnuDeptAdd";
-            this.mnuDeptAdd.Size = new System.Drawing.Size(152, 22);
+            this.mnuDeptAdd.Size = new System.Drawing.Size(128, 22);
             this.mnuDeptAdd.Text = "Добавить";
             this.mnuDeptAdd.Click += new System.EventHandler(this.mnuDeptAdd_Click);
             // 
@@ -82,7 +86,7 @@
             // mnuDeptEdit
             // 
             this.mnuDeptEdit.Name = "mnuDeptEdit";
-            this.mnuDeptEdit.Size = new System.Drawing.Size(152, 22);
+            this.mnuDeptEdit.Size = new System.Drawing.Size(128, 22);
             this.mnuDeptEdit.Text = "Изменить";
             this.mnuDeptEdit.Click += new System.EventHandler(this.mnuDeptEdit_Click);
             // 
@@ -116,6 +120,7 @@
             this.gridDepartment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridDepartment.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.gridDepartment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridDepartment.ContextMenuStrip = this.contextMenuStrip1;
             this.gridDepartment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridDepartment.Location = new System.Drawing.Point(0, 24);
             this.gridDepartment.MultiSelect = false;
@@ -250,6 +255,20 @@
             this.cbDepartment.Size = new System.Drawing.Size(231, 21);
             this.cbDepartment.TabIndex = 11;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuExcel});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(170, 48);
+            // 
+            // mnuExcel
+            // 
+            this.mnuExcel.Name = "mnuExcel";
+            this.mnuExcel.Size = new System.Drawing.Size(169, 22);
+            this.mnuExcel.Text = "Выгрузить в Excel";
+            this.mnuExcel.Click += new System.EventHandler(this.mnuExcel_Click);
+            // 
             // DirectoryDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,6 +288,7 @@
             this.panelParam.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -294,5 +314,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuUserDel;
         private System.Windows.Forms.ComboBox cbFirm;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnuExcel;
     }
 }
