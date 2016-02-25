@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResposibleUsers));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabNotComplete = new System.Windows.Forms.TabPage();
             this.gridNotComplete = new System.Windows.Forms.DataGridView();
@@ -205,6 +206,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 441);
             this.Controls.Add(this.tabControl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ResposibleUsers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Система \"Феникс\" - Мониторинг задач пользователей";

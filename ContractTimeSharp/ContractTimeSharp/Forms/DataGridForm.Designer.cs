@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogGridForm));
             this.dataGridInvestProject = new System.Windows.Forms.DataGridView();
             this.menuInvestProject = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.создатьПроектToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -327,6 +328,7 @@
             this.Controls.Add(this.treeViewAdv1);
             this.Controls.Add(this.dataGridInvestProject);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(261, 65);
             this.Name = "DialogGridForm";

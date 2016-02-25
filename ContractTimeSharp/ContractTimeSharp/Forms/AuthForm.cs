@@ -20,10 +20,9 @@ namespace ContractTimeSharp.Forms
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Вы действительно хотите выйти ?", "Выход", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                this.Close();
-            }
+            
+            this.Close();
+
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -53,6 +52,22 @@ namespace ContractTimeSharp.Forms
             {
                 btnOk.PerformClick();
             }
+        }
+
+        private void AuthForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MainApplication.User != null || MessageBox.Show("Вы действительно хотите выйти ?", "Выход", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                return;
+                e.Cancel = false;
+                this.Close();
+            }
+            else e.Cancel = true;
+        }
+
+        private void AuthForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
     }
 }

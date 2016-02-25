@@ -29,9 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitoringStage));
             this.tabMonitor = new System.Windows.Forms.TabControl();
             this.tabDate = new System.Windows.Forms.TabPage();
             this.gridProject = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelFilter = new System.Windows.Forms.Label();
@@ -48,17 +51,15 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.sendMessage = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.tabMonitor.SuspendLayout();
             this.tabDate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProject)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabTree.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabMonitor
@@ -106,6 +107,20 @@
             this.gridProject.Size = new System.Drawing.Size(1061, 550);
             this.gridProject.TabIndex = 3;
             this.gridProject.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridProject_KeyDown);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuExcel});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(169, 26);
+            // 
+            // mnuExcel
+            // 
+            this.mnuExcel.Name = "mnuExcel";
+            this.mnuExcel.Size = new System.Drawing.Size(168, 22);
+            this.mnuExcel.Text = "выгрузить в Excel";
+            this.mnuExcel.Click += new System.EventHandler(this.mnuExcel_Click);
             // 
             // panel1
             // 
@@ -291,26 +306,13 @@
             this.sendMessage.UseVisualStyleBackColor = true;
             this.sendMessage.Click += new System.EventHandler(this.sendMessage_Click);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuExcel});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(169, 26);
-            // 
-            // mnuExcel
-            // 
-            this.mnuExcel.Name = "mnuExcel";
-            this.mnuExcel.Size = new System.Drawing.Size(168, 22);
-            this.mnuExcel.Text = "выгрузить в Excel";
-            this.mnuExcel.Click += new System.EventHandler(this.mnuExcel_Click);
-            // 
             // MonitoringStage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1075, 647);
             this.Controls.Add(this.tabMonitor);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MonitoringStage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Система \"Феникс\" - Этапы проекта по дате";
@@ -318,6 +320,7 @@
             this.tabMonitor.ResumeLayout(false);
             this.tabDate.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridProject)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -325,7 +328,6 @@
             this.flowLayoutPanel1.PerformLayout();
             this.tabTree.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogForm));
             this.gridLog = new System.Windows.Forms.DataGridView();
             this.mnuLog = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +69,7 @@
             // mnuExcel
             // 
             this.mnuExcel.Name = "mnuExcel";
-            this.mnuExcel.Size = new System.Drawing.Size(152, 22);
+            this.mnuExcel.Size = new System.Drawing.Size(110, 22);
             this.mnuExcel.Text = "В Excel";
             this.mnuExcel.Click += new System.EventHandler(this.mnuExcel_Click);
             // 
@@ -78,6 +79,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 378);
             this.Controls.Add(this.gridLog);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LogForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Система \"Феникс\" - Логи входа";

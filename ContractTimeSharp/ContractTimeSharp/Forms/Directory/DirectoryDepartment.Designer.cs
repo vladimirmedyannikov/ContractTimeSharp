@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DirectoryDepartment));
             this.mnuUserDel = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDeptAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDepartment = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,6 +37,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.panelGrid = new System.Windows.Forms.Panel();
             this.gridDepartment = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
@@ -48,15 +51,13 @@
             this.cbFirm = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbDepartment = new System.Windows.Forms.ComboBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDepartment)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelParam.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnuUserDel
@@ -133,6 +134,20 @@
             this.gridDepartment.Size = new System.Drawing.Size(772, 535);
             this.gridDepartment.TabIndex = 1;
             this.gridDepartment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridDepartment_KeyDown);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuExcel});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(170, 26);
+            // 
+            // mnuExcel
+            // 
+            this.mnuExcel.Name = "mnuExcel";
+            this.mnuExcel.Size = new System.Drawing.Size(169, 22);
+            this.mnuExcel.Text = "Выгрузить в Excel";
+            this.mnuExcel.Click += new System.EventHandler(this.mnuExcel_Click);
             // 
             // btnClose
             // 
@@ -255,20 +270,6 @@
             this.cbDepartment.Size = new System.Drawing.Size(231, 21);
             this.cbDepartment.TabIndex = 11;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuExcel});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(170, 48);
-            // 
-            // mnuExcel
-            // 
-            this.mnuExcel.Name = "mnuExcel";
-            this.mnuExcel.Size = new System.Drawing.Size(169, 22);
-            this.mnuExcel.Text = "Выгрузить в Excel";
-            this.mnuExcel.Click += new System.EventHandler(this.mnuExcel_Click);
-            // 
             // DirectoryDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,6 +277,7 @@
             this.ClientSize = new System.Drawing.Size(1009, 559);
             this.Controls.Add(this.panelGrid);
             this.Controls.Add(this.panelParam);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DirectoryDepartment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Справочник подразделений";
@@ -284,11 +286,11 @@
             this.panelGrid.ResumeLayout(false);
             this.panelGrid.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDepartment)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panelParam.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

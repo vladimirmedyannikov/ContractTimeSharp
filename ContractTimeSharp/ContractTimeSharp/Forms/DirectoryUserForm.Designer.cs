@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DirectoryUserForm));
             this.panelParam = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelFirstName = new System.Windows.Forms.Label();
@@ -58,13 +59,13 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.panelGrid = new System.Windows.Forms.Panel();
             this.gridUsers = new System.Windows.Forms.DataGridView();
+            this.mnuUser = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.пользовательToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUserAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUserEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUserDel = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuUser = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.panelParam.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -73,8 +74,8 @@
             this.panel1.SuspendLayout();
             this.panelGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.mnuUser.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelParam
@@ -373,6 +374,20 @@
             this.gridUsers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsers_CellDoubleClick);
             this.gridUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridUsers_KeyDown);
             // 
+            // mnuUser
+            // 
+            this.mnuUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuExcel});
+            this.mnuUser.Name = "mnuUser";
+            this.mnuUser.Size = new System.Drawing.Size(159, 26);
+            // 
+            // mnuExcel
+            // 
+            this.mnuExcel.Name = "mnuExcel";
+            this.mnuExcel.Size = new System.Drawing.Size(158, 22);
+            this.mnuExcel.Text = "Вырузка в Excel";
+            this.mnuExcel.Click += new System.EventHandler(this.mnuExcel_Click);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -414,20 +429,6 @@
             this.mnuUserDel.Text = "Удалить";
             this.mnuUserDel.Click += new System.EventHandler(this.mnuUserDel_Click);
             // 
-            // mnuUser
-            // 
-            this.mnuUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuExcel});
-            this.mnuUser.Name = "mnuUser";
-            this.mnuUser.Size = new System.Drawing.Size(159, 26);
-            // 
-            // mnuExcel
-            // 
-            this.mnuExcel.Name = "mnuExcel";
-            this.mnuExcel.Size = new System.Drawing.Size(158, 22);
-            this.mnuExcel.Text = "Вырузка в Excel";
-            this.mnuExcel.Click += new System.EventHandler(this.mnuExcel_Click);
-            // 
             // DirectoryUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -435,6 +436,7 @@
             this.ClientSize = new System.Drawing.Size(882, 639);
             this.Controls.Add(this.panelGrid);
             this.Controls.Add(this.panelParam);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "DirectoryUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -452,9 +454,9 @@
             this.panelGrid.ResumeLayout(false);
             this.panelGrid.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).EndInit();
+            this.mnuUser.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.mnuUser.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
