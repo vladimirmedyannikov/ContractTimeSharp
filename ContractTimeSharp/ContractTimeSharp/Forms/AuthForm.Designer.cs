@@ -62,7 +62,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(117, 17);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Система \"Букля\"";
+            this.label3.Text = "Система \"Феникс\"";
             // 
             // btnCancel
             // 

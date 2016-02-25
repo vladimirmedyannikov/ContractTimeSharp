@@ -342,7 +342,7 @@
             this.Controls.Add(this.panelLabel);
             this.Name = "DialogInvestProject";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Система \"Букля\" - Параметры проекта";
+            this.Text = "Система \"Феникс\" - Параметры проекта";
             this.panelLabel.ResumeLayout(false);
             this.panelLabel.PerformLayout();
             this.panel1.ResumeLayout(false);

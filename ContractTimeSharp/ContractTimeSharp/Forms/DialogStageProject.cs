@@ -210,7 +210,7 @@ namespace ContractTimeSharp.Forms
 
             if (userMode)
             {
-                if ((dateBeginUser.Checked && dateBegin.Value.CompareTo(dateBeginUser.Value) < 0) || (dateEndUser.Checked && dateEnd.Value.CompareTo(dateEndUser.Value) < 0))
+                if ((dateBeginUser.Checked && dateBegin.Value.ToShortDateString().CompareTo(dateBeginUser.Value.ToShortDateString()) < 0) || (dateEndUser.Checked && dateEnd.Value.ToShortDateString().CompareTo(dateEndUser.Value.ToShortDateString()) < 0))
                 {
                     if (textBoxAbout.Text.Trim().Length < 5)
                     {

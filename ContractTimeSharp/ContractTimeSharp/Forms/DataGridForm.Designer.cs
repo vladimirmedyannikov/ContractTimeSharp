@@ -331,7 +331,7 @@
             this.MinimumSize = new System.Drawing.Size(261, 65);
             this.Name = "DialogGridForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Система \"Букля\" - Проекты";
+            this.Text = "Система \"Феникс\" - Проекты";
             this.Load += new System.EventHandler(this.DialogGridForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvestProject)).EndInit();
             this.menuInvestProject.ResumeLayout(false);

@@ -294,7 +294,7 @@ namespace ContractTimeSharp.Forms
                 {
                     StringBuilder message = new StringBuilder();
                     message.Append("Добрый день!<br><br>");
-                    message.Append("Вам необходимо отчитаться об исполнении вверенного этапа инвестиционного проекта в системе «Букля»<br>");
+                    message.Append("Вам необходимо отчитаться об исполнении вверенного этапа инвестиционного проекта в системе «Феникс»<br>");
                     message.Append(String.Format("Вы можете внести необходимую информацию пройдя по ссылке: <a href=\"{0}\">ссылка</a><br>",Properties.Settings.Default.filePath));
                     message.Append("Если Вы не помните логин и пароль для входа в систему или у Вас их нет – пишите <span style='font - size:7.5pt; font - family:Wingdings; color: blue'>*</span><a href = 'mailto: YaryginIM@TLTK.ru'>YaryginIM@TLTK.ru</a><br><br>");
                     message.Append("ПРИМЕЧАНИЕ.Данное сообщение сформировано автоматически без участия человека.<br>");
@@ -407,7 +407,7 @@ namespace ContractTimeSharp.Forms
                 {
                     StringBuilder message = new StringBuilder();
                     message.Append("Добрый день!<br><br>");
-                    message.Append("Вам необходимо отчитаться об исполнении вверенного этапа инвестиционного проекта в системе «Букля»<br>");
+                    message.Append("Вам необходимо отчитаться об исполнении вверенного этапа инвестиционного проекта в системе «Феникс»<br>");
                     message.Append(String.Format("Вы можете внести необходимую информацию пройдя по ссылке: <a href=\"{0}\">ссылка</a><br>", Properties.Settings.Default.filePath));
                     message.Append("Если Вы не помните логин и пароль для входа в систему или у Вас их нет – пишите <span style='font - size:7.5pt; font - family:Wingdings; color: blue'>*</span><a href = 'mailto: YaryginIM@TLTK.ru'>YaryginIM@TLTK.ru</a><br><br>");
                     message.Append("ПРИМЕЧАНИЕ.Данное сообщение сформировано автоматически без участия человека.<br>");

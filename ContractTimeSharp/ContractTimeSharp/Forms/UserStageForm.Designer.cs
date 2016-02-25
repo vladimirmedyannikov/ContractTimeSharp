@@ -232,7 +232,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "UserStageForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Система \"Букля\" - Мои задачи";
+            this.Text = "Система \"Феникс\" - Мои задачи";
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

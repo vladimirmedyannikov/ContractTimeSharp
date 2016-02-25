@@ -48,7 +48,7 @@ namespace ContractTimeSharp.Utils
                 String msgTo = email;
 
                 //Тема письма
-                String msgSubject = "Заполнение информации в системе «Букля»";
+                String msgSubject = "Заполнение информации в системе «Феникс»";
                 //Текст письма, можно использовать html
                 String msgBody = messageMail;
                 //Вложение для письма

@@ -108,7 +108,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "ChangeInnerIndexStage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Система \"Букля\" - Изменение порядка этапов";
+            this.Text = "Система \"Феникс\" - Изменение порядка этапов";
             this.Load += new System.EventHandler(this.ChangeInnerIndexStage_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridStage)).EndInit();

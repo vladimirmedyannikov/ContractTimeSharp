@@ -438,7 +438,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "DirectoryUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Система \"Букля\" - Пользователи";
+            this.Text = "Система \"Феникс\" - Пользователи";
             this.Load += new System.EventHandler(this.DirectoryUserForm_Load);
             this.panelParam.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
